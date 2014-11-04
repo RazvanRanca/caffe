@@ -139,6 +139,7 @@ def blobprotovector_str_to_arraylist(str):
   """
   vec = caffe_pb2.BlobProtoVector()
   vec.ParseFromString(str)
+  print vec
   return [blobproto_to_array(blob) for blob in vec.blobs]
 
 

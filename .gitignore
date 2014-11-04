@@ -86,3 +86,6 @@ LOCK
 LOG*
 CURRENT
 MANIFEST-*
+
+small.weights
+big.weights
