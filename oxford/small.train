@@ -12,7 +12,9 @@ layers {
   }
   transform_param {
     crop_size: 224
-    mean_file: "/data/ad6813/devCaffe/caffe/clampdetMeanVal"
+    mean_value: 86.75
+    mean_value: 101.4
+    mean_value: 104.6
     mirror: true
   }
   include: { phase: TRAIN }
@@ -30,7 +32,9 @@ layers {
   }
   transform_param {
     crop_size: 224
-    mean_file: "/data/ad6813/devCaffe/caffe/clampdetMeanVal"
+    mean_value: 86.75
+    mean_value: 101.4
+    mean_value: 104.6
     mirror: true
   }
   include: { phase: TEST }
@@ -504,7 +508,7 @@ layers {
 }
 layers {
   name: "accuracy"
-  type: ACCURACY
+  type: PER_CLASS_ACCURACY
   bottom: "fc8_2"
   bottom: "label"
   top: "accuracy"

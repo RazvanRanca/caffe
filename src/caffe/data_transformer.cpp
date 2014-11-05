@@ -4,6 +4,7 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
 
 #include "caffe/data_transformer.hpp"
 #include "caffe/util/io.hpp"
@@ -46,7 +47,10 @@ void DataTransformer<Dtype>::Transform(const Datum& datum,
 
   const int crop_size = param_.crop_size();
   const Dtype scale = param_.scale();
-  const bool do_mirror = param_.mirror() && Rand(2);
+  int flip = 3; 
+  if (param_.mirror()) {
+    flip = Rand(4);
+  }
   const bool has_mean_file = param_.has_mean_file();
   const bool has_uint8 = data.size() > 0;
   const bool has_mean_values = mean_values_.size() > 0;
@@ -97,10 +101,19 @@ void DataTransformer<Dtype>::Transform(const Datum& datum,
     for (int h = 0; h < height; ++h) {
       for (int w = 0; w < width; ++w) {
         data_index = (c * datum_height + h_off + h) * datum_width + w_off + w;
-        if (do_mirror) {
-          top_index = (c * height + h) * width + (width - 1 - w);
-        } else {
-          top_index = (c * height + h) * width + w;
+        switch (flip) {
+          case 0:
+            top_index = (c * height + h) * width + (width - 1 - w);
+            break;
+          case 1:
+            top_index = (c * height + (height - 1 - h)) * width + w;
+            break;
+          case 2:
+            top_index = (c * height + (height - 1 - h)) * width + (width - 1 - w);
+            break;
+          case 3:
+            top_index = (c * height + h) * width + w;
+            break;
         }
         if (has_uint8) {
           datum_element =
@@ -197,7 +210,10 @@ void DataTransformer<Dtype>::Transform(const cv::Mat& cv_img,
 
   const int crop_size = param_.crop_size();
   const Dtype scale = param_.scale();
-  const bool do_mirror = param_.mirror() && Rand(2);
+  int flip = 3; 
+  if (param_.mirror()) {
+    flip = Rand(4);
+  }
   const bool has_mean_file = param_.has_mean_file();
   const bool has_mean_values = mean_values_.size() > 0;
 
@@ -253,10 +269,19 @@ void DataTransformer<Dtype>::Transform(const cv::Mat& cv_img,
     int img_index = 0;
     for (int w = 0; w < width; ++w) {
       for (int c = 0; c < img_channels; ++c) {
-        if (do_mirror) {
-          top_index = (c * height + h) * width + (width - 1 - w);
-        } else {
-          top_index = (c * height + h) * width + w;
+        switch (flip) {
+          case 0:
+            top_index = (c * height + h) * width + (width - 1 - w);
+            break;
+          case 1:
+            top_index = (c * height + (height - 1 - h)) * width + w;
+            break;
+          case 2:
+            top_index = (c * height + (height - 1 - h)) * width + (width - 1 - w);
+            break;
+          case 3:
+            top_index = (c * height + h) * width + w;
+            break;
         }
         // int top_index = (c * height + h) * width + w;
         Dtype pixel = static_cast<Dtype>(ptr[img_index++]);
@@ -299,7 +324,10 @@ void DataTransformer<Dtype>::Transform(Blob<Dtype>* input_blob,
 
   const int crop_size = param_.crop_size();
   const Dtype scale = param_.scale();
-  const bool do_mirror = param_.mirror() && Rand(2);
+  int flip = 3; 
+  if (param_.mirror()) {
+    flip = Rand(4);
+  }
   const bool has_mean_file = param_.has_mean_file();
   const bool has_mean_values = mean_values_.size() > 0;
 
@@ -359,8 +387,11 @@ void DataTransformer<Dtype>::Transform(Blob<Dtype>* input_blob,
       int data_index_c = (data_index_n + c) * input_height + h_off;
       for (int h = 0; h < height; ++h) {
         int top_index_h = (top_index_c + h) * width;
+        if (flip == 1 || flip == 2) {
+          top_index_h = (top_index_c + (height - 1 - h)) * width;
+        }
         int data_index_h = (data_index_c + h) * input_width + w_off;
-        if (do_mirror) {
+        if (flip == 0 || flip == 2) {
           int top_index_w = top_index_h + width - 1;
           for (int w = 0; w < width; ++w) {
             transformed_data[top_index_w-w] = input_data[data_index_h + w];

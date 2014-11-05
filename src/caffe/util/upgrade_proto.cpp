@@ -492,6 +492,8 @@ LayerParameter_LayerType UpgradeV0LayerType(const string& type) {
     return LayerParameter_LayerType_LRN;
   } else if (type == "multinomial_logistic_loss") {
     return LayerParameter_LayerType_MULTINOMIAL_LOGISTIC_LOSS;
+  } else if (type == "per_class_accuracy") {
+    return LayerParameter_LayerType_PER_CLASS_ACCURACY;
   } else if (type == "pool") {
     return LayerParameter_LayerType_POOLING;
   } else if (type == "relu") {
