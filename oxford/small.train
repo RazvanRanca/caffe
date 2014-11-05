@@ -12,9 +12,9 @@ layers {
   }
   transform_param {
     crop_size: 224
-    mean_value: 86.75
-    mean_value: 101.4
-    mean_value: 104.6
+    mean_value: 86.752
+    mean_value: 101.460
+    mean_value: 104.600
     mirror: true
   }
   include: { phase: TRAIN }
@@ -26,15 +26,15 @@ layers {
   top: "label"
   image_data_param {
     source: "/data/ad6813/devCaffe/caffe/task/clamp/clampVal.txt"
-    batch_size: 8  
+    batch_size: 6  
     new_height: 256
     new_width: 256
   }
   transform_param {
     crop_size: 224
-    mean_value: 86.75
-    mean_value: 101.4
-    mean_value: 104.6
+    mean_value: 86.752
+    mean_value: 101.460
+    mean_value: 104.600
     mirror: true
   }
   include: { phase: TEST }
