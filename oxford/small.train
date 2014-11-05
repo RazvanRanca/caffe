@@ -26,7 +26,7 @@ layers {
   top: "label"
   image_data_param {
     source: "/data/ad6813/devCaffe/caffe/task/clamp/clampVal.txt"
-    batch_size: 6  
+    batch_size: 8  
     new_height: 256
     new_width: 256
   }
