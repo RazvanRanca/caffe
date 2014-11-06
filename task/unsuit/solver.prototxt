@@ -1,5 +1,5 @@
-net: "task/soil_high/train_val.prototxt"
-test_iter: 62
+net: "task/unsuit/train_val.prototxt"
+test_iter: 721 
 test_interval: 50
 test_compute_loss: 1
 # lr for fine-tuning should be lower than when starting from scratch
@@ -13,5 +13,5 @@ max_iter: 1200
 momentum: 0.9
 weight_decay: 0.0005
 snapshot: 200
-snapshot_prefix: "task/soil_high/"
+snapshot_prefix: "task/unsuit/"
 solver_mode: GPU
