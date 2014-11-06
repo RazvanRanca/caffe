@@ -30,7 +30,7 @@ def get_label_dict_knowing(data_dir, task, pos_class):
   task is the name of what we're learning to detect,
   pos_class is a list of the actual flag names to look for. '''
   d = {'Default': [], task: []}
-  print 'generating specific dict of class:files from %s...'%(data_dir)
+  print 'generating specific dict of class:files from %s with pos class %s...'%(data_dir,pos_class)
   for filename in os.listdir(data_dir):
     if not filename.endswith('.dat'): continue
     with open(oj(data_dir, filename)) as f:

@@ -94,13 +94,18 @@ def blur_no_infogain(blue_c_imb, data_dir, task, pos_class):
   if red_c_imb >= blue_c_imb:
     # can't add all negatives
     num_pos = len(d_red[task])
-    print "red positives:", num_pos
     num_neg = num_pos * (blue_c_imb/float(1-blue_c_imb))
     # num_neg = num_pos * (len(d_blue['Default'])/len(d_blue[task]))
   else:
     # can't add all positives
+    k = ((1-blue_c_imb)/float(blue_c_imb))
+    print k
+    for key in d_red.keys():
+      try:
+        print len(d_red[key]), key
+      except: pass
     num_neg = len(d_red['Default'])
-    num_pos = num_neg * (1-blue_c_imb/blue_c_imb)
+    num_pos = num_neg * k
     # num_pos = num_neg * (len(d_blue[task])/len(d_blue['Default']))
   return int(num_pos), int(num_neg)
   
