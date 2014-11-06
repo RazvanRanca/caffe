@@ -5,14 +5,16 @@ layers {
   top: "data"
   top: "label"
   image_data_param {
-    source: "/data/ad6813/caffe/data/clamp/train.txt"
-    batch_size: 32
+    source: "/data/ad6813/devCaffe/caffe/task/clamp/clampTrain.txt"
+    batch_size: 28 
     new_height: 256
     new_width: 256
   }
   transform_param {
     crop_size: 224
-    mean_file: "/data/ad6813/devCaffe/caffe/clampdetMeanVal"
+    mean_value: 86.752
+    mean_value: 101.460
+    mean_value: 104.600
     mirror: true
   }
   include: { phase: TRAIN }
@@ -23,14 +25,16 @@ layers {
   top: "data"
   top: "label"
   image_data_param {
-    source: "/data/ad6813/caffe/data/clamp/val.txt"
+    source: "/data/ad6813/devCaffe/caffe/task/clamp/clampVal.txt"
     batch_size: 8  
     new_height: 256
     new_width: 256
   }
   transform_param {
     crop_size: 224
-    mean_file: "/data/ad6813/devCaffe/caffe/clampdetMeanVal"
+    mean_value: 86.752
+    mean_value: 101.460
+    mean_value: 104.600
     mirror: true
   }
   include: { phase: TEST }
@@ -580,7 +584,7 @@ layers {
 }
 layers {
   name: "accuracy"
-  type: ACCURACY
+  type: PER_CLASS_ACCURACY
   bottom: "fc8_2"
   bottom: "label"
   top: "accuracy"
