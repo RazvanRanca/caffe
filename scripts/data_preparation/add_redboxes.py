@@ -31,7 +31,7 @@ def bring_redbox_positives(task, flags, add_num, redbox_dir, fn_train):
       fl = fl.replace('dat','jpg')
       f.write("\n"+redbox_dir+'/' + fl + " 1")
 
-  shuffle_file('train.txt')
+  shuffle_file(fn_train)
 
 def shuffle_file(fname):
   contents = open(fname, 'r').readlines()
