@@ -290,10 +290,13 @@ void Solver<Dtype>::Test(const int test_net_id) {
     } else {
       int idx = 0;
       for (int j = 0; j < result.size(); ++j) {
+	LOG(INFO) << "result " << j << ":";
         const Dtype* result_vec = result[j]->cpu_data();
         for (int k = 0; k < result[j]->count(); ++k) {
+	  LOG(INFO) << "test_score[" << idx << "] += " << result_vec[k];
           test_score[idx++] += result_vec[k];
         }
+	LOG(INFO) << " ";
       }
     }
   }
