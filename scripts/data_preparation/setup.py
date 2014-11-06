@@ -220,7 +220,7 @@ def add_redboxes(target_bad_min, b_imbal, pos_class, task,
 
   # NOT RANDOM! USING TAIL
   print 'bringing in %i redbox positives...'%(add_num_pos)
-  ar.bring_redbox_positives(task, pos_class, add_num_pos, redbox_dir)
+  ar.bring_redbox_positives(task, pos_class, add_num_pos, redbox_dir, fn_train)
   
 
 

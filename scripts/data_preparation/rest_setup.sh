@@ -10,13 +10,13 @@ set -e
 
 # BASE and FULL name in case 2 models share same data & labels
 
-CAFFE=/data2/ad6813/caffe
+CAFFE=$(cd ../..; pwd)
 BASE_NAME=$1
 NUM_OUTPUT=${2:-2}
 FULL_NAME=${3:-$BASE_NAME}
 clampBade=$CAFFE"/task/clamp/"
 
-echo "Running setup_rest with BASE_NAME:"$BASE_NAME" FULL_NAME:"$FULL_NAME" and NUM_OUTPUT:"$NUM_OUTPUT
+echo "Running rest_setup.sh with BASE_NAME:"$BASE_NAME" FULL_NAME:"$FULL_NAME" and NUM_OUTPUT:"$NUM_OUTPUT
 
 
 # first make sure exists reference dir from which to cp and sed

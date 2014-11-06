@@ -9,25 +9,27 @@ import setup
 # why separate from bring in negatives?
 # NOT RANDOM! USING TAIL
 # imbalance_multiple is more than by how much maj class is bigger than min class in redbox. it's a heuristic to speed up computation
-def bring_redbox_positives(task, flags, add_num, redbox_dir):
+def bring_redbox_positives(task, flags, add_num, redbox_dir, fn_train):
   added = []
   listdir = os.listdir(redbox_dir)
   random.shuffle(listdir)
   for fl in listdir:
-    pres = False
-    with open(oj(redbox_dir,fl), 'r') as f:
-      for line in f:
-        if line.strip() in flags:
-          pres = True
+    if fl.endswith('.dat'):
+      pres = False
+      with open(oj(redbox_dir,fl), 'r') as f:
+        for line in f:
+          if line.strip() in flags:
+            pres = True
+            break
+      if pres:
+        added.append(fl)
+        if len(added) >= add_num:
           break
-    if pres:
-      added.append(fl)
-      if len(added) >= add_num:
-        break
 
-  with open("train.txt", 'a') as f:
+  with open(fn_train, 'a') as f:
     for fl in added:
-      f.write("\n/data/ad6813/pipe-data/Redbox/" + fl + " 1")
+      fl = fl.replace('dat','jpg')
+      f.write("\n"+redbox_dir+'/' + fl + " 1")
 
   shuffle_file('train.txt')
 
@@ -50,7 +52,7 @@ def bring_redbox_negatives(task, avoid_flags, add_num, pickle_fname, data_dir, f
       if fname.endswith('.dat'):
         total.append(fname)
 
-    print 'Gathering vacant, non-perfect Redbox images without %s flag...'%(task)
+    print "Gathering vacant, non-perfect Redbox images without %s's flags..."%(task)
     count = 0
     with open(fn_train,'r') as f_already:
       c_already = f_already.readlines()
