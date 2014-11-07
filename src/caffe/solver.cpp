@@ -802,7 +802,7 @@ void AdaGradSolver<Dtype>::ComputeUpdateValue() {
 
 INSTANTIATE_CLASS(Solver);
 INSTANTIATE_CLASS(SGDSolver);
-// INSTANTIATE_CLASS(NesterovSolver);
-// INSTANTIATE_CLASS(AdaGradSolver);
+INSTANTIATE_CLASS(NesterovSolver);
+INSTANTIATE_CLASS(AdaGradSolver);
 
 }  // namespace caffe
