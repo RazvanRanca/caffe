@@ -12,7 +12,11 @@ import argparse
 import glob
 import time
 
+#try:
 sys.path.append("/home/haggis/caffe/python")
+#except:
+sys.path.append("/data/ad6813/devCaffe/caffe/python/")
+
 import caffe
 
 
@@ -126,8 +130,9 @@ def main(argv):
     start = time.time()
     predictions = classifier.predict(inputs, not args.center_only)
     #print "Done in %.2f s." % (time.time() - start)
-
+    print "-=-=-START-=-=-"
     print "Probability flag present:", str(predictions[0][1]*100)[:5] + "%"
+    print "-=-=-END-=-=-"
     # Save
     #print zip(names, predictions)
     #np.save(args.output_file, predictions)

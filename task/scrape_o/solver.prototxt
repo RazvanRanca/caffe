@@ -1,5 +1,5 @@
 net: "task/scrape_o/train_val.prototxt"
-test_iter: 495
+test_iter: 100
 test_interval: 200
 test_compute_loss: 1
 # lr for fine-tuning should be lower than when starting from scratch
@@ -12,6 +12,6 @@ display: 1
 max_iter: 10000 
 momentum: 0.9
 weight_decay: 0.0005
-snapshot: 3000
+snapshot: 2500
 snapshot_prefix: "task/scrape_o/"
 solver_mode: GPU

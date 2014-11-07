@@ -28,7 +28,7 @@ def bring_redbox_positives(task, flags, add_num, redbox_dir, fn_train):
   with open(fn_train, 'a') as f:
     for fl in added:
       fl = fl.replace('dat','jpg')
-      f.write("\n"+redbox_dir + fl + " 1")
+      f.write("\n"+oj(redbox_dir,fl)+ " 1")
   
 
 def shuffle_file(fname):
@@ -61,7 +61,7 @@ def bring_redbox_negatives(task, avoid_flags, add_num, data_dir, fn_train):
       content = [line.strip() for line in content]
       if all([len([flag for flag in content if flag in avoid_flags])==0,
               total[i] not in c_already]):
-        notperf.append(data_dir+total[i][:-4]+'.jpg'+neg_classification+'\n')
+        notperf.append(oj(data_dir,total[i][:-4])+'.jpg'+neg_classification+'\n')
         count += 1
         if count > add_num: break
 
