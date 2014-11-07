@@ -131,7 +131,7 @@ def main(argv):
     predictions = classifier.predict(inputs, not args.center_only)
     #print "Done in %.2f s." % (time.time() - start)
     print "-=-=-START-=-=-"
-    print "Probability flag present:", str(predictions[0][1]*100)[:5] + "%"
+    print "Probability flag present:\n" + "\n".join([names[i] + " - " + str(predictions[i][1]*100)[:5] + "%" for i in range(len(predictions))])
     print "-=-=-END-=-=-"
     # Save
     #print zip(names, predictions)

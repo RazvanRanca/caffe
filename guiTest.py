@@ -57,7 +57,7 @@ def button2Click():
     if runLoc.get() == "local":
       cmd = "python classifyPipe.py --pretrained_model " + model + " " + filename + " temp"
     else:
-      cmd = "./remoteClassify.sh"
+      cmd = "./remoteClassify.sh " + filename
     p = subprocess.Popen(cmd , shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     # and you can block util the cmd execute finish
