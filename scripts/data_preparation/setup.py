@@ -86,7 +86,7 @@ def under_sample(Keep, u_bad_min):
 def o_sample_how_many(num_pos, num_neg, o_bad_min):
   o_bad_min = float(o_bad_min)
   full_copies = (((1-float(o_bad_min))/float(o_bad_min)) * float(num_neg)) / float(num_pos)
-  print "  full_copies = (((1-%2.f)/%2.f) * %i) / %i = %2.f"%(o_bad_min,o_bad_min,num_neg,num_pos, full_copies)
+  print "  full_copies = (((1-%3.f)/%3.f) * %i) / %i = %4.f"%(o_bad_min,o_bad_min,num_neg,num_pos, full_copies)
   last_copy = (full_copies - int(full_copies)) * num_neg
   full_copies, last_copy = int(full_copies), int(last_copy)
   print "oversample positives %i times plus %i extras"%(full_copies,last_copy)
@@ -95,9 +95,7 @@ def o_sample_how_many(num_pos, num_neg, o_bad_min):
 
 def over_sample(fn_train, full_copies, last_copy):
   cmd = "./over_sample.sh " + fn_train + " " + str(full_copies) + " " + str(last_copy)
-  print cmd
-  p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE,
-                       stderr=subprocess.STDOUT)
+  p = subprocess.Popen(cmd, shell=True)
   p.wait()
 
 
