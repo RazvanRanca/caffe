@@ -37,7 +37,6 @@ def shuffle_file(fname):
   for line in contents:
     if line.endswith('1\n'): num_pos += 1
     elif line.endswith('0\n'): num_neg += 1
-  print 'FFF'
   random.shuffle(contents)
   open(fname, 'w').writelines(contents)
   # print "there are now %i positives"

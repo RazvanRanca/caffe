@@ -85,10 +85,16 @@ def under_sample(Keep, u_bad_min):
 
 def o_sample_how_many(num_pos, num_neg, o_bad_min):
   o_bad_min = float(o_bad_min)
-  full_copies = (((1-float(o_bad_min))/float(o_bad_min)) * float(num_neg)) / float(num_pos)
-  print "  full_copies = (((1-%3.f)/%3.f) * %i) / %i = %4.f"%(o_bad_min,o_bad_min,num_neg,num_pos, full_copies)
-  last_copy = (full_copies - int(full_copies)) * num_neg
-  full_copies, last_copy = int(full_copies), int(last_copy)
+  print 'o_bad_min, num_pos, num_neg', o_bad_min, num_pos, num_neg
+  full_copies = (1-o_bad_min)/o_bad_min
+  print "full_copies = ", full_copies
+  full_copies *= float(num_neg)
+  print "full_copies = ", full_copies
+  last_copy = int(full_copies) % int(num_pos)
+  full_copies /= float(num_pos)
+  print "full_copies = ", full_copies
+  # last_copy = (full_copies - int(full_copies)) * num_neg
+  full_copies, last_copy = int(full_copies)-1, int(last_copy)
   print "oversample positives %i times plus %i extras"%(full_copies,last_copy)
   return int(full_copies), last_copy
 
@@ -301,7 +307,6 @@ if __name__ == '__main__':
     o_bad_min = float(optDict["o-sample"])
     full_copies, last_copy = o_sample_how_many(num_pos, num_neg, o_bad_min)
     over_sample(fn_train, full_copies, last_copy)
-    print 'III'
     
   # setup task/etc
   p = subprocess.Popen("./rest_setup.sh " + task, shell=True)
