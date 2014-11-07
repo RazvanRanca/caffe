@@ -29,7 +29,7 @@ def bring_redbox_positives(task, flags, add_num, redbox_dir, fn_train):
   with open(fn_train, 'a') as f:
     for fl in added:
       fl = fl.replace('dat','jpg')
-      f.write("\n"+redbox_dir+'/' + fl + " 1")
+      f.write("\n"+redbox_dir + fl + " 1")
 
   shuffle_file(fn_train)
 

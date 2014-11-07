@@ -14,17 +14,15 @@ import add_redboxes as ar
 
 # ./setup.py --task=unsuit --box=blue --learn=3-10-14
 
-def main(data_dir, data_info, task, pos_class, u_bad_min=None,
-         o_bad_min=None):
+def main(data_dir, data_info, task, pos_class, u_bad_min=None):
   ''' This is the master function. data_dir: where raw data is. data_info: where to store .txt files. '''
   Keep = get_label_dict_knowing(data_dir, task, pos_class)
   if u_bad_min is not None:
-    Keep = rebalance(Keep, u_bad_min)
-  if o_bad_min is not None:
-    Keep = o_rebalance(Keep, o_bad_min)    
+    Keep = under_sample(Keep, u_bad_min)
   Keep = within_class_shuffle(Keep)
   print 'finished shuffling'
   dump_to_files(Keep, data_info, task, data_dir)
+  return len(Keep[task]), len(Keep['Default'])
 
 
 def get_label_dict_knowing(data_dir, task, pos_class):
@@ -46,29 +44,18 @@ def get_label_dict_knowing(data_dir, task, pos_class):
   return d
 
 
-# def classes_to_learn(lab_to_learn):
-#   classes = lab_to_learn.split(' ')
-#   Keep = {}
-#   print ''
-#   for elem in enumerate(sorted(All.keys())): print elem
-#   read_labels = [sorted(All.keys())[int(num)] for num in raw_input("\nNumbers of labels to learn, separated by ' ': ").split()]
-#   # if 'Perfect' in All.keys():
-#   #   Keep['Perfect'] = All['Perfect']
-#   for label in read_labels:
-#     Keep[label] = All[label]
-#   return Keep
 
 
-def rebalance(Keep, target_bad_min):
-  '''if target_bad_min not given, prompts user for one; 
+def under_sample(Keep, u_bad_min):
+  '''if u_bad_min not given, prompts user for one; 
   and implements it. Note that with >2 classes, this can be 
   implemented either by downsizing all non-minority classes by the
   same factor in order to maintain their relative proportions, or 
   by downsizing as few majority classes as possible until
-  target_bad_min achieved. We can assume that we care mostly about 
+  u_bad_min achieved. We can assume that we care mostly about 
   having as few small classes as possible, so the latter is 
   implemented.'''
-  target_bad_min = float(target_bad_min)
+  u_bad_min = float(u_bad_min)
   # minc is class with minimum number of training cases
   ascending_classes = sorted([(key,len(Keep[key]))
                               for key in Keep.keys()],
@@ -79,25 +66,38 @@ def rebalance(Keep, target_bad_min):
   # print ascending_classes
   # print "\ntotal num images: %i"%(total_num_images)
   maxc_proportion = float(len_maxc)/total_num_images
-  print 'maxc_proportion: %.2f, target_bad_min: %.2f'%(maxc_proportion, target_bad_min)
-  if maxc_proportion > target_bad_min:
-    delete_size = int((len_maxc - (target_bad_min*total_num_images))/(1-target_bad_min))
+  print 'maxc_proportion: %.2f, u_bad_min: %.2f'%(maxc_proportion, u_bad_min)
+  if maxc_proportion > u_bad_min:
+    delete_size = int((len_maxc - (u_bad_min*total_num_images))/(1-u_bad_min))
     random.shuffle(Keep[maxc])
     print '%s has %i images so %i will be randomly removed'%(maxc, len_maxc, delete_size)
     del Keep[maxc][:delete_size]
-  elif maxc_proportion < target_bad_min:
+  elif maxc_proportion < u_bad_min:
     print 'woah, you want to INCREASE class imbalance!'
-    delete_size = int(total_num_images - (len_maxc/float(target_bad_min)))
+    delete_size = int(total_num_images - (len_maxc/float(u_bad_min)))
     random.shuffle(Keep[minc])
     print '%s has %i images so %i will be randomly removed'%(minc, len_minc, delete_size)
     del Keep[minc][:delete_size]
-  assert target_bad_min == round(float(len(Keep[maxc])) / (len(Keep[maxc])+len(Keep[minc])), 2)
+  assert u_bad_min == round(float(len(Keep[maxc])) / (len(Keep[maxc])+len(Keep[minc])), 2)
   for key in Keep.keys(): print key, len(Keep[key])
   return Keep
 
 
-def o_rebalance(Keep, o_bad_min):
-  return Keep
+def o_sample_how_many(num_pos, num_neg, u_bad_min):
+  u_bad_min = float(u_bad_min)
+  full_copies = (((1-u_bad_min)/u_bad_min) * num_neg) / num_pos
+  print "full_copies temporary float value:", full_copy_iter
+  last_copy = (full_copies - int(full_copies)) * num_neg
+  print "oversample %s %i times plus %i extras"%(minc,full_copies,last_copy)
+  return full_copies, last_copy
+
+
+def over_sample(train_fn, full_copies, last_copy):
+  cmd = "./over_sample.sh " + str(full_copies) + " " + str(last_copy)
+  p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE,
+                       stderr=subprocess.STDOUT)
+  p.wait()
+
 
 def default_class(All, Keep):
   ''' all images without retained labels go to default class. '''
@@ -248,7 +248,7 @@ if __name__ == '__main__':
   if len(sys.argv) == 1:
     print_help()
   
-  opts, extraparams = getopt.gnu_getopt(sys.argv[1:], "", ["task=", "box=", "learn=", "u-sample=", "o-sample", "b-imbal="])
+  opts, extraparams = getopt.gnu_getopt(sys.argv[1:], "", ["task=", "box=", "learn=", "u-sample=", "o-sample=", "b-imbal="])
   optDict = dict([(k[2:],v) for (k,v) in opts])
   print optDict
   
@@ -271,7 +271,7 @@ if __name__ == '__main__':
 
   o_bad_min = None
   if "o-sample" in optDict:
-    o_bad_min = float(optDict["u-sample"])
+    o_bad_min = float(optDict["o-sample"])
     
   # save entire command
   if not os.path.isdir('../../data/'+task): os.mkdir('../../data/'+task)
@@ -280,7 +280,7 @@ if __name__ == '__main__':
     read_file.write(" ".join(sys.argv)+'\n')
 
   # do your shit
-  main(data_dir, data_info, task, pos_class, u_bad_min, o_bad_min)
+  main(data_dir, data_info, task, pos_class, u_bad_min)
 
   # GENERALISE THIS
   if 'b-imbal' in optDict:
@@ -300,10 +300,15 @@ if __name__ == '__main__':
       redbox st imbalance unchanged, then yeah, you need to 
       implement that.'''
       raise Exception(message)
-    add_redboxes(u_bad_min, b_imbal, pos_class, task, 
-                 avoid_flags, pickle_fname, 
-                 redbox_dir, fn_train, using_pickle)
- 
+    num_pos, num_neg = add_redboxes(u_bad_min, b_imbal, pos_class, task, 
+                                    avoid_flags, pickle_fname, 
+                                    redbox_dir, fn_train, using_pickle)
+
+  # oversampling
+  if o_bad_min != None:
+    full_copies, last_copy = o_sample_how_many(num_pos, num_neg, u_bad_min)
+    over_sample(train_fn, full_copies, last_copy)
+    
   # setup task/etc
   p = subprocess.Popen("./rest_setup.sh " + task, shell=True)
   p.wait()
