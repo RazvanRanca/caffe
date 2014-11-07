@@ -11,18 +11,21 @@ echo "First there were "$(grep '1$' $1 | wc -l)" positives in train.txt"
 
 # get all minority class cases
 grep '1$' $1 > full_copy
-
-# append a copy of them to train file
-for ((n=0;n< $2 ;n++)) ; do cat full_copy >> $1; echo "we sample them an extra time"; done
+sort -R full_copy > tempf
+mv tempf full_copy
 
 # append a partial copy of them to train file
-cat full_copy | sort -R | head -$3 >> $1
+cat full_copy | head -$LAST_COPY > last_copy
+
+# append it all to train file
+./append.py full_copy $1 $2
+./append.py last_copy $1 1
 
 # shuffle train file
 echo "shuffling train file..."
-cat $1 | sort -R > tempf
+sort -R $1 > tempf
 mv tempf $1
 
-rm full_copy
+# rm {full_copy, last_copy}
 
 
