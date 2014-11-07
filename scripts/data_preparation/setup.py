@@ -83,17 +83,19 @@ def under_sample(Keep, u_bad_min):
   return Keep
 
 
-def o_sample_how_many(num_pos, num_neg, u_bad_min):
-  u_bad_min = float(u_bad_min)
-  full_copies = (((1-u_bad_min)/u_bad_min) * num_neg) / num_pos
-  print "full_copies temporary float value:", full_copy_iter
+def o_sample_how_many(num_pos, num_neg, o_bad_min):
+  o_bad_min = float(o_bad_min)
+  full_copies = (((1-float(o_bad_min))/float(o_bad_min)) * float(num_neg)) / float(num_pos)
+  print "  full_copies = (((1-%2.f)/%2.f) * %i) / %i = %2.f"%(o_bad_min,o_bad_min,num_neg,num_pos, full_copies)
   last_copy = (full_copies - int(full_copies)) * num_neg
-  print "oversample %s %i times plus %i extras"%(minc,full_copies,last_copy)
-  return full_copies, last_copy
+  full_copies, last_copy = int(full_copies), int(last_copy)
+  print "oversample positives %i times plus %i extras"%(full_copies,last_copy)
+  return int(full_copies), last_copy
 
 
-def over_sample(train_fn, full_copies, last_copy):
-  cmd = "./over_sample.sh " + str(full_copies) + " " + str(last_copy)
+def over_sample(fn_train, full_copies, last_copy):
+  cmd = "./over_sample.sh " + fn_train + " " + str(full_copies) + " " + str(last_copy)
+  print cmd
   p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE,
                        stderr=subprocess.STDOUT)
   p.wait()
@@ -217,18 +219,17 @@ def flag_lookup(labels):
 
 
 def add_redboxes(target_bad_min, b_imbal, pos_class, task,
-                 avoid_flags, pickle_fname, redbox_dir,
-                 fn_train, using_pickle):
+                 avoid_flags, redbox_dir, fn_train):
   blue_c_imb = float(target_bad_min)
   # GOING FOR NO INFO GAIN!
   add_num_pos, add_num_neg = ar.blur_no_infogain(blue_c_imb, redbox_dir, task, pos_class)
-  ar.bring_redbox_negatives(task, avoid_flags, add_num_neg, pickle_fname, redbox_dir, fn_train, using_pickle)
+  ar.bring_redbox_negatives(task, avoid_flags, add_num_neg, redbox_dir, fn_train)
 
   # NOT RANDOM! USING TAIL
   print 'bringing in %i redbox positives...'%(add_num_pos)
   ar.bring_redbox_positives(task, pos_class, add_num_pos, redbox_dir, fn_train)
-  
-
+  num_pos, num_neg = ar.shuffle_file(fn_train)
+  return num_pos, num_neg
 
 
 def print_help():
@@ -268,10 +269,6 @@ if __name__ == '__main__':
   u_bad_min = None
   if "u-sample" in optDict:
     u_bad_min = float(optDict["u-sample"])
-
-  o_bad_min = None
-  if "o-sample" in optDict:
-    o_bad_min = float(optDict["o-sample"])
     
   # save entire command
   if not os.path.isdir('../../data/'+task): os.mkdir('../../data/'+task)
@@ -286,8 +283,6 @@ if __name__ == '__main__':
   if 'b-imbal' in optDict:
     b_imbal = float(optDict["b-imbal"])
     avoid_flags = ['UnsuitablePhoto'] # dont need cos Raz moved away unsuitables?
-    using_pickle = False
-    pickle_fname = 'redbox_vacant_'+task+'_negatives.pickle'
     redbox_dir = '/data/ad6813/pipe-data/Redbox'
     fn_train = data_info+'/train.txt'
 
@@ -300,14 +295,15 @@ if __name__ == '__main__':
       redbox st imbalance unchanged, then yeah, you need to 
       implement that.'''
       raise Exception(message)
-    num_pos, num_neg = add_redboxes(u_bad_min, b_imbal, pos_class, task, 
-                                    avoid_flags, pickle_fname, 
-                                    redbox_dir, fn_train, using_pickle)
+
+    num_pos, num_neg = add_redboxes(u_bad_min, b_imbal, pos_class, task,avoid_flags, redbox_dir, fn_train)
 
   # oversampling
-  if o_bad_min != None:
-    full_copies, last_copy = o_sample_how_many(num_pos, num_neg, u_bad_min)
-    over_sample(train_fn, full_copies, last_copy)
+  if "o-sample" in optDict:
+    o_bad_min = float(optDict["o-sample"])
+    full_copies, last_copy = o_sample_how_many(num_pos, num_neg, o_bad_min)
+    over_sample(fn_train, full_copies, last_copy)
+    print 'III'
     
   # setup task/etc
   p = subprocess.Popen("./rest_setup.sh " + task, shell=True)
