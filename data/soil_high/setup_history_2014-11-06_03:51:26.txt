@@ -1,0 +1,1 @@
+./setup.py --task=soil_high --box=blue --learn=12 --u-sample=0.8 --b-imbal=0.5

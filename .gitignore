@@ -50,12 +50,11 @@
 ## Caffe
 
 # User's build configuration
-Makefile.config
+# Makefile.config actually same across graphic machines so keep
 
 # Data and models are either
 # 1. reference, and not casually committed
 # 2. custom, and live on their own unless they're deliberated contributed
-data/*
 models/*
 *.caffemodel
 *.solverstate
