@@ -14,11 +14,14 @@ import add_redboxes as ar
 
 # ./setup.py --task=unsuit --box=blue --learn=3-10-14
 
-def main(data_dir, data_info, task, pos_class,target_bad_min=None):
+def main(data_dir, data_info, task, pos_class, u_bad_min=None,
+         o_bad_min=None):
   ''' This is the master function. data_dir: where raw data is. data_info: where to store .txt files. '''
   Keep = get_label_dict_knowing(data_dir, task, pos_class)
-  if target_bad_min is not None:
-    Keep = rebalance(Keep, target_bad_min)
+  if u_bad_min is not None:
+    Keep = rebalance(Keep, u_bad_min)
+  if o_bad_min is not None:
+    Keep = o_rebalance(Keep, o_bad_min)    
   Keep = within_class_shuffle(Keep)
   print 'finished shuffling'
   dump_to_files(Keep, data_info, task, data_dir)
@@ -92,6 +95,9 @@ def rebalance(Keep, target_bad_min):
   for key in Keep.keys(): print key, len(Keep[key])
   return Keep
 
+
+def o_rebalance(Keep, o_bad_min):
+  return Keep
 
 def default_class(All, Keep):
   ''' all images without retained labels go to default class. '''
@@ -227,7 +233,7 @@ def add_redboxes(target_bad_min, b_imbal, pos_class, task,
 
 def print_help():
   print '''Usage eg: 
-  ./setup.py --task=scrape --box=blue --learn=6-14 --u-sample=0.9 [--b-imbal=0.5]'''
+  ./setup.py --task=scrape --box=blue --learn=6-14 --u-sample=0.95 [--o-sample=0.5] [--b-imbal=0.5]'''
   if os.path.exists('/homes/ad6813'):
     # print 'flags:', open('/homes/ad6813/data/flag_lookup.txt','r').readlines()
     lines = open('/homes/ad6813/data/flag_lookup.txt','r').readlines()
@@ -242,7 +248,7 @@ if __name__ == '__main__':
   if len(sys.argv) == 1:
     print_help()
   
-  opts, extraparams = getopt.gnu_getopt(sys.argv[1:], "", ["task=", "box=", "learn=", "u-sample=", "b-imbal="])
+  opts, extraparams = getopt.gnu_getopt(sys.argv[1:], "", ["task=", "box=", "learn=", "u-sample=", "o-sample", "b-imbal="])
   optDict = dict([(k[2:],v) for (k,v) in opts])
   print optDict
   
@@ -259,9 +265,13 @@ if __name__ == '__main__':
     raise Exception("Need to specify --learn flag\nlabNum1-labNum2-...-labNumk")
   pos_class = flag_lookup(optDict["learn"])
 
-  target_bad_min = None
+  u_bad_min = None
   if "u-sample" in optDict:
-    target_bad_min = float(optDict["u-sample"])
+    u_bad_min = float(optDict["u-sample"])
+
+  o_bad_min = None
+  if "o-sample" in optDict:
+    o_bad_min = float(optDict["u-sample"])
     
   # save entire command
   if not os.path.isdir('../../data/'+task): os.mkdir('../../data/'+task)
@@ -270,7 +280,7 @@ if __name__ == '__main__':
     read_file.write(" ".join(sys.argv)+'\n')
 
   # do your shit
-  main(data_dir, data_info, task, pos_class, target_bad_min)
+  main(data_dir, data_info, task, pos_class, u_bad_min, o_bad_min)
 
   # GENERALISE THIS
   if 'b-imbal' in optDict:
@@ -283,14 +293,14 @@ if __name__ == '__main__':
 
     # How many redboxes to add:
     # add_num_pos, add_num_neg = ar.same_amount_as_bluebox(data_dir, task, pos_class)
-    if target_bad_min == None:
-      message = '''ERROR: no target_bad_min given to maintain  
+    if u_bad_min == None:
+      message = '''ERROR: no u_bad_min given to maintain  
       class imbalance after redbox additions. 
       If you don't want any undersampling and still want to add 
       redbox st imbalance unchanged, then yeah, you need to 
       implement that.'''
       raise Exception(message)
-    add_redboxes(target_bad_min, b_imbal, pos_class, task, 
+    add_redboxes(u_bad_min, b_imbal, pos_class, task, 
                  avoid_flags, pickle_fname, 
                  redbox_dir, fn_train, using_pickle)
  
