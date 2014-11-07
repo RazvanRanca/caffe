@@ -310,7 +310,7 @@ void Solver<Dtype>::Test(const int test_net_id) {
     const string& output_name = test_net->blob_names()[output_blob_index];
     const Dtype loss_weight = test_net->blob_loss_weights()[output_blob_index];
     ostringstream loss_msg_stream;
-    LOG(INFO) << "mean score = " << "test_score[" << i << "] / param_.test_iter(" << test_net_id << ") = " << _score[i] << " / " << param_.test_iter(test_net_id);
+    LOG(INFO) << "           = " << test_score[i] / param_.test_iter(test_net_id);
     const Dtype mean_score = test_score[i] / param_.test_iter(test_net_id);
     if (loss_weight) {
       loss_msg_stream << " (* " << loss_weight
@@ -801,7 +801,7 @@ void AdaGradSolver<Dtype>::ComputeUpdateValue() {
 
 INSTANTIATE_CLASS(Solver);
 INSTANTIATE_CLASS(SGDSolver);
-INSTANTIATE_CLASS(NesterovSolver);
-INSTANTIATE_CLASS(AdaGradSolver);
+// INSTANTIATE_CLASS(NesterovSolver);
+// INSTANTIATE_CLASS(AdaGradSolver);
 
 }  // namespace caffe
