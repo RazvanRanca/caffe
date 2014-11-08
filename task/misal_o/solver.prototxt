@@ -13,5 +13,5 @@ max_iter: 3000
 momentum: 0.9
 weight_decay: 0.0005
 snapshot: 1000
-snapshot_prefix: "task/misal_o/"
+snapshot_prefix: "task/misal_o/none/"
 solver_mode: GPU
