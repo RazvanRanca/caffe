@@ -6,7 +6,7 @@ layers {
   top: "label"
   image_data_param {
     source: "/data/ad6813/devCaffe/caffe/data/inadcl_o/train.txt"
-    batch_size: 32 
+    batch_size: 25
     new_height: 256
     new_width: 256
   }
