@@ -6,10 +6,10 @@ import os
 
 def sel1():
    if runLoc.get() == "server":
-     errLabel1.pack()
-     errLabel1.config(text = "Server mode not currently available")
-   else:
-     errLabel1.pack_forget()
+     errLabel2.pack_forget()
+   elif runType.get() == "batch":
+     errLabel2.pack()
+     errLabel2.config(fg="orange", text = "Warning: Batch mode slow on CPU")
 
 def sel2():
    if runType.get() == "batch" and runLoc.get() == "local":
@@ -20,11 +20,12 @@ def sel2():
 
 model = None
 def sel3():
-   if not os.path.isfile("oxford/" + var3.get() + ".caffemodel"):
+  global model
+  if not os.path.isfile("oxford/" + var3.get() + ".caffemodel"):
      model = None
      errLabel3.pack()
      errLabel3.config(text = var3.get() + " classifier not currently available")
-   else:
+  else:
      errLabel3.pack_forget()
      model = "oxford/" + var3.get() + ".caffemodel"
 
@@ -48,16 +49,22 @@ def button1Click():
     filename = askdirectory() 
 
 def button2Click():
+  print filename, model
   if filename and model:
     disp.config(text = "Processing ...")
     frame2.update_idletasks()
-
-    cmd = "python classifyPipe.py --pretrained-model " + model + " " + filename + " temp"
+    
+    if runLoc.get() == "local":
+      cmd = "python classifyPipe.py --pretrained_model " + model + " " + filename + " temp"
+    else:
+      cmd = "./remoteClassify.sh"
     p = subprocess.Popen(cmd , shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     # and you can block util the cmd execute finish
     stdout, stderr = p.communicate()
-    #print stderr
+    print stderr
+    print stdout
+    stdout = stdout.split("-=-=-START-=-=-")[-1].split("-=-=-END-=-=-")[0].strip()
     disp.config(text = stdout)
   elif filename == None:
     errLabel4.pack()
