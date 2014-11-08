@@ -2317,3 +2317,22 @@ I1108 22:05:06.302963 15069 solver.cpp:209] Iteration 2940, loss = 0.685474
 I1108 22:05:06.303010 15069 solver.cpp:450] Iteration 2940, lr = 1e-06
 I1108 22:05:13.122591 15069 solver.cpp:209] Iteration 2950, loss = 0.367111
 I1108 22:05:13.122638 15069 solver.cpp:450] Iteration 2950, lr = 1e-06
+I1108 22:05:19.948108 15069 solver.cpp:209] Iteration 2960, loss = 0.476935
+I1108 22:05:19.948156 15069 solver.cpp:450] Iteration 2960, lr = 1e-06
+I1108 22:05:26.753484 15069 solver.cpp:209] Iteration 2970, loss = 0.418798
+I1108 22:05:26.753530 15069 solver.cpp:450] Iteration 2970, lr = 1e-06
+I1108 22:05:33.583418 15069 solver.cpp:209] Iteration 2980, loss = 0.290959
+I1108 22:05:33.583662 15069 solver.cpp:450] Iteration 2980, lr = 1e-06
+I1108 22:05:40.418445 15069 solver.cpp:209] Iteration 2990, loss = 0.758374
+I1108 22:05:40.418494 15069 solver.cpp:450] Iteration 2990, lr = 1e-06
+I1108 22:05:48.278048 15069 solver.cpp:339] Snapshotting to task/inadcl_o/none/_iter_3000.caffemodel
+I1108 22:05:50.946838 15069 solver.cpp:347] Snapshotting solver state to task/inadcl_o/none/_iter_3000.solverstate
+I1108 22:05:52.523303 15069 solver.cpp:246] Iteration 3000, loss = 0.573857
+I1108 22:05:52.523351 15069 solver.cpp:264] Iteration 3000, Testing net (#0)
+I1108 22:06:10.160657 15069 solver.cpp:305] Test loss: 0.500747
+I1108 22:06:10.160809 15069 solver.cpp:320]     Test net output #0: accuracy = 0.837914
+I1108 22:06:10.160822 15069 solver.cpp:320]     Test net output #1: accuracy = 0.590395
+I1108 22:06:10.160831 15069 solver.cpp:320]     Test net output #2: accuracy = 0.714155
+I1108 22:06:10.160840 15069 solver.cpp:320]     Test net output #3: accuracy = 0.78178
+I1108 22:06:10.160848 15069 solver.cpp:251] Optimization Done.
+I1108 22:06:10.160856 15069 caffe.cpp:121] Optimization Done.
