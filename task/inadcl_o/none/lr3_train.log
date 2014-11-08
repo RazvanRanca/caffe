@@ -1,0 +1,5 @@
+Redbox positives: 11444
+Redbox negatives: 13986
+Bluebox positives: 1964
+Bluebox negatives: 2402
+I1108 20:59:44.111747 24807 caffe.cpp:99] Use GPU with device ID 0

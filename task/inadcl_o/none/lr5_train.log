@@ -2696,3 +2696,89 @@ I1108 20:51:27.001387 21818 solver.cpp:450] Iteration 498, lr = 1e-05
 I1108 20:51:28.831651 21818 solver.cpp:209] Iteration 499, loss = 0.820832
 I1108 20:51:28.831681 21818 solver.cpp:450] Iteration 499, lr = 1e-05
 I1108 20:51:28.832305 21818 solver.cpp:264] Iteration 500, Testing net (#0)
+I1108 20:54:20.690726 21818 solver.cpp:305] Test loss: 0.474935
+I1108 20:54:20.690794 21818 solver.cpp:320]     Test net output #0: accuracy = 0.88973
+I1108 20:54:20.690801 21818 solver.cpp:320]     Test net output #1: accuracy = 0.488701
+I1108 20:54:20.690806 21818 solver.cpp:320]     Test net output #2: accuracy = 0.689215
+I1108 20:54:20.690811 21818 solver.cpp:320]     Test net output #3: accuracy = 0.822034
+I1108 20:54:21.182790 21818 solver.cpp:209] Iteration 500, loss = 0.694577
+I1108 20:54:21.182821 21818 solver.cpp:450] Iteration 500, lr = 1e-05
+I1108 20:54:22.981674 21818 solver.cpp:209] Iteration 501, loss = 0.693885
+I1108 20:54:22.981704 21818 solver.cpp:450] Iteration 501, lr = 1e-05
+I1108 20:54:24.670356 21818 solver.cpp:209] Iteration 502, loss = 0.543803
+I1108 20:54:24.670385 21818 solver.cpp:450] Iteration 502, lr = 1e-05
+I1108 20:54:26.468502 21818 solver.cpp:209] Iteration 503, loss = 1.04694
+I1108 20:54:26.468531 21818 solver.cpp:450] Iteration 503, lr = 1e-05
+I1108 20:54:28.151278 21818 solver.cpp:209] Iteration 504, loss = 0.645067
+I1108 20:54:28.151309 21818 solver.cpp:450] Iteration 504, lr = 1e-05
+I1108 20:54:29.944207 21818 solver.cpp:209] Iteration 505, loss = 0.623089
+I1108 20:54:29.944237 21818 solver.cpp:450] Iteration 505, lr = 1e-05
+I1108 20:54:31.634207 21818 solver.cpp:209] Iteration 506, loss = 1.27752
+I1108 20:54:31.634235 21818 solver.cpp:450] Iteration 506, lr = 1e-05
+I1108 20:54:33.420729 21818 solver.cpp:209] Iteration 507, loss = 0.766132
+I1108 20:54:33.420759 21818 solver.cpp:450] Iteration 507, lr = 1e-05
+I1108 20:54:35.118876 21818 solver.cpp:209] Iteration 508, loss = 0.447413
+I1108 20:54:35.118906 21818 solver.cpp:450] Iteration 508, lr = 1e-05
+I1108 20:54:36.808652 21818 solver.cpp:209] Iteration 509, loss = 0.750256
+I1108 20:54:36.808683 21818 solver.cpp:450] Iteration 509, lr = 1e-05
+I1108 20:54:38.640535 21818 solver.cpp:209] Iteration 510, loss = 0.826499
+I1108 20:54:38.640564 21818 solver.cpp:450] Iteration 510, lr = 1e-05
+I1108 20:54:40.327755 21818 solver.cpp:209] Iteration 511, loss = 0.721345
+I1108 20:54:40.327785 21818 solver.cpp:450] Iteration 511, lr = 1e-05
+I1108 20:54:42.136950 21818 solver.cpp:209] Iteration 512, loss = 0.754599
+I1108 20:54:42.136978 21818 solver.cpp:450] Iteration 512, lr = 1e-05
+I1108 20:54:43.824692 21818 solver.cpp:209] Iteration 513, loss = 0.805716
+I1108 20:54:43.824723 21818 solver.cpp:450] Iteration 513, lr = 1e-05
+I1108 20:54:45.628104 21818 solver.cpp:209] Iteration 514, loss = 0.750832
+I1108 20:54:45.628134 21818 solver.cpp:450] Iteration 514, lr = 1e-05
+I1108 20:54:47.318069 21818 solver.cpp:209] Iteration 515, loss = 0.781803
+I1108 20:54:47.318099 21818 solver.cpp:450] Iteration 515, lr = 1e-05
+I1108 20:54:49.126772 21818 solver.cpp:209] Iteration 516, loss = 0.664729
+I1108 20:54:49.126801 21818 solver.cpp:450] Iteration 516, lr = 1e-05
+I1108 20:54:50.821180 21818 solver.cpp:209] Iteration 517, loss = 0.512833
+I1108 20:54:50.821271 21818 solver.cpp:450] Iteration 517, lr = 1e-05
+I1108 20:54:52.619251 21818 solver.cpp:209] Iteration 518, loss = 0.666023
+I1108 20:54:52.619282 21818 solver.cpp:450] Iteration 518, lr = 1e-05
+I1108 20:54:54.318400 21818 solver.cpp:209] Iteration 519, loss = 0.659976
+I1108 20:54:54.318431 21818 solver.cpp:450] Iteration 519, lr = 1e-05
+I1108 20:54:56.148512 21818 solver.cpp:209] Iteration 520, loss = 0.661195
+I1108 20:54:56.148543 21818 solver.cpp:450] Iteration 520, lr = 1e-05
+I1108 20:54:57.831192 21818 solver.cpp:209] Iteration 521, loss = 0.576116
+I1108 20:54:57.831223 21818 solver.cpp:450] Iteration 521, lr = 1e-05
+I1108 20:54:59.562937 21818 solver.cpp:209] Iteration 522, loss = 0.711999
+I1108 20:54:59.562968 21818 solver.cpp:450] Iteration 522, lr = 1e-05
+I1108 20:55:01.327030 21818 solver.cpp:209] Iteration 523, loss = 0.711599
+I1108 20:55:01.327061 21818 solver.cpp:450] Iteration 523, lr = 1e-05
+I1108 20:55:03.025730 21818 solver.cpp:209] Iteration 524, loss = 0.579141
+I1108 20:55:03.025760 21818 solver.cpp:450] Iteration 524, lr = 1e-05
+I1108 20:55:04.840493 21818 solver.cpp:209] Iteration 525, loss = 0.626779
+I1108 20:55:04.840528 21818 solver.cpp:450] Iteration 525, lr = 1e-05
+I1108 20:55:06.537132 21818 solver.cpp:209] Iteration 526, loss = 0.760687
+I1108 20:55:06.537161 21818 solver.cpp:450] Iteration 526, lr = 1e-05
+I1108 20:55:08.351241 21818 solver.cpp:209] Iteration 527, loss = 0.691432
+I1108 20:55:08.351271 21818 solver.cpp:450] Iteration 527, lr = 1e-05
+*** Aborted at 1415480216 (unix time) try "date -d @1415480216" if you are using GNU date ***
+PC: @     0x7fffe31fe7c2 (unknown)
+*** SIGTERM (@0x2aa400006053) received by PID 21818 (TID 0x7fb57e5efa40) from PID 24659; stack trace: ***
+    @     0x7fb5747cac30 (unknown)
+    @     0x7fffe31fe7c2 (unknown)
+    @     0x7fb57489d46d (unknown)
+    @     0x7fb55b9596be (unknown)
+    @     0x7fb55b2bd6b3 (unknown)
+    @     0x7fb55b29dee3 (unknown)
+    @     0x7fb55b2a55f8 (unknown)
+    @     0x7fb55b296921 (unknown)
+    @     0x7fb55b20b0da (unknown)
+    @     0x7fb55b20b24a (unknown)
+    @     0x7fb55b1dca55 (unknown)
+    @     0x7fb57e201389 (unknown)
+    @     0x7fb57e2285a8 (unknown)
+    @           0x535d68 caffe::caffe_copy<>()
+    @           0x54bcaf caffe::BasePrefetchingDataLayer<>::Forward_gpu()
+    @           0x50ae0b caffe::Net<>::ForwardFromTo()
+    @           0x50b237 caffe::Net<>::ForwardPrefilled()
+    @           0x523d74 caffe::Solver<>::Solve()
+    @           0x417822 train()
+    @           0x411461 main
+    @     0x7fb5747b5ec5 (unknown)
+    @           0x416257 (unknown)
