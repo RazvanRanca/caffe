@@ -49,6 +49,11 @@
 
 ## Caffe
 
+# plots and stuff
+*log.train
+*log.test
+*.png
+
 # User's build configuration
 # Makefile.config actually same across graphic machines so keep
 

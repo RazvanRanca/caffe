@@ -11,17 +11,23 @@ import subprocess
 # Usage: python plot.py path/to/model test-inter=.. [--start-iter=..] [--end-iter==..]
 
 
-def matplot(model_dir, Ys, start, end):  
-  plt.ylim([0,2])
+def matplot(model_dir, Ys, start, end):
+  col = {'TrainLoss': '0.5',
+         'ValLoss' : '#000066',
+         'ValAcc_0': '#00CC00',
+         'ValAcc_1': '#ff4d4d',
+         'ValPCAcc': 'k',
+         'ValAcc'  : 'y'}
+  plt.ylim([0,1.2])
   x = np.array(range(start,end))
   plt.xlabel('Iters')
   for key in Ys.keys():
     Ys[key] = np.array([np.float(el) for el in Ys[key][start:end]])
-    plt.plot(x, Ys[key], label=key)
+    plt.plot(x, Ys[key], label=key, color=col[key])
   plt.legend(loc='upper left',ncol=len(Ys)/2,prop={'size':10})
   # plt.title('Go on choose one')
   plt.grid(True)
-  plt.savefig(oj(model_dir,'plot_'+model_dir.split('/')[-3]+'_'+model_dir.split('/')[-1]+'.png'))
+  plt.savefig(oj(model_dir,'plot_'+model_dir.split('/')[-2]+'.png'))
   # plt.show()
 
   
@@ -29,7 +35,7 @@ def already_parsed(model_dir):
   fnames = []
   listdir = os.listdir(model_dir)
   for fname in listdir:
-    if 'train_output' in fname and fname.endswith('.log'):
+    if 'train' in fname and fname.endswith('.log'):
       fnames.append(oj(model_dir,fname))
   if len(fnames) == 0:
     print "ERROR: no file containing 'train_output' and ending in '.log' found in", model_dir
