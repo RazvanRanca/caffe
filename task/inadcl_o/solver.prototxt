@@ -3,12 +3,12 @@ test_iter: 59
 test_interval: 100
 test_compute_loss: 1
 # lr for fine-tuning should be lower than when starting from scratch
-base_lr: 0.00001
+base_lr: 0.000001
 lr_policy: "fixed"
 display: 10
-max_iter: 7000
+max_iter: 3000
 momentum: 0.9
 weight_decay: 0.0005
-snapshot: 3500
+snapshot: 3000
 snapshot_prefix: "task/inadcl_o/none/"
 solver_mode: GPU
