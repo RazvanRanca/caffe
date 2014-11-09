@@ -2063,6 +2063,8 @@ I1108 21:51:23.369460 15069 solver.cpp:209] Iteration 1820, loss = 0.390074
 I1108 21:51:23.369511 15069 solver.cpp:450] Iteration 1820, lr = 1e-05
 I1108 21:51:30.150338 15069 solver.cpp:209] Iteration 1830, loss = 0.53789
 I1108 21:51:30.150388 15069 solver.cpp:450] Iteration 1830, lr = 1e-05
+<<<<<<< HEAD
+=======
 I1108 21:51:36.941737 15069 solver.cpp:209] Iteration 1840, loss = 0.86838
 I1108 21:51:36.941786 15069 solver.cpp:450] Iteration 1840, lr = 1e-05
 I1108 21:51:43.735894 15069 solver.cpp:209] Iteration 1850, loss = 0.318554

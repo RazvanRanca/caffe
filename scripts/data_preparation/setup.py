@@ -87,12 +87,9 @@ def o_sample_how_many(num_pos, num_neg, o_bad_min):
   o_bad_min = float(o_bad_min)
   print 'o_bad_min, num_pos, num_neg', o_bad_min, num_pos, num_neg
   full_copies = (1-o_bad_min)/o_bad_min
-  print "full_copies = ", full_copies
   full_copies *= float(num_neg)
-  print "full_copies = ", full_copies
   last_copy = int(full_copies) % int(num_pos)
   full_copies /= float(num_pos)
-  print "full_copies = ", full_copies
   # last_copy = (full_copies - int(full_copies)) * num_neg
   full_copies, last_copy = int(full_copies)-1, int(last_copy)
   print "oversample positives %i times plus %i extras"%(full_copies,last_copy)
@@ -238,7 +235,7 @@ def add_redboxes(target_bad_min, b_imbal, pos_class, task,
 
 def print_help():
   print '''Usage eg: 
-  ./setup.py --task=scrape --box=blue --learn=6-14 --u-sample=0.95 [--o-sample=0.5] [--b-imbal=0.5]'''
+  ./setup.py --task=scrape --box=blue --learn=6-14 --u-sample=0.90 --o-sample=0.55 --b-imbal=0.5'''
   if os.path.exists('/homes/ad6813'):
     # print 'flags:', open('/homes/ad6813/data/flag_lookup.txt','r').readlines()
     lines = open('/homes/ad6813/data/flag_lookup.txt','r').readlines()

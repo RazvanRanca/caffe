@@ -82,7 +82,6 @@
 /data/ad6813/pipe-data/Bluebox/177197.jpg  0
 /data/ad6813/pipe-data/Bluebox/172303.jpg  0
 /data/ad6813/pipe-data/Bluebox/126708.jpg  0
-/data/ad6813/pipe-data/Bluebox/121093.jpg  0
 /data/ad6813/pipe-data/Bluebox/201535.jpg  0
 /data/ad6813/pipe-data/Bluebox/169604.jpg  0
 /data/ad6813/pipe-data/Bluebox/202551.jpg  1
@@ -270,7 +269,6 @@
 /data/ad6813/pipe-data/Bluebox/167368.jpg  0
 /data/ad6813/pipe-data/Bluebox/180614.jpg  0
 /data/ad6813/pipe-data/Bluebox/154047.jpg  1
-/data/ad6813/pipe-data/Bluebox/189845.jpg  0
 /data/ad6813/pipe-data/Bluebox/194928.jpg  1
 /data/ad6813/pipe-data/Bluebox/149555.jpg  0
 /data/ad6813/pipe-data/Bluebox/139439.jpg  0
@@ -280,7 +278,6 @@
 /data/ad6813/pipe-data/Bluebox/122089.jpg  0
 /data/ad6813/pipe-data/Bluebox/154025.jpg  1
 /data/ad6813/pipe-data/Bluebox/198884.jpg  0
-/data/ad6813/pipe-data/Bluebox/167131.jpg  0
 /data/ad6813/pipe-data/Bluebox/189254.jpg  0
 /data/ad6813/pipe-data/Bluebox/143372.jpg  0
 /data/ad6813/pipe-data/Bluebox/178569.jpg  0
@@ -288,7 +285,6 @@
 /data/ad6813/pipe-data/Bluebox/202741.jpg  0
 /data/ad6813/pipe-data/Bluebox/192453.jpg  0
 /data/ad6813/pipe-data/Bluebox/184458.jpg  0
-/data/ad6813/pipe-data/Bluebox/138858.jpg  0
 /data/ad6813/pipe-data/Bluebox/201199.jpg  0
 /data/ad6813/pipe-data/Bluebox/198291.jpg  0
 /data/ad6813/pipe-data/Bluebox/187825.jpg  0
@@ -325,7 +321,6 @@
 /data/ad6813/pipe-data/Bluebox/194158.jpg  0
 /data/ad6813/pipe-data/Bluebox/106522.jpg  0
 /data/ad6813/pipe-data/Bluebox/143866.jpg  0
-/data/ad6813/pipe-data/Bluebox/149496.jpg  0
 /data/ad6813/pipe-data/Bluebox/112400.jpg  1
 /data/ad6813/pipe-data/Bluebox/200988.jpg  0
 /data/ad6813/pipe-data/Bluebox/191824.jpg  0
@@ -416,7 +411,6 @@
 /data/ad6813/pipe-data/Bluebox/149835.jpg  1
 /data/ad6813/pipe-data/Bluebox/153039.jpg  0
 /data/ad6813/pipe-data/Bluebox/165701.jpg  0
-/data/ad6813/pipe-data/Bluebox/188967.jpg  0
 /data/ad6813/pipe-data/Bluebox/118387.jpg  0
 /data/ad6813/pipe-data/Bluebox/187803.jpg  0
 /data/ad6813/pipe-data/Bluebox/198233.jpg  0
@@ -426,7 +420,6 @@
 /data/ad6813/pipe-data/Bluebox/195277.jpg  0
 /data/ad6813/pipe-data/Bluebox/153782.jpg  0
 /data/ad6813/pipe-data/Bluebox/149834.jpg  1
-/data/ad6813/pipe-data/Bluebox/162203.jpg  0
 /data/ad6813/pipe-data/Bluebox/140898.jpg  0
 /data/ad6813/pipe-data/Bluebox/178264.jpg  0
 /data/ad6813/pipe-data/Bluebox/123394.jpg  0
@@ -503,7 +496,6 @@
 /data/ad6813/pipe-data/Bluebox/178091.jpg  0
 /data/ad6813/pipe-data/Bluebox/146893.jpg  0
 /data/ad6813/pipe-data/Bluebox/172604.jpg  0
-/data/ad6813/pipe-data/Bluebox/180081.jpg  0
 /data/ad6813/pipe-data/Bluebox/198509.jpg  0
 /data/ad6813/pipe-data/Bluebox/181966.jpg  0
 /data/ad6813/pipe-data/Bluebox/169528.jpg  0
@@ -561,7 +553,6 @@
 /data/ad6813/pipe-data/Bluebox/174034.jpg  0
 /data/ad6813/pipe-data/Bluebox/155718.jpg  0
 /data/ad6813/pipe-data/Bluebox/183752.jpg  0
-/data/ad6813/pipe-data/Bluebox/144137.jpg  0
 /data/ad6813/pipe-data/Bluebox/125819.jpg  0
 /data/ad6813/pipe-data/Bluebox/139952.jpg  0
 /data/ad6813/pipe-data/Bluebox/193507.jpg  0
