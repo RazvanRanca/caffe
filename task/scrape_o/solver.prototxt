@@ -1,17 +1,17 @@
 net: "task/scrape_o/train_val.prototxt"
 test_iter: 160
-test_interval: 50
+test_interval: 10
 test_compute_loss: 1
 # lr for fine-tuning should be lower than when starting from scratch
-base_lr: 0.00001
+base_lr: 0.0001
 lr_policy: "step"
 gamma: 0.1
 # stepsize should also be lower, as we're closer to being done
-stepsize: 1000
+stepsize: 200
 display: 1
-max_iter: 2000
+max_iter: 600
 momentum: 0.9
 weight_decay: 0.0005
-snapshot: 500
-snapshot_prefix: "task/scrape_o/none/"
+snapshot: 100
+snapshot_prefix: "task/scrape_o/none_no_nz,s/"
 solver_mode: GPU
