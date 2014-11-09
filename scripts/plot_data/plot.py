@@ -95,8 +95,10 @@ def columns_to_dict(fname):
     
 def get_test_interval(ltfname):
   test = open(ltfname,'r').readlines()
-  return int(test[2].split()[0])
-  # return len(open(oj(model_dir,'train_output.log.train'),'r').readlines()) / len(open(oj(model_dir,'train_output.log.test'),'r').readlines()) + 1
+  train = open(ltfname.replace('test','train'),'r').readlines()
+  # print test[2].split()[0], train[2].split()[0]
+  test_interval = int(test[2].split()[0])/int(train[2].split()[0])
+  return test_interval
 
 
 def stretch_time_series(test_dict, test_interval):

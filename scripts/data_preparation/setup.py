@@ -283,7 +283,7 @@ if __name__ == '__main__':
   # GENERALISE THIS
   if 'b-imbal' in optDict:
     b_imbal = float(optDict["b-imbal"])
-    avoid_flags = ['Perfect'] # dont need cos Raz moved away unsuitables?
+    avoid_flags = [] # dont need cos Raz moved away unsuitables?
     redbox_dir = '/data/ad6813/pipe-data/Redbox'
     fn_train = data_info+'/train.txt'
 
