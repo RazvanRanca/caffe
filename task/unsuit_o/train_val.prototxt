@@ -6,7 +6,7 @@ layers {
   top: "label"
   image_data_param {
     source: "/data/ad6813/devCaffe/caffe/data/unsuit_o/train.txt"
-    batch_size: 11
+    batch_size: 8
     new_height: 256
     new_width: 256
   }
@@ -26,7 +26,7 @@ layers {
   top: "label"
   image_data_param {
     source: "/data/ad6813/devCaffe/caffe/data/unsuit_o/val.txt"
-    batch_size: 3
+    batch_size: 8
     new_height: 256
     new_width: 256
   }
