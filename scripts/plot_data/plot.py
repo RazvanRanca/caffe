@@ -98,6 +98,7 @@ def get_test_interval(ltfname):
   train = open(ltfname.replace('test','train'),'r').readlines()
   # print test[2].split()[0], train[2].split()[0]
   test_interval = int(test[2].split()[0])/int(train[2].split()[0])
+  # print "test_interval:", test_interval
   return test_interval
 
 
