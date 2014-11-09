@@ -208,7 +208,7 @@ def dump_to_files(Keep, data_info, task, data_dir):
     if os.path.isfile(oj(data_info,dump_fnames[i])):
       print "WARNING: overwriting", oj(data_info,dump_fnames[i])
     with open(oj(data_info,dump_fnames[i]),'w') as dfile:
-      dfile.writelines(["%s  %i\n" % (oj(data_dir,f),num)
+      dfile.writelines(["%s %i\n" % (oj(data_dir,f),num)
                         for (f,num) in dump[i]])
 
     
@@ -286,7 +286,7 @@ if __name__ == '__main__':
   # GENERALISE THIS
   if 'b-imbal' in optDict:
     b_imbal = float(optDict["b-imbal"])
-    avoid_flags = ['UnsuitablePhoto'] # dont need cos Raz moved away unsuitables?
+    avoid_flags = ['Perfect'] # dont need cos Raz moved away unsuitables?
     redbox_dir = '/data/ad6813/pipe-data/Redbox'
     fn_train = data_info+'/train.txt'
 
