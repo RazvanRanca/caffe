@@ -1,5 +1,5 @@
 net: "task/misal_o/train_val.prototxt"
-test_iter: 17
+test_iter: 32
 test_interval: 50
 test_compute_loss: 1
 # lr for fine-tuning should be lower than when starting from scratch
