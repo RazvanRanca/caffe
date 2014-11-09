@@ -6,7 +6,7 @@ layers {
   top: "label"
   image_data_param {
     source: "/data/ad6813/devCaffe/caffe/task/clamp/clampTrainUnsuit.txt"
-    batch_size: 1 
+    batch_size: 32 
     new_height: 256
     new_width: 256
   }
