@@ -5,6 +5,10 @@ Alex:
 -> try new inadcl_o solver mode
 -> avoid Redbox Perfects
    -> run inadcl_o_noRedPerfs for 1000 on graphic05 to compare
+   -> ok, should not avoid them
+-> train inadcl_o more
+   -> lr5 non stop
+   -> not good (?)
 -> freeze backprop
 -> look into test_iter
    -> run on graphic02
