@@ -1,16 +1,15 @@
-test_iter: 29
-test_interval: 1
-base_lr: 0
-display: 10
-# 600
-max_iter: 0
+test_iter: 59
+test_interval: 10
+base_lr: 0.0001
+display: 1
+max_iter: 300
 lr_policy: "step"
 gamma: 0.1
 momentum: 0.9
 weight_decay: 0.0005
-stepsize: 200
-# snapshot: 100
-# snapshot_prefix: "task/inadcl_o/try_none/"
+stepsize: 100
+snapshot: 50
+snapshot_prefix: "task/inadcl_o/final"
 solver_mode: GPU
 test_compute_loss: true
 net: "task/inadcl_o/train_val.prototxt"

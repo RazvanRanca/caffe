@@ -4,7 +4,7 @@
 #include <string>
 #include <utility>
 #include <vector>
- 
+
 #include "caffe/common.hpp"
 #include "caffe/layer.hpp"
 #include "caffe/net.hpp"

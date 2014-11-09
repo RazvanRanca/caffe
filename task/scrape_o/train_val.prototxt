@@ -5,8 +5,8 @@ layers {
   top: "data"
   top: "label"
   image_data_param {
-    source: "/data/ad6813/devCaffe/caffe/data/scrape_o/train.txt"
-    batch_size: 9
+    source: "/data/ad6813/devCaffe/caffe/data/scrape_o/train_no_nz,s.txt"
+    batch_size: 10
     new_height: 256
     new_width: 256
   }
@@ -25,8 +25,8 @@ layers {
   top: "data"
   top: "label"
   image_data_param {
-    source: "/data/ad6813/devCaffe/caffe/data/scrape_o/val.txt"
-    batch_size: 10
+    source: "/data/ad6813/devCaffe/caffe/data/scrape_o/val_no_nz,s.txt"
+    batch_size: 5
     new_height: 256
     new_width: 256
   }
