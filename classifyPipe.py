@@ -136,8 +136,9 @@ def main(argv):
     
     predictions = []
     for bs in range(0, len(inputs), int(args.batchSize)):
+      print bs, "/", len(inputs)
       be = min(len(inputs), bs + int(args.batchSize)) 
-      predictions += classifier.predict(inputs[bs:be], not args.center_only)
+      predictions += list(classifier.predict(inputs[bs:be], not args.center_only))
     print "-=-=-START-=-=-"
     print "Done in %.2f s." % (time.time() - start)
     print "Probability flag present:\n" + "\n".join([names[i] + " - " + str(predictions[i][1]*100)[:5] + "%" for i in range(len(predictions))])
