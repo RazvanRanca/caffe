@@ -7961,3 +7961,48 @@ I1110 04:17:42.691390 23301 solver.cpp:209] Iteration 2981, loss = 0.789129
 I1110 04:17:42.691431 23301 solver.cpp:450] Iteration 2981, lr = 1e-06
 I1110 04:17:44.877853 23301 solver.cpp:209] Iteration 2982, loss = 0.558584
 I1110 04:17:44.877881 23301 solver.cpp:450] Iteration 2982, lr = 1e-06
+I1110 04:17:47.048826 23301 solver.cpp:209] Iteration 2983, loss = 0.545981
+I1110 04:17:47.048866 23301 solver.cpp:450] Iteration 2983, lr = 1e-06
+I1110 04:17:49.229276 23301 solver.cpp:209] Iteration 2984, loss = 0.594856
+I1110 04:17:49.229305 23301 solver.cpp:450] Iteration 2984, lr = 1e-06
+I1110 04:17:51.402536 23301 solver.cpp:209] Iteration 2985, loss = 0.625233
+I1110 04:17:51.402565 23301 solver.cpp:450] Iteration 2985, lr = 1e-06
+I1110 04:17:53.579720 23301 solver.cpp:209] Iteration 2986, loss = 0.682094
+I1110 04:17:53.579749 23301 solver.cpp:450] Iteration 2986, lr = 1e-06
+I1110 04:17:55.761164 23301 solver.cpp:209] Iteration 2987, loss = 0.768244
+I1110 04:17:55.761193 23301 solver.cpp:450] Iteration 2987, lr = 1e-06
+I1110 04:17:57.936602 23301 solver.cpp:209] Iteration 2988, loss = 0.611132
+I1110 04:17:57.936643 23301 solver.cpp:450] Iteration 2988, lr = 1e-06
+I1110 04:18:00.120239 23301 solver.cpp:209] Iteration 2989, loss = 0.769274
+I1110 04:18:00.120267 23301 solver.cpp:450] Iteration 2989, lr = 1e-06
+I1110 04:18:02.295110 23301 solver.cpp:209] Iteration 2990, loss = 0.62579
+I1110 04:18:02.295140 23301 solver.cpp:450] Iteration 2990, lr = 1e-06
+I1110 04:18:04.485672 23301 solver.cpp:209] Iteration 2991, loss = 0.764213
+I1110 04:18:04.485712 23301 solver.cpp:450] Iteration 2991, lr = 1e-06
+I1110 04:18:06.686214 23301 solver.cpp:209] Iteration 2992, loss = 0.551655
+I1110 04:18:06.686336 23301 solver.cpp:450] Iteration 2992, lr = 1e-06
+I1110 04:18:08.893040 23301 solver.cpp:209] Iteration 2993, loss = 0.672536
+I1110 04:18:08.893081 23301 solver.cpp:450] Iteration 2993, lr = 1e-06
+I1110 04:18:11.098042 23301 solver.cpp:209] Iteration 2994, loss = 0.696164
+I1110 04:18:11.098083 23301 solver.cpp:450] Iteration 2994, lr = 1e-06
+I1110 04:18:13.304397 23301 solver.cpp:209] Iteration 2995, loss = 0.762249
+I1110 04:18:13.304440 23301 solver.cpp:450] Iteration 2995, lr = 1e-06
+I1110 04:18:15.504668 23301 solver.cpp:209] Iteration 2996, loss = 0.60694
+I1110 04:18:15.504709 23301 solver.cpp:450] Iteration 2996, lr = 1e-06
+I1110 04:18:17.705868 23301 solver.cpp:209] Iteration 2997, loss = 0.504824
+I1110 04:18:17.705909 23301 solver.cpp:450] Iteration 2997, lr = 1e-06
+I1110 04:18:19.901926 23301 solver.cpp:209] Iteration 2998, loss = 0.582104
+I1110 04:18:19.901957 23301 solver.cpp:450] Iteration 2998, lr = 1e-06
+I1110 04:18:22.113400 23301 solver.cpp:209] Iteration 2999, loss = 0.603031
+I1110 04:18:22.113430 23301 solver.cpp:450] Iteration 2999, lr = 1e-06
+I1110 04:18:24.013092 23301 solver.cpp:339] Snapshotting to task/scrape_z_o/none/_iter_3000.caffemodel
+I1110 04:18:25.050498 23301 solver.cpp:347] Snapshotting solver state to task/scrape_z_o/none/_iter_3000.solverstate
+I1110 04:18:26.248319 23301 solver.cpp:246] Iteration 3000, loss = 0.772537
+I1110 04:18:26.248354 23301 solver.cpp:264] Iteration 3000, Testing net (#0)
+I1110 04:18:51.505600 23301 solver.cpp:305] Test loss: 0.633075
+I1110 04:18:51.505679 23301 solver.cpp:320]     Test net output #0: accuracy = 0.609564
+I1110 04:18:51.505699 23301 solver.cpp:320]     Test net output #1: accuracy = 0.665333
+I1110 04:18:51.505703 23301 solver.cpp:320]     Test net output #2: accuracy = 0.637448
+I1110 04:18:51.505707 23301 solver.cpp:320]     Test net output #3: accuracy = 0.615833
+I1110 04:18:51.505712 23301 solver.cpp:251] Optimization Done.
+I1110 04:18:51.505715 23301 caffe.cpp:121] Optimization Done.
