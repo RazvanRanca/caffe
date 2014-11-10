@@ -42,7 +42,7 @@ void SoftmaxWithLossLayer<Dtype>::Forward_cpu(
   int spatial_dim = prob_.height() * prob_.width();
   Dtype loss = 0;
   for (int i = 0; i < num; ++i) {
-    printf("%f\n", prob_[i]);
+    // printf("%f - %f\n", bottom[0]->cpu_data()[i], prob_data[i]);
     for (int j = 0; j < spatial_dim; j++) {
       const int label_value = static_cast<int>(label[i * spatial_dim + j]);
       CHECK_GT(dim, label_value * spatial_dim);

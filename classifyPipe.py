@@ -11,6 +11,7 @@ import sys
 import argparse
 import glob
 import time
+import cPickle
 
 #try:
 sys.path.append("/home/haggis/caffe/python")
@@ -145,7 +146,8 @@ def main(argv):
     print "-=-=-END-=-=-"
     # Save
     #print zip(names, predictions)
-    #np.save(args.output_file, predictions)
+    with open(args.output_file, 'w') as f:
+      cPickle.dump(zip(names, predictions), f) 
 
 
 if __name__ == '__main__':
