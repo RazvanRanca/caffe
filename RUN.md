@@ -1,8 +1,13 @@
 
-TODO
+TODO:
+-> scrape, improve
+-> inadcl, improve
+-> undersample bluebox not to 90 but to min(90,red_imb)!
+   othw can't bring all redboxes in
+
 
 max batch: train_batch, val_batch (test_iter)
-06:
+06: 10,5
 05: 8,8
 04:            | 1,10 (80)
 03: 5,1
@@ -16,19 +21,38 @@ Alex:
    -> ok, should not avoid them
    
 -> train inadcl_o more
-   -> lr5 non stop
-   -> not good (?)
+   -> (79,63)%
    -> BIGGER BATCH SIZE
+      -> didn't help
+   -> initialise with clampdet net?
+      -> and freeze backprop
+   -> remove all NoClampUsed's?
+   -> combine models
+
    
 -> scrape_o
-   -> 1500 lr4
-      -> iter1500 67% val
-      -> iter1000 64% val
-   -> 1000 lr5, 1000 lr6
-      ->
-   -> IDEAS!
-      -> rm scrape good zone bad
-      -> rm all zone bad
+   -> iter1500 69.5% val
+      -> just cant do better
+   IMPROVE
+   -> bigger batch size
+      -> (72,78)%
+   -> train/test only on {zs,z¬s,¬z¬s}
+      -> looks shit, try exact same with normal data
+   -> train/test only on {zs,z¬s} -> teaches scrape semantics
+   -> combine models
+02: train alexnet scrape fullTrain
+    -> 
+03: train alexnet scrape zones always visible
+    -> 5000iter (63%,67%) 
+05: train alexnet inadcl trainErr no CV!
+06: train raznet scrape zones always visible
+    -> 3000iter (61%,68%) trainErr no CV!
+alexcaffe/task/scrape_o/none_fullTrain/train.log
+alexcaffe/task/scrape_o/none/train.log   
+   -> BLUEBOX ONLY! cos redbox blurs scrape marks!
+      -> alexnet on graphic02, fullTrain
+      -> raznet on graphic06, fullTrain
+
       
 -> misal_o
    -> 200 lr4
@@ -39,9 +63,16 @@ Alex:
       -> iter2000 83% val
    -> iter3300 (85,81)%
 
+-> unsuit
+   -> (89,92)%
+   -> BIGGER BATCH
+      cod ridiculous amplitude
+
 -> train water_high_o
-   -> 1000 lr4, 1000 lr5
-      -> 
+   -> 1000 lr4, 1000 lr5, 1000 lr6
+      -> iter3000 (86,88)%  (84,80)%  (86,83)%
+      -> iter2400 (82,87)%  (83,80)%
+      -> iter1800 (84,88)%  (88,76)%    
       
 -> graphic04 6 GB!!
    -> but compute capability (threads) is bottleneck
