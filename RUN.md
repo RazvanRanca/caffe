@@ -2,8 +2,10 @@
 TODO:
 -> scrape, improve
 -> inadcl, improve
--> undersample bluebox not to 90 but to min(90,red_imb)!
-   othw can't bring all redboxes in
+   -> 03: alexnet inadcl_o
+   -> 09: alexnet inadcl_blue
+   -> raznet inadcl_o larger bsize
+-> test all models   
 
 
 max batch: train_batch, val_batch (test_iter)
