@@ -60,7 +60,7 @@ def main(argv):
     )
     parser.add_argument(
         "--images_dim",
-        default='224,224',
+        default='256,256',
         help="Canonical 'height,width' dimensions of input images."
     )
     parser.add_argument(
@@ -107,14 +107,14 @@ def main(argv):
     if args.channel_swap:
         channel_swap = [int(s) for s in args.channel_swap.split(',')]
 
-    # Make classifier.
+    print "Make classifier."
     classifier = caffe.Classifier(args.model_def, args.pretrained_model,
             image_dims=image_dims, gpu=args.gpu, mean=mean,
             input_scale=args.input_scale, raw_scale=args.raw_scale,
             channel_swap=channel_swap)
 
-    #if args.gpu:
-    #    print 'GPU mode'
+    if args.gpu:
+        print 'GPU mode'
 
     # Load numpy array (.npy), directory glob (*.jpg), or image file.
     args.input_file = os.path.expanduser(args.input_file)
@@ -130,7 +130,7 @@ def main(argv):
         inputs = [caffe.io.load_image(args.input_file)]
         names.append(args.input_file)
 
-    #print "Classifying %d inputs." % len(inputs)
+    print "Classifying %d inputs." % len(inputs)
 
     # Classify.
     start = time.time()
