@@ -218,6 +218,7 @@ def _Net_set_mean(self, input_, mean, mode='elementwise'):
     if mode == 'elementwise':
         if mean.shape[1:] != in_shape[2:]:
             # Resize mean (which requires H x W x K input).
+            print mean.shape
             mean = caffe.io.resize_image(mean.transpose((1,2,0)),
                                          in_shape[2:]).transpose((2,0,1))
         self.mean[input_] = mean
