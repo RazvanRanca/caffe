@@ -11,6 +11,7 @@ import sys
 import argparse
 import glob
 import time
+import cPickle
 
 #try:
 sys.path.append("/home/haggis/caffe/python")
@@ -91,6 +92,11 @@ def main(argv):
         help="Image file extension to take as input when a directory " +
              "is given as the input file."
     )
+    parser.add_argument(
+        "--batchSize",
+        default=100,
+        help="Pre-processing batch size (so CPU doesn't die)"
+    )
     args = parser.parse_args()
 
     image_dims = [int(s) for s in args.images_dim.split(',')]
@@ -128,14 +134,20 @@ def main(argv):
 
     # Classify.
     start = time.time()
-    predictions = classifier.predict(inputs, not args.center_only)
-    #print "Done in %.2f s." % (time.time() - start)
+    
+    predictions = []
+    for bs in range(0, len(inputs), int(args.batchSize)):
+      print bs, "/", len(inputs)
+      be = min(len(inputs), bs + int(args.batchSize)) 
+      predictions += list(classifier.predict(inputs[bs:be], not args.center_only))
     print "-=-=-START-=-=-"
+    print "Done in %.2f s." % (time.time() - start)
     print "Probability flag present:\n" + "\n".join([names[i] + " - " + str(predictions[i][1]*100)[:5] + "%" for i in range(len(predictions))])
     print "-=-=-END-=-=-"
     # Save
     #print zip(names, predictions)
-    #np.save(args.output_file, predictions)
+    with open(args.output_file, 'w') as f:
+      cPickle.dump(zip(names, predictions), f) 
 
 
 if __name__ == '__main__':

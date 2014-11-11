@@ -44,6 +44,7 @@ def button1Click():
     imgLabel.config(image=photo)
     disp.config(text='')
     imgLabel.image = photo # keep a reference!
+    imgLabel.pack()
     errLabel4.pack_forget()
   elif runType.get() == "batch":
     filename = askdirectory() 
@@ -52,11 +53,15 @@ def button2Click():
   print filename, model
   if filename and model:
     disp.config(text = "Processing ...")
-    frame2.update_idletasks()
+    if runType.get() == "batch":
+      imgLabel.pack_forget()
     
     if runLoc.get() == "local":
+      frame2.update_idletasks()
       cmd = "python classifyPipe.py --pretrained_model " + model + " " + filename + " temp"
     else:
+      frame2.update_idletasks()
+      imgLabel.pack_forget()
       cmd = "./remoteClassify.sh " + filename
     p = subprocess.Popen(cmd , shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
@@ -119,10 +124,10 @@ R5.invoke()
 R6 = Radiobutton(box3, text="Test no scrape", variable=var3, value="scrape", command=sel3)
 R6.pack( anchor = W )
 
-R7 = Radiobutton(box3, text="Test water contamination", variable=var3, value="water", command=sel3)
+R7 = Radiobutton(box3, text="Test water contamination", variable=var3, value="water_high", command=sel3)
 R7.pack( anchor = W )
 
-R8 = Radiobutton(box3, text="Test soil contamination", variable=var3, value="soil", command=sel3)
+R8 = Radiobutton(box3, text="Test soil contamination", variable=var3, value="soil_high", command=sel3)
 R8.pack( anchor = W )
 
 R9 = Radiobutton(box3, text="Test inadequate clamp", variable=var3, value="inadcl", command=sel3)

@@ -1,17 +1,18 @@
 net: "task/misal_o/train_val.prototxt"
-test_iter: 17
+test_iter: 34
 test_interval: 50
 test_compute_loss: 1
 # lr for fine-tuning should be lower than when starting from scratch
-base_lr: 0.0001
+base_lr: 0.00001
 lr_policy: "step"
 gamma: 0.1
 # stepsize should also be lower, as we're closer to being done
-stepsize: 3300
+stepsize: 200
 display: 1
-max_iter: 10000 
+max_iter: 1
+# 400
 momentum: 0.9
 weight_decay: 0.0005
-snapshot: 2500
-snapshot_prefix: "task/misal_o/"
+# snapshot: 250
+# snapshot_prefix: "task/misal_o/none/"
 solver_mode: GPU

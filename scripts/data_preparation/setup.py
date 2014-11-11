@@ -87,12 +87,9 @@ def o_sample_how_many(num_pos, num_neg, o_bad_min):
   o_bad_min = float(o_bad_min)
   print 'o_bad_min, num_pos, num_neg', o_bad_min, num_pos, num_neg
   full_copies = (1-o_bad_min)/o_bad_min
-  print "full_copies = ", full_copies
   full_copies *= float(num_neg)
-  print "full_copies = ", full_copies
   last_copy = int(full_copies) % int(num_pos)
   full_copies /= float(num_pos)
-  print "full_copies = ", full_copies
   # last_copy = (full_copies - int(full_copies)) * num_neg
   full_copies, last_copy = int(full_copies)-1, int(last_copy)
   print "oversample positives %i times plus %i extras"%(full_copies,last_copy)
@@ -208,7 +205,7 @@ def dump_to_files(Keep, data_info, task, data_dir):
     if os.path.isfile(oj(data_info,dump_fnames[i])):
       print "WARNING: overwriting", oj(data_info,dump_fnames[i])
     with open(oj(data_info,dump_fnames[i]),'w') as dfile:
-      dfile.writelines(["%s  %i\n" % (oj(data_dir,f),num)
+      dfile.writelines(["%s %i\n" % (oj(data_dir,f),num)
                         for (f,num) in dump[i]])
 
     
@@ -238,7 +235,7 @@ def add_redboxes(target_bad_min, b_imbal, pos_class, task,
 
 def print_help():
   print '''Usage eg: 
-  ./setup.py --task=scrape --box=blue --learn=6-14 --u-sample=0.95 [--o-sample=0.5] [--b-imbal=0.5]'''
+  ./setup.py --task=scrape --box=blue --learn=6-14 --u-sample=0.90 --o-sample=0.55 --b-imbal=0.5'''
   if os.path.exists('/homes/ad6813'):
     # print 'flags:', open('/homes/ad6813/data/flag_lookup.txt','r').readlines()
     lines = open('/homes/ad6813/data/flag_lookup.txt','r').readlines()
@@ -281,14 +278,15 @@ if __name__ == '__main__':
     read_file.write(" ".join(sys.argv)+'\n')
 
   # do your shit
-  main(data_dir, data_info, task, pos_class, u_bad_min)
+  num_pos, num_neg = main(data_dir, data_info, task, pos_class, u_bad_min)
+
+  fn_train = data_info+'/train.txt'
 
   # GENERALISE THIS
   if 'b-imbal' in optDict:
     b_imbal = float(optDict["b-imbal"])
-    avoid_flags = ['UnsuitablePhoto'] # dont need cos Raz moved away unsuitables?
+    avoid_flags = [] # dont need cos Raz moved away unsuitables?
     redbox_dir = '/data/ad6813/pipe-data/Redbox'
-    fn_train = data_info+'/train.txt'
 
     # How many redboxes to add:
     # add_num_pos, add_num_neg = ar.same_amount_as_bluebox(data_dir, task, pos_class)
@@ -301,6 +299,7 @@ if __name__ == '__main__':
       raise Exception(message)
 
     num_pos, num_neg = add_redboxes(u_bad_min, b_imbal, pos_class, task,avoid_flags, redbox_dir, fn_train)
+    
 
   # oversampling
   if "o-sample" in optDict:
@@ -311,4 +310,9 @@ if __name__ == '__main__':
   # setup task/etc
   p = subprocess.Popen("./rest_setup.sh " + task, shell=True)
   p.wait()
+
+
+
+
+
 

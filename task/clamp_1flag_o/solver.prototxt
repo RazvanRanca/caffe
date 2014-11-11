@@ -1,17 +1,17 @@
 net: "task/clamp_1flag_o/train_val.prototxt"
-test_iter: 486
-test_interval: 200
+test_iter: 125
+test_interval: 50
 test_compute_loss: 1
 # lr for fine-tuning should be lower than when starting from scratch
 base_lr: 0.0001
 lr_policy: "step"
 gamma: 0.1
 # stepsize should also be lower, as we're closer to being done
-stepsize: 3300
+stepsize: 1000
 display: 1
-max_iter: 10000 
+max_iter: 3000 
 momentum: 0.9
 weight_decay: 0.0005
-snapshot: 2500
-snapshot_prefix: "task/clamp_1flag_o/"
+snapshot: 1000
+snapshot_prefix: "task/clamp_1flag_o/none/"
 solver_mode: GPU
