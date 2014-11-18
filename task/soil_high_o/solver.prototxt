@@ -1,5 +1,5 @@
 net: "task/soil_high_o/train_val.prototxt"
-test_iter: 120
+test_iter: 121
 test_interval: 50
 test_compute_loss: 1
 # lr for fine-tuning should be lower than when starting from scratch
@@ -9,9 +9,9 @@ lr_policy: "fixed"
 # stepsize should also be lower, as we're closer to being done
 # stepsize: 100
 display: 1
-max_iter: 5000
+max_iter: 20000
 momentum: 0.9
 weight_decay: 0.0005
-snapshot: 1000
+snapshot: 2000
 snapshot_prefix: "task/soil_high_o/none/"
 solver_mode: GPU
