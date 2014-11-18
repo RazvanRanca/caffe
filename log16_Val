@@ -1,0 +1,3367 @@
+nohup: ignoring input
+I1105 14:42:32.088457  3468 caffe.cpp:99] Use GPU with device ID 0
+I1105 14:42:32.257818  3468 caffe.cpp:107] Starting Optimization
+I1105 14:42:32.257936  3468 solver.cpp:32] Initializing solver from parameters: 
+test_iter: 251
+test_interval: 50
+base_lr: 0.0001
+display: 1
+max_iter: 1200
+lr_policy: "step"
+gamma: 0.1
+momentum: 0.9
+weight_decay: 0.0005
+stepsize: 400
+snapshot: 200
+snapshot_prefix: "/data/ad6813/devCaffe/caffe/oxford/snapshots/"
+solver_mode: GPU
+test_compute_loss: true
+net: "/data/ad6813/devCaffe/caffe/oxford/small.train"
+I1105 14:42:32.257967  3468 solver.cpp:67] Creating training net from net file: /data/ad6813/devCaffe/caffe/oxford/small.train
+I1105 14:42:32.258810  3468 net.cpp:275] The NetState phase (0) differed from the phase (1) specified by a rule in layer data
+I1105 14:42:32.258852  3468 net.cpp:275] The NetState phase (0) differed from the phase (1) specified by a rule in layer accuracy
+I1105 14:42:32.259052  3468 net.cpp:39] Initializing net from parameters: 
+name: "small"
+layers {
+  top: "data"
+  top: "label"
+  name: "data"
+  type: IMAGE_DATA
+  image_data_param {
+    source: "/data/ad6813/devCaffe/caffe/task/clamp/clampTrain.txt"
+    batch_size: 32
+    new_height: 256
+    new_width: 256
+  }
+  include {
+    phase: TRAIN
+  }
+  transform_param {
+    mirror: true
+    crop_size: 224
+    mean_value: 86.75
+    mean_value: 101.4
+    mean_value: 104.6
+  }
+}
+layers {
+  bottom: "data"
+  top: "conv1_1"
+  name: "conv1_1"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 64
+    pad: 1
+    kernel_size: 3
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "conv1_1"
+  top: "conv1_1"
+  name: "relu1_1"
+  type: RELU
+}
+layers {
+  bottom: "conv1_1"
+  top: "conv1_2"
+  name: "conv1_2"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 64
+    pad: 1
+    kernel_size: 3
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "conv1_2"
+  top: "conv1_2"
+  name: "relu1_2"
+  type: RELU
+}
+layers {
+  bottom: "conv1_2"
+  top: "pool1"
+  name: "pool1"
+  type: POOLING
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+layers {
+  bottom: "pool1"
+  top: "conv2_1"
+  name: "conv2_1"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 128
+    pad: 1
+    kernel_size: 3
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "conv2_1"
+  top: "conv2_1"
+  name: "relu2_1"
+  type: RELU
+}
+layers {
+  bottom: "conv2_1"
+  top: "conv2_2"
+  name: "conv2_2"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 128
+    pad: 1
+    kernel_size: 3
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "conv2_2"
+  top: "conv2_2"
+  name: "relu2_2"
+  type: RELU
+}
+layers {
+  bottom: "conv2_2"
+  top: "pool2"
+  name: "pool2"
+  type: POOLING
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+layers {
+  bottom: "pool2"
+  top: "conv3_1"
+  name: "conv3_1"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 256
+    pad: 1
+    kernel_size: 3
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "conv3_1"
+  top: "conv3_1"
+  name: "relu3_1"
+  type: RELU
+}
+layers {
+  bottom: "conv3_1"
+  top: "conv3_2"
+  name: "conv3_2"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 256
+    pad: 1
+    kernel_size: 3
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "conv3_2"
+  top: "conv3_2"
+  name: "relu3_2"
+  type: RELU
+}
+layers {
+  bottom: "conv3_2"
+  top: "conv3_3"
+  name: "conv3_3"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 256
+    pad: 1
+    kernel_size: 3
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "conv3_3"
+  top: "conv3_3"
+  name: "relu3_3"
+  type: RELU
+}
+layers {
+  bottom: "conv3_3"
+  top: "pool3"
+  name: "pool3"
+  type: POOLING
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+layers {
+  bottom: "pool3"
+  top: "conv4_1"
+  name: "conv4_1"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 512
+    pad: 1
+    kernel_size: 3
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "conv4_1"
+  top: "conv4_1"
+  name: "relu4_1"
+  type: RELU
+}
+layers {
+  bottom: "conv4_1"
+  top: "conv4_2"
+  name: "conv4_2"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 512
+    pad: 1
+    kernel_size: 3
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "conv4_2"
+  top: "conv4_2"
+  name: "relu4_2"
+  type: RELU
+}
+layers {
+  bottom: "conv4_2"
+  top: "conv4_3"
+  name: "conv4_3"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 512
+    pad: 1
+    kernel_size: 3
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "conv4_3"
+  top: "conv4_3"
+  name: "relu4_3"
+  type: RELU
+}
+layers {
+  bottom: "conv4_3"
+  top: "pool4"
+  name: "pool4"
+  type: POOLING
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+layers {
+  bottom: "pool4"
+  top: "conv5_1"
+  name: "conv5_1"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 512
+    pad: 1
+    kernel_size: 3
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "conv5_1"
+  top: "conv5_1"
+  name: "relu5_1"
+  type: RELU
+}
+layers {
+  bottom: "conv5_1"
+  top: "conv5_2"
+  name: "conv5_2"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 512
+    pad: 1
+    kernel_size: 3
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "conv5_2"
+  top: "conv5_2"
+  name: "relu5_2"
+  type: RELU
+}
+layers {
+  bottom: "conv5_2"
+  top: "conv5_3"
+  name: "conv5_3"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 512
+    pad: 1
+    kernel_size: 3
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "conv5_3"
+  top: "conv5_3"
+  name: "relu5_3"
+  type: RELU
+}
+layers {
+  bottom: "conv5_3"
+  top: "pool5"
+  name: "pool5"
+  type: POOLING
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+layers {
+  bottom: "pool5"
+  top: "fc6"
+  name: "fc6"
+  type: INNER_PRODUCT
+  inner_product_param {
+    num_output: 4096
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "fc6"
+  top: "fc6"
+  name: "relu6"
+  type: RELU
+}
+layers {
+  bottom: "fc6"
+  top: "fc6"
+  name: "drop6"
+  type: DROPOUT
+  dropout_param {
+    dropout_ratio: 0.5
+  }
+}
+layers {
+  bottom: "fc6"
+  top: "fc7"
+  name: "fc7"
+  type: INNER_PRODUCT
+  inner_product_param {
+    num_output: 4096
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "fc7"
+  top: "fc7"
+  name: "relu7"
+  type: RELU
+}
+layers {
+  bottom: "fc7"
+  top: "fc7"
+  name: "drop7"
+  type: DROPOUT
+  dropout_param {
+    dropout_ratio: 0.5
+  }
+}
+layers {
+  bottom: "fc7"
+  top: "fc8_2"
+  name: "fc8_2"
+  type: INNER_PRODUCT
+  inner_product_param {
+    num_output: 2
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "fc8_2"
+  bottom: "label"
+  name: "loss"
+  type: SOFTMAX_LOSS
+}
+state {
+  phase: TRAIN
+}
+I1105 14:42:32.259263  3468 layer_factory.hpp:78] Creating layer data
+I1105 14:42:32.259289  3468 net.cpp:67] Creating Layer data
+I1105 14:42:32.259340  3468 net.cpp:356] data -> data
+I1105 14:42:32.259379  3468 net.cpp:356] data -> label
+I1105 14:42:32.259394  3468 net.cpp:96] Setting up data
+I1105 14:42:32.259402  3468 image_data_layer.cpp:34] Opening file /data/ad6813/devCaffe/caffe/task/clamp/clampTrain.txt
+I1105 14:42:32.268352  3468 image_data_layer.cpp:49] A total of 23494 images.
+I1105 14:42:32.279197  3468 image_data_layer.cpp:78] output data size: 32,3,224,224
+I1105 14:42:32.282016  3468 net.cpp:103] Top shape: 32 3 224 224 (4816896)
+I1105 14:42:32.282045  3468 net.cpp:103] Top shape: 32 1 1 1 (32)
+I1105 14:42:32.282052  3468 layer_factory.hpp:78] Creating layer conv1_1
+I1105 14:42:32.282071  3468 net.cpp:67] Creating Layer conv1_1
+I1105 14:42:32.282078  3468 net.cpp:394] conv1_1 <- data
+I1105 14:42:32.282099  3468 net.cpp:356] conv1_1 -> conv1_1
+I1105 14:42:32.282115  3468 net.cpp:96] Setting up conv1_1
+I1105 14:42:32.294471  3468 net.cpp:103] Top shape: 32 64 224 224 (102760448)
+I1105 14:42:32.294512  3468 layer_factory.hpp:78] Creating layer relu1_1
+I1105 14:42:32.294529  3468 net.cpp:67] Creating Layer relu1_1
+I1105 14:42:32.294538  3468 net.cpp:394] relu1_1 <- conv1_1
+I1105 14:42:32.294548  3468 net.cpp:345] relu1_1 -> conv1_1 (in-place)
+I1105 14:42:32.294561  3468 net.cpp:96] Setting up relu1_1
+I1105 14:42:32.294582  3468 net.cpp:103] Top shape: 32 64 224 224 (102760448)
+I1105 14:42:32.294591  3468 layer_factory.hpp:78] Creating layer conv1_2
+I1105 14:42:32.294603  3468 net.cpp:67] Creating Layer conv1_2
+I1105 14:42:32.294612  3468 net.cpp:394] conv1_2 <- conv1_1
+I1105 14:42:32.294622  3468 net.cpp:356] conv1_2 -> conv1_2
+I1105 14:42:32.294648  3468 net.cpp:96] Setting up conv1_2
+I1105 14:42:32.295724  3468 net.cpp:103] Top shape: 32 64 224 224 (102760448)
+I1105 14:42:32.295740  3468 layer_factory.hpp:78] Creating layer relu1_2
+I1105 14:42:32.295752  3468 net.cpp:67] Creating Layer relu1_2
+I1105 14:42:32.295765  3468 net.cpp:394] relu1_2 <- conv1_2
+I1105 14:42:32.295776  3468 net.cpp:345] relu1_2 -> conv1_2 (in-place)
+I1105 14:42:32.295786  3468 net.cpp:96] Setting up relu1_2
+I1105 14:42:32.295795  3468 net.cpp:103] Top shape: 32 64 224 224 (102760448)
+I1105 14:42:32.295814  3468 layer_factory.hpp:78] Creating layer pool1
+I1105 14:42:32.295831  3468 net.cpp:67] Creating Layer pool1
+I1105 14:42:32.295838  3468 net.cpp:394] pool1 <- conv1_2
+I1105 14:42:32.295847  3468 net.cpp:356] pool1 -> pool1
+I1105 14:42:32.295864  3468 net.cpp:96] Setting up pool1
+I1105 14:42:32.295888  3468 net.cpp:103] Top shape: 32 64 112 112 (25690112)
+I1105 14:42:32.295897  3468 layer_factory.hpp:78] Creating layer conv2_1
+I1105 14:42:32.295914  3468 net.cpp:67] Creating Layer conv2_1
+I1105 14:42:32.295923  3468 net.cpp:394] conv2_1 <- pool1
+I1105 14:42:32.295933  3468 net.cpp:356] conv2_1 -> conv2_1
+I1105 14:42:32.295943  3468 net.cpp:96] Setting up conv2_1
+I1105 14:42:32.297873  3468 net.cpp:103] Top shape: 32 128 112 112 (51380224)
+I1105 14:42:32.297889  3468 layer_factory.hpp:78] Creating layer relu2_1
+I1105 14:42:32.297901  3468 net.cpp:67] Creating Layer relu2_1
+I1105 14:42:32.297909  3468 net.cpp:394] relu2_1 <- conv2_1
+I1105 14:42:32.297919  3468 net.cpp:345] relu2_1 -> conv2_1 (in-place)
+I1105 14:42:32.297930  3468 net.cpp:96] Setting up relu2_1
+I1105 14:42:32.297940  3468 net.cpp:103] Top shape: 32 128 112 112 (51380224)
+I1105 14:42:32.297948  3468 layer_factory.hpp:78] Creating layer conv2_2
+I1105 14:42:32.297969  3468 net.cpp:67] Creating Layer conv2_2
+I1105 14:42:32.297976  3468 net.cpp:394] conv2_2 <- conv2_1
+I1105 14:42:32.297986  3468 net.cpp:356] conv2_2 -> conv2_2
+I1105 14:42:32.297996  3468 net.cpp:96] Setting up conv2_2
+I1105 14:42:32.301776  3468 net.cpp:103] Top shape: 32 128 112 112 (51380224)
+I1105 14:42:32.301791  3468 layer_factory.hpp:78] Creating layer relu2_2
+I1105 14:42:32.301802  3468 net.cpp:67] Creating Layer relu2_2
+I1105 14:42:32.301810  3468 net.cpp:394] relu2_2 <- conv2_2
+I1105 14:42:32.301817  3468 net.cpp:345] relu2_2 -> conv2_2 (in-place)
+I1105 14:42:32.301826  3468 net.cpp:96] Setting up relu2_2
+I1105 14:42:32.301836  3468 net.cpp:103] Top shape: 32 128 112 112 (51380224)
+I1105 14:42:32.301851  3468 layer_factory.hpp:78] Creating layer pool2
+I1105 14:42:32.301869  3468 net.cpp:67] Creating Layer pool2
+I1105 14:42:32.301878  3468 net.cpp:394] pool2 <- conv2_2
+I1105 14:42:32.301887  3468 net.cpp:356] pool2 -> pool2
+I1105 14:42:32.301897  3468 net.cpp:96] Setting up pool2
+I1105 14:42:32.301918  3468 net.cpp:103] Top shape: 32 128 56 56 (12845056)
+I1105 14:42:32.301925  3468 layer_factory.hpp:78] Creating layer conv3_1
+I1105 14:42:32.301934  3468 net.cpp:67] Creating Layer conv3_1
+I1105 14:42:32.301940  3468 net.cpp:394] conv3_1 <- pool2
+I1105 14:42:32.301951  3468 net.cpp:356] conv3_1 -> conv3_1
+I1105 14:42:32.301970  3468 net.cpp:96] Setting up conv3_1
+I1105 14:42:32.309371  3468 net.cpp:103] Top shape: 32 256 56 56 (25690112)
+I1105 14:42:32.309393  3468 layer_factory.hpp:78] Creating layer relu3_1
+I1105 14:42:32.309403  3468 net.cpp:67] Creating Layer relu3_1
+I1105 14:42:32.309409  3468 net.cpp:394] relu3_1 <- conv3_1
+I1105 14:42:32.309420  3468 net.cpp:345] relu3_1 -> conv3_1 (in-place)
+I1105 14:42:32.309430  3468 net.cpp:96] Setting up relu3_1
+I1105 14:42:32.309440  3468 net.cpp:103] Top shape: 32 256 56 56 (25690112)
+I1105 14:42:32.309447  3468 layer_factory.hpp:78] Creating layer conv3_2
+I1105 14:42:32.309456  3468 net.cpp:67] Creating Layer conv3_2
+I1105 14:42:32.309466  3468 net.cpp:394] conv3_2 <- conv3_1
+I1105 14:42:32.309486  3468 net.cpp:356] conv3_2 -> conv3_2
+I1105 14:42:32.309499  3468 net.cpp:96] Setting up conv3_2
+I1105 14:42:32.324420  3468 net.cpp:103] Top shape: 32 256 56 56 (25690112)
+I1105 14:42:32.324448  3468 layer_factory.hpp:78] Creating layer relu3_2
+I1105 14:42:32.324460  3468 net.cpp:67] Creating Layer relu3_2
+I1105 14:42:32.324467  3468 net.cpp:394] relu3_2 <- conv3_2
+I1105 14:42:32.324477  3468 net.cpp:345] relu3_2 -> conv3_2 (in-place)
+I1105 14:42:32.324488  3468 net.cpp:96] Setting up relu3_2
+I1105 14:42:32.324498  3468 net.cpp:103] Top shape: 32 256 56 56 (25690112)
+I1105 14:42:32.324504  3468 layer_factory.hpp:78] Creating layer conv3_3
+I1105 14:42:32.324514  3468 net.cpp:67] Creating Layer conv3_3
+I1105 14:42:32.324525  3468 net.cpp:394] conv3_3 <- conv3_2
+I1105 14:42:32.324537  3468 net.cpp:356] conv3_3 -> conv3_3
+I1105 14:42:32.324550  3468 net.cpp:96] Setting up conv3_3
+I1105 14:42:32.339354  3468 net.cpp:103] Top shape: 32 256 56 56 (25690112)
+I1105 14:42:32.339380  3468 layer_factory.hpp:78] Creating layer relu3_3
+I1105 14:42:32.339397  3468 net.cpp:67] Creating Layer relu3_3
+I1105 14:42:32.339404  3468 net.cpp:394] relu3_3 <- conv3_3
+I1105 14:42:32.339414  3468 net.cpp:345] relu3_3 -> conv3_3 (in-place)
+I1105 14:42:32.339426  3468 net.cpp:96] Setting up relu3_3
+I1105 14:42:32.339436  3468 net.cpp:103] Top shape: 32 256 56 56 (25690112)
+I1105 14:42:32.339447  3468 layer_factory.hpp:78] Creating layer pool3
+I1105 14:42:32.339457  3468 net.cpp:67] Creating Layer pool3
+I1105 14:42:32.339465  3468 net.cpp:394] pool3 <- conv3_3
+I1105 14:42:32.339485  3468 net.cpp:356] pool3 -> pool3
+I1105 14:42:32.339498  3468 net.cpp:96] Setting up pool3
+I1105 14:42:32.339514  3468 net.cpp:103] Top shape: 32 256 28 28 (6422528)
+I1105 14:42:32.339521  3468 layer_factory.hpp:78] Creating layer conv4_1
+I1105 14:42:32.339540  3468 net.cpp:67] Creating Layer conv4_1
+I1105 14:42:32.339546  3468 net.cpp:394] conv4_1 <- pool3
+I1105 14:42:32.339555  3468 net.cpp:356] conv4_1 -> conv4_1
+I1105 14:42:32.339565  3468 net.cpp:96] Setting up conv4_1
+I1105 14:42:32.368479  3468 net.cpp:103] Top shape: 32 512 28 28 (12845056)
+I1105 14:42:32.368506  3468 layer_factory.hpp:78] Creating layer relu4_1
+I1105 14:42:32.368518  3468 net.cpp:67] Creating Layer relu4_1
+I1105 14:42:32.368526  3468 net.cpp:394] relu4_1 <- conv4_1
+I1105 14:42:32.368538  3468 net.cpp:345] relu4_1 -> conv4_1 (in-place)
+I1105 14:42:32.368549  3468 net.cpp:96] Setting up relu4_1
+I1105 14:42:32.368559  3468 net.cpp:103] Top shape: 32 512 28 28 (12845056)
+I1105 14:42:32.368566  3468 layer_factory.hpp:78] Creating layer conv4_2
+I1105 14:42:32.368577  3468 net.cpp:67] Creating Layer conv4_2
+I1105 14:42:32.368592  3468 net.cpp:394] conv4_2 <- conv4_1
+I1105 14:42:32.368602  3468 net.cpp:356] conv4_2 -> conv4_2
+I1105 14:42:32.368613  3468 net.cpp:96] Setting up conv4_2
+I1105 14:42:32.426600  3468 net.cpp:103] Top shape: 32 512 28 28 (12845056)
+I1105 14:42:32.426636  3468 layer_factory.hpp:78] Creating layer relu4_2
+I1105 14:42:32.426648  3468 net.cpp:67] Creating Layer relu4_2
+I1105 14:42:32.426655  3468 net.cpp:394] relu4_2 <- conv4_2
+I1105 14:42:32.426664  3468 net.cpp:345] relu4_2 -> conv4_2 (in-place)
+I1105 14:42:32.426676  3468 net.cpp:96] Setting up relu4_2
+I1105 14:42:32.426686  3468 net.cpp:103] Top shape: 32 512 28 28 (12845056)
+I1105 14:42:32.426692  3468 layer_factory.hpp:78] Creating layer conv4_3
+I1105 14:42:32.426704  3468 net.cpp:67] Creating Layer conv4_3
+I1105 14:42:32.426718  3468 net.cpp:394] conv4_3 <- conv4_2
+I1105 14:42:32.426729  3468 net.cpp:356] conv4_3 -> conv4_3
+I1105 14:42:32.426741  3468 net.cpp:96] Setting up conv4_3
+I1105 14:42:32.484335  3468 net.cpp:103] Top shape: 32 512 28 28 (12845056)
+I1105 14:42:32.484362  3468 layer_factory.hpp:78] Creating layer relu4_3
+I1105 14:42:32.484375  3468 net.cpp:67] Creating Layer relu4_3
+I1105 14:42:32.484381  3468 net.cpp:394] relu4_3 <- conv4_3
+I1105 14:42:32.484391  3468 net.cpp:345] relu4_3 -> conv4_3 (in-place)
+I1105 14:42:32.484401  3468 net.cpp:96] Setting up relu4_3
+I1105 14:42:32.484412  3468 net.cpp:103] Top shape: 32 512 28 28 (12845056)
+I1105 14:42:32.484418  3468 layer_factory.hpp:78] Creating layer pool4
+I1105 14:42:32.484431  3468 net.cpp:67] Creating Layer pool4
+I1105 14:42:32.484442  3468 net.cpp:394] pool4 <- conv4_3
+I1105 14:42:32.484452  3468 net.cpp:356] pool4 -> pool4
+I1105 14:42:32.484467  3468 net.cpp:96] Setting up pool4
+I1105 14:42:32.484491  3468 net.cpp:103] Top shape: 32 512 14 14 (3211264)
+I1105 14:42:32.484499  3468 layer_factory.hpp:78] Creating layer conv5_1
+I1105 14:42:32.484513  3468 net.cpp:67] Creating Layer conv5_1
+I1105 14:42:32.484521  3468 net.cpp:394] conv5_1 <- pool4
+I1105 14:42:32.484537  3468 net.cpp:356] conv5_1 -> conv5_1
+I1105 14:42:32.484552  3468 net.cpp:96] Setting up conv5_1
+I1105 14:42:32.542484  3468 net.cpp:103] Top shape: 32 512 14 14 (3211264)
+I1105 14:42:32.542520  3468 layer_factory.hpp:78] Creating layer relu5_1
+I1105 14:42:32.542532  3468 net.cpp:67] Creating Layer relu5_1
+I1105 14:42:32.542539  3468 net.cpp:394] relu5_1 <- conv5_1
+I1105 14:42:32.542551  3468 net.cpp:345] relu5_1 -> conv5_1 (in-place)
+I1105 14:42:32.542562  3468 net.cpp:96] Setting up relu5_1
+I1105 14:42:32.542572  3468 net.cpp:103] Top shape: 32 512 14 14 (3211264)
+I1105 14:42:32.542578  3468 layer_factory.hpp:78] Creating layer conv5_2
+I1105 14:42:32.542588  3468 net.cpp:67] Creating Layer conv5_2
+I1105 14:42:32.542594  3468 net.cpp:394] conv5_2 <- conv5_1
+I1105 14:42:32.542605  3468 net.cpp:356] conv5_2 -> conv5_2
+I1105 14:42:32.542618  3468 net.cpp:96] Setting up conv5_2
+I1105 14:42:32.600152  3468 net.cpp:103] Top shape: 32 512 14 14 (3211264)
+I1105 14:42:32.600185  3468 layer_factory.hpp:78] Creating layer relu5_2
+I1105 14:42:32.600196  3468 net.cpp:67] Creating Layer relu5_2
+I1105 14:42:32.600203  3468 net.cpp:394] relu5_2 <- conv5_2
+I1105 14:42:32.600213  3468 net.cpp:345] relu5_2 -> conv5_2 (in-place)
+I1105 14:42:32.600222  3468 net.cpp:96] Setting up relu5_2
+I1105 14:42:32.600232  3468 net.cpp:103] Top shape: 32 512 14 14 (3211264)
+I1105 14:42:32.600239  3468 layer_factory.hpp:78] Creating layer conv5_3
+I1105 14:42:32.600256  3468 net.cpp:67] Creating Layer conv5_3
+I1105 14:42:32.600265  3468 net.cpp:394] conv5_3 <- conv5_2
+I1105 14:42:32.600275  3468 net.cpp:356] conv5_3 -> conv5_3
+I1105 14:42:32.600286  3468 net.cpp:96] Setting up conv5_3
+I1105 14:42:32.657654  3468 net.cpp:103] Top shape: 32 512 14 14 (3211264)
+I1105 14:42:32.657686  3468 layer_factory.hpp:78] Creating layer relu5_3
+I1105 14:42:32.657697  3468 net.cpp:67] Creating Layer relu5_3
+I1105 14:42:32.657704  3468 net.cpp:394] relu5_3 <- conv5_3
+I1105 14:42:32.657713  3468 net.cpp:345] relu5_3 -> conv5_3 (in-place)
+I1105 14:42:32.657734  3468 net.cpp:96] Setting up relu5_3
+I1105 14:42:32.657743  3468 net.cpp:103] Top shape: 32 512 14 14 (3211264)
+I1105 14:42:32.657750  3468 layer_factory.hpp:78] Creating layer pool5
+I1105 14:42:32.657759  3468 net.cpp:67] Creating Layer pool5
+I1105 14:42:32.657765  3468 net.cpp:394] pool5 <- conv5_3
+I1105 14:42:32.657774  3468 net.cpp:356] pool5 -> pool5
+I1105 14:42:32.657784  3468 net.cpp:96] Setting up pool5
+I1105 14:42:32.657796  3468 net.cpp:103] Top shape: 32 512 7 7 (802816)
+I1105 14:42:32.657806  3468 layer_factory.hpp:78] Creating layer fc6
+I1105 14:42:32.657835  3468 net.cpp:67] Creating Layer fc6
+I1105 14:42:32.657843  3468 net.cpp:394] fc6 <- pool5
+I1105 14:42:32.657855  3468 net.cpp:356] fc6 -> fc6
+I1105 14:42:32.657866  3468 net.cpp:96] Setting up fc6
+I1105 14:42:35.179738  3468 net.cpp:103] Top shape: 32 4096 1 1 (131072)
+I1105 14:42:35.179780  3468 layer_factory.hpp:78] Creating layer relu6
+I1105 14:42:35.179792  3468 net.cpp:67] Creating Layer relu6
+I1105 14:42:35.179800  3468 net.cpp:394] relu6 <- fc6
+I1105 14:42:35.179812  3468 net.cpp:345] relu6 -> fc6 (in-place)
+I1105 14:42:35.179824  3468 net.cpp:96] Setting up relu6
+I1105 14:42:35.179847  3468 net.cpp:103] Top shape: 32 4096 1 1 (131072)
+I1105 14:42:35.179854  3468 layer_factory.hpp:78] Creating layer drop6
+I1105 14:42:35.179877  3468 net.cpp:67] Creating Layer drop6
+I1105 14:42:35.179884  3468 net.cpp:394] drop6 <- fc6
+I1105 14:42:35.179893  3468 net.cpp:345] drop6 -> fc6 (in-place)
+I1105 14:42:35.179903  3468 net.cpp:96] Setting up drop6
+I1105 14:42:35.179918  3468 net.cpp:103] Top shape: 32 4096 1 1 (131072)
+I1105 14:42:35.179925  3468 layer_factory.hpp:78] Creating layer fc7
+I1105 14:42:35.179939  3468 net.cpp:67] Creating Layer fc7
+I1105 14:42:35.179947  3468 net.cpp:394] fc7 <- fc6
+I1105 14:42:35.179957  3468 net.cpp:356] fc7 -> fc7
+I1105 14:42:35.179975  3468 net.cpp:96] Setting up fc7
+I1105 14:42:35.588701  3468 net.cpp:103] Top shape: 32 4096 1 1 (131072)
+I1105 14:42:35.588737  3468 layer_factory.hpp:78] Creating layer relu7
+I1105 14:42:35.588750  3468 net.cpp:67] Creating Layer relu7
+I1105 14:42:35.588757  3468 net.cpp:394] relu7 <- fc7
+I1105 14:42:35.588768  3468 net.cpp:345] relu7 -> fc7 (in-place)
+I1105 14:42:35.588778  3468 net.cpp:96] Setting up relu7
+I1105 14:42:35.588796  3468 net.cpp:103] Top shape: 32 4096 1 1 (131072)
+I1105 14:42:35.588809  3468 layer_factory.hpp:78] Creating layer drop7
+I1105 14:42:35.588820  3468 net.cpp:67] Creating Layer drop7
+I1105 14:42:35.588829  3468 net.cpp:394] drop7 <- fc7
+I1105 14:42:35.588839  3468 net.cpp:345] drop7 -> fc7 (in-place)
+I1105 14:42:35.588847  3468 net.cpp:96] Setting up drop7
+I1105 14:42:35.588856  3468 net.cpp:103] Top shape: 32 4096 1 1 (131072)
+I1105 14:42:35.588863  3468 layer_factory.hpp:78] Creating layer fc8_2
+I1105 14:42:35.588872  3468 net.cpp:67] Creating Layer fc8_2
+I1105 14:42:35.588888  3468 net.cpp:394] fc8_2 <- fc7
+I1105 14:42:35.588902  3468 net.cpp:356] fc8_2 -> fc8_2
+I1105 14:42:35.588914  3468 net.cpp:96] Setting up fc8_2
+I1105 14:42:35.589139  3468 net.cpp:103] Top shape: 32 2 1 1 (64)
+I1105 14:42:35.589151  3468 layer_factory.hpp:78] Creating layer loss
+I1105 14:42:35.589167  3468 net.cpp:67] Creating Layer loss
+I1105 14:42:35.589175  3468 net.cpp:394] loss <- fc8_2
+I1105 14:42:35.589184  3468 net.cpp:394] loss <- label
+I1105 14:42:35.589195  3468 net.cpp:356] loss -> (automatic)
+I1105 14:42:35.589203  3468 net.cpp:96] Setting up loss
+I1105 14:42:35.589216  3468 net.cpp:103] Top shape: 1 1 1 1 (1)
+I1105 14:42:35.589223  3468 net.cpp:109]     with loss weight 1
+I1105 14:42:35.589257  3468 net.cpp:170] loss needs backward computation.
+I1105 14:42:35.589264  3468 net.cpp:170] fc8_2 needs backward computation.
+I1105 14:42:35.589270  3468 net.cpp:170] drop7 needs backward computation.
+I1105 14:42:35.589275  3468 net.cpp:170] relu7 needs backward computation.
+I1105 14:42:35.589280  3468 net.cpp:170] fc7 needs backward computation.
+I1105 14:42:35.589287  3468 net.cpp:170] drop6 needs backward computation.
+I1105 14:42:35.589292  3468 net.cpp:170] relu6 needs backward computation.
+I1105 14:42:35.589306  3468 net.cpp:170] fc6 needs backward computation.
+I1105 14:42:35.589313  3468 net.cpp:170] pool5 needs backward computation.
+I1105 14:42:35.589318  3468 net.cpp:170] relu5_3 needs backward computation.
+I1105 14:42:35.589323  3468 net.cpp:170] conv5_3 needs backward computation.
+I1105 14:42:35.589329  3468 net.cpp:170] relu5_2 needs backward computation.
+I1105 14:42:35.589334  3468 net.cpp:170] conv5_2 needs backward computation.
+I1105 14:42:35.589340  3468 net.cpp:170] relu5_1 needs backward computation.
+I1105 14:42:35.589345  3468 net.cpp:170] conv5_1 needs backward computation.
+I1105 14:42:35.589351  3468 net.cpp:170] pool4 needs backward computation.
+I1105 14:42:35.589357  3468 net.cpp:170] relu4_3 needs backward computation.
+I1105 14:42:35.589364  3468 net.cpp:170] conv4_3 needs backward computation.
+I1105 14:42:35.589370  3468 net.cpp:170] relu4_2 needs backward computation.
+I1105 14:42:35.589375  3468 net.cpp:170] conv4_2 needs backward computation.
+I1105 14:42:35.589381  3468 net.cpp:170] relu4_1 needs backward computation.
+I1105 14:42:35.589386  3468 net.cpp:170] conv4_1 needs backward computation.
+I1105 14:42:35.589422  3468 net.cpp:170] pool3 needs backward computation.
+I1105 14:42:35.589432  3468 net.cpp:170] relu3_3 needs backward computation.
+I1105 14:42:35.589437  3468 net.cpp:170] conv3_3 needs backward computation.
+I1105 14:42:35.589447  3468 net.cpp:170] relu3_2 needs backward computation.
+I1105 14:42:35.589452  3468 net.cpp:170] conv3_2 needs backward computation.
+I1105 14:42:35.589480  3468 net.cpp:170] relu3_1 needs backward computation.
+I1105 14:42:35.589488  3468 net.cpp:170] conv3_1 needs backward computation.
+I1105 14:42:35.589493  3468 net.cpp:170] pool2 needs backward computation.
+I1105 14:42:35.589499  3468 net.cpp:170] relu2_2 needs backward computation.
+I1105 14:42:35.589515  3468 net.cpp:170] conv2_2 needs backward computation.
+I1105 14:42:35.589525  3468 net.cpp:170] relu2_1 needs backward computation.
+I1105 14:42:35.589530  3468 net.cpp:170] conv2_1 needs backward computation.
+I1105 14:42:35.589536  3468 net.cpp:170] pool1 needs backward computation.
+I1105 14:42:35.589542  3468 net.cpp:170] relu1_2 needs backward computation.
+I1105 14:42:35.589548  3468 net.cpp:170] conv1_2 needs backward computation.
+I1105 14:42:35.589560  3468 net.cpp:170] relu1_1 needs backward computation.
+I1105 14:42:35.589565  3468 net.cpp:170] conv1_1 needs backward computation.
+I1105 14:42:35.589572  3468 net.cpp:172] data does not need backward computation.
+I1105 14:42:35.589598  3468 net.cpp:467] Collecting Learning Rate and Weight Decay.
+I1105 14:42:35.589617  3468 net.cpp:219] Network initialization done.
+I1105 14:42:35.589623  3468 net.cpp:220] Memory required for data: 3686465924
+I1105 14:42:35.590459  3468 solver.cpp:151] Creating test net (#0) specified by net file: /data/ad6813/devCaffe/caffe/oxford/small.train
+I1105 14:42:35.590514  3468 net.cpp:275] The NetState phase (1) differed from the phase (0) specified by a rule in layer data
+I1105 14:42:35.590737  3468 net.cpp:39] Initializing net from parameters: 
+name: "small"
+layers {
+  top: "data"
+  top: "label"
+  name: "data"
+  type: IMAGE_DATA
+  image_data_param {
+    source: "/data/ad6813/devCaffe/caffe/task/clamp/clampVal.txt"
+    batch_size: 8
+    new_height: 256
+    new_width: 256
+  }
+  include {
+    phase: TEST
+  }
+  transform_param {
+    mirror: true
+    crop_size: 224
+    mean_value: 86.75
+    mean_value: 101.4
+    mean_value: 104.6
+  }
+}
+layers {
+  bottom: "data"
+  top: "conv1_1"
+  name: "conv1_1"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 64
+    pad: 1
+    kernel_size: 3
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "conv1_1"
+  top: "conv1_1"
+  name: "relu1_1"
+  type: RELU
+}
+layers {
+  bottom: "conv1_1"
+  top: "conv1_2"
+  name: "conv1_2"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 64
+    pad: 1
+    kernel_size: 3
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "conv1_2"
+  top: "conv1_2"
+  name: "relu1_2"
+  type: RELU
+}
+layers {
+  bottom: "conv1_2"
+  top: "pool1"
+  name: "pool1"
+  type: POOLING
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+layers {
+  bottom: "pool1"
+  top: "conv2_1"
+  name: "conv2_1"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 128
+    pad: 1
+    kernel_size: 3
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "conv2_1"
+  top: "conv2_1"
+  name: "relu2_1"
+  type: RELU
+}
+layers {
+  bottom: "conv2_1"
+  top: "conv2_2"
+  name: "conv2_2"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 128
+    pad: 1
+    kernel_size: 3
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "conv2_2"
+  top: "conv2_2"
+  name: "relu2_2"
+  type: RELU
+}
+layers {
+  bottom: "conv2_2"
+  top: "pool2"
+  name: "pool2"
+  type: POOLING
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+layers {
+  bottom: "pool2"
+  top: "conv3_1"
+  name: "conv3_1"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 256
+    pad: 1
+    kernel_size: 3
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "conv3_1"
+  top: "conv3_1"
+  name: "relu3_1"
+  type: RELU
+}
+layers {
+  bottom: "conv3_1"
+  top: "conv3_2"
+  name: "conv3_2"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 256
+    pad: 1
+    kernel_size: 3
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "conv3_2"
+  top: "conv3_2"
+  name: "relu3_2"
+  type: RELU
+}
+layers {
+  bottom: "conv3_2"
+  top: "conv3_3"
+  name: "conv3_3"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 256
+    pad: 1
+    kernel_size: 3
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "conv3_3"
+  top: "conv3_3"
+  name: "relu3_3"
+  type: RELU
+}
+layers {
+  bottom: "conv3_3"
+  top: "pool3"
+  name: "pool3"
+  type: POOLING
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+layers {
+  bottom: "pool3"
+  top: "conv4_1"
+  name: "conv4_1"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 512
+    pad: 1
+    kernel_size: 3
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "conv4_1"
+  top: "conv4_1"
+  name: "relu4_1"
+  type: RELU
+}
+layers {
+  bottom: "conv4_1"
+  top: "conv4_2"
+  name: "conv4_2"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 512
+    pad: 1
+    kernel_size: 3
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "conv4_2"
+  top: "conv4_2"
+  name: "relu4_2"
+  type: RELU
+}
+layers {
+  bottom: "conv4_2"
+  top: "conv4_3"
+  name: "conv4_3"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 512
+    pad: 1
+    kernel_size: 3
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "conv4_3"
+  top: "conv4_3"
+  name: "relu4_3"
+  type: RELU
+}
+layers {
+  bottom: "conv4_3"
+  top: "pool4"
+  name: "pool4"
+  type: POOLING
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+layers {
+  bottom: "pool4"
+  top: "conv5_1"
+  name: "conv5_1"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 512
+    pad: 1
+    kernel_size: 3
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "conv5_1"
+  top: "conv5_1"
+  name: "relu5_1"
+  type: RELU
+}
+layers {
+  bottom: "conv5_1"
+  top: "conv5_2"
+  name: "conv5_2"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 512
+    pad: 1
+    kernel_size: 3
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "conv5_2"
+  top: "conv5_2"
+  name: "relu5_2"
+  type: RELU
+}
+layers {
+  bottom: "conv5_2"
+  top: "conv5_3"
+  name: "conv5_3"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 512
+    pad: 1
+    kernel_size: 3
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "conv5_3"
+  top: "conv5_3"
+  name: "relu5_3"
+  type: RELU
+}
+layers {
+  bottom: "conv5_3"
+  top: "pool5"
+  name: "pool5"
+  type: POOLING
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+layers {
+  bottom: "pool5"
+  top: "fc6"
+  name: "fc6"
+  type: INNER_PRODUCT
+  inner_product_param {
+    num_output: 4096
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "fc6"
+  top: "fc6"
+  name: "relu6"
+  type: RELU
+}
+layers {
+  bottom: "fc6"
+  top: "fc6"
+  name: "drop6"
+  type: DROPOUT
+  dropout_param {
+    dropout_ratio: 0.5
+  }
+}
+layers {
+  bottom: "fc6"
+  top: "fc7"
+  name: "fc7"
+  type: INNER_PRODUCT
+  inner_product_param {
+    num_output: 4096
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "fc7"
+  top: "fc7"
+  name: "relu7"
+  type: RELU
+}
+layers {
+  bottom: "fc7"
+  top: "fc7"
+  name: "drop7"
+  type: DROPOUT
+  dropout_param {
+    dropout_ratio: 0.5
+  }
+}
+layers {
+  bottom: "fc7"
+  top: "fc8_2"
+  name: "fc8_2"
+  type: INNER_PRODUCT
+  inner_product_param {
+    num_output: 2
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "fc8_2"
+  bottom: "label"
+  name: "loss"
+  type: SOFTMAX_LOSS
+}
+layers {
+  bottom: "fc8_2"
+  bottom: "label"
+  top: "accuracy"
+  name: "accuracy"
+  type: PER_CLASS_ACCURACY
+  include {
+    phase: TEST
+  }
+}
+state {
+  phase: TEST
+}
+I1105 14:42:35.590977  3468 layer_factory.hpp:78] Creating layer data
+I1105 14:42:35.590992  3468 net.cpp:67] Creating Layer data
+I1105 14:42:35.591001  3468 net.cpp:356] data -> data
+I1105 14:42:35.591013  3468 net.cpp:356] data -> label
+I1105 14:42:35.591023  3468 net.cpp:96] Setting up data
+I1105 14:42:35.591030  3468 image_data_layer.cpp:34] Opening file /data/ad6813/devCaffe/caffe/task/clamp/clampVal.txt
+I1105 14:42:35.592571  3468 image_data_layer.cpp:49] A total of 2005 images.
+I1105 14:42:35.598567  3468 image_data_layer.cpp:78] output data size: 8,3,224,224
+I1105 14:42:35.599509  3468 net.cpp:103] Top shape: 8 3 224 224 (1204224)
+I1105 14:42:35.599521  3468 net.cpp:103] Top shape: 8 1 1 1 (8)
+I1105 14:42:35.599529  3468 layer_factory.hpp:78] Creating layer label_data_1_split
+I1105 14:42:35.599545  3468 net.cpp:67] Creating Layer label_data_1_split
+I1105 14:42:35.599552  3468 net.cpp:394] label_data_1_split <- label
+I1105 14:42:35.599563  3468 net.cpp:356] label_data_1_split -> label_data_1_split_0
+I1105 14:42:35.599582  3468 net.cpp:356] label_data_1_split -> label_data_1_split_1
+I1105 14:42:35.599594  3468 net.cpp:96] Setting up label_data_1_split
+I1105 14:42:35.599604  3468 net.cpp:103] Top shape: 8 1 1 1 (8)
+I1105 14:42:35.599619  3468 net.cpp:103] Top shape: 8 1 1 1 (8)
+I1105 14:42:35.599628  3468 layer_factory.hpp:78] Creating layer conv1_1
+I1105 14:42:35.599639  3468 net.cpp:67] Creating Layer conv1_1
+I1105 14:42:35.599649  3468 net.cpp:394] conv1_1 <- data
+I1105 14:42:35.599659  3468 net.cpp:356] conv1_1 -> conv1_1
+I1105 14:42:35.599678  3468 net.cpp:96] Setting up conv1_1
+I1105 14:42:35.599864  3468 net.cpp:103] Top shape: 8 64 224 224 (25690112)
+I1105 14:42:35.599881  3468 layer_factory.hpp:78] Creating layer relu1_1
+I1105 14:42:35.599891  3468 net.cpp:67] Creating Layer relu1_1
+I1105 14:42:35.599899  3468 net.cpp:394] relu1_1 <- conv1_1
+I1105 14:42:35.599915  3468 net.cpp:345] relu1_1 -> conv1_1 (in-place)
+I1105 14:42:35.599923  3468 net.cpp:96] Setting up relu1_1
+I1105 14:42:35.599935  3468 net.cpp:103] Top shape: 8 64 224 224 (25690112)
+I1105 14:42:35.599947  3468 layer_factory.hpp:78] Creating layer conv1_2
+I1105 14:42:35.599961  3468 net.cpp:67] Creating Layer conv1_2
+I1105 14:42:35.599967  3468 net.cpp:394] conv1_2 <- conv1_1
+I1105 14:42:35.599977  3468 net.cpp:356] conv1_2 -> conv1_2
+I1105 14:42:35.599987  3468 net.cpp:96] Setting up conv1_2
+I1105 14:42:35.601002  3468 net.cpp:103] Top shape: 8 64 224 224 (25690112)
+I1105 14:42:35.601019  3468 layer_factory.hpp:78] Creating layer relu1_2
+I1105 14:42:35.601028  3468 net.cpp:67] Creating Layer relu1_2
+I1105 14:42:35.601034  3468 net.cpp:394] relu1_2 <- conv1_2
+I1105 14:42:35.601043  3468 net.cpp:345] relu1_2 -> conv1_2 (in-place)
+I1105 14:42:35.601052  3468 net.cpp:96] Setting up relu1_2
+I1105 14:42:35.601064  3468 net.cpp:103] Top shape: 8 64 224 224 (25690112)
+I1105 14:42:35.601073  3468 layer_factory.hpp:78] Creating layer pool1
+I1105 14:42:35.601089  3468 net.cpp:67] Creating Layer pool1
+I1105 14:42:35.601096  3468 net.cpp:394] pool1 <- conv1_2
+I1105 14:42:35.601105  3468 net.cpp:356] pool1 -> pool1
+I1105 14:42:35.601115  3468 net.cpp:96] Setting up pool1
+I1105 14:42:35.601130  3468 net.cpp:103] Top shape: 8 64 112 112 (6422528)
+I1105 14:42:35.601142  3468 layer_factory.hpp:78] Creating layer conv2_1
+I1105 14:42:35.601152  3468 net.cpp:67] Creating Layer conv2_1
+I1105 14:42:35.601157  3468 net.cpp:394] conv2_1 <- pool1
+I1105 14:42:35.601166  3468 net.cpp:356] conv2_1 -> conv2_1
+I1105 14:42:35.601176  3468 net.cpp:96] Setting up conv2_1
+I1105 14:42:35.603179  3468 net.cpp:103] Top shape: 8 128 112 112 (12845056)
+I1105 14:42:35.603196  3468 layer_factory.hpp:78] Creating layer relu2_1
+I1105 14:42:35.603206  3468 net.cpp:67] Creating Layer relu2_1
+I1105 14:42:35.603214  3468 net.cpp:394] relu2_1 <- conv2_1
+I1105 14:42:35.603221  3468 net.cpp:345] relu2_1 -> conv2_1 (in-place)
+I1105 14:42:35.603230  3468 net.cpp:96] Setting up relu2_1
+I1105 14:42:35.603242  3468 net.cpp:103] Top shape: 8 128 112 112 (12845056)
+I1105 14:42:35.603250  3468 layer_factory.hpp:78] Creating layer conv2_2
+I1105 14:42:35.603266  3468 net.cpp:67] Creating Layer conv2_2
+I1105 14:42:35.603274  3468 net.cpp:394] conv2_2 <- conv2_1
+I1105 14:42:35.603283  3468 net.cpp:356] conv2_2 -> conv2_2
+I1105 14:42:35.603294  3468 net.cpp:96] Setting up conv2_2
+I1105 14:42:35.606955  3468 net.cpp:103] Top shape: 8 128 112 112 (12845056)
+I1105 14:42:35.606969  3468 layer_factory.hpp:78] Creating layer relu2_2
+I1105 14:42:35.606978  3468 net.cpp:67] Creating Layer relu2_2
+I1105 14:42:35.606984  3468 net.cpp:394] relu2_2 <- conv2_2
+I1105 14:42:35.606993  3468 net.cpp:345] relu2_2 -> conv2_2 (in-place)
+I1105 14:42:35.607002  3468 net.cpp:96] Setting up relu2_2
+I1105 14:42:35.607012  3468 net.cpp:103] Top shape: 8 128 112 112 (12845056)
+I1105 14:42:35.607018  3468 layer_factory.hpp:78] Creating layer pool2
+I1105 14:42:35.607027  3468 net.cpp:67] Creating Layer pool2
+I1105 14:42:35.607033  3468 net.cpp:394] pool2 <- conv2_2
+I1105 14:42:35.607040  3468 net.cpp:356] pool2 -> pool2
+I1105 14:42:35.607055  3468 net.cpp:96] Setting up pool2
+I1105 14:42:35.607070  3468 net.cpp:103] Top shape: 8 128 56 56 (3211264)
+I1105 14:42:35.607079  3468 layer_factory.hpp:78] Creating layer conv3_1
+I1105 14:42:35.607089  3468 net.cpp:67] Creating Layer conv3_1
+I1105 14:42:35.607095  3468 net.cpp:394] conv3_1 <- pool2
+I1105 14:42:35.607110  3468 net.cpp:356] conv3_1 -> conv3_1
+I1105 14:42:35.607121  3468 net.cpp:96] Setting up conv3_1
+I1105 14:42:35.614379  3468 net.cpp:103] Top shape: 8 256 56 56 (6422528)
+I1105 14:42:35.614401  3468 layer_factory.hpp:78] Creating layer relu3_1
+I1105 14:42:35.614411  3468 net.cpp:67] Creating Layer relu3_1
+I1105 14:42:35.614418  3468 net.cpp:394] relu3_1 <- conv3_1
+I1105 14:42:35.614428  3468 net.cpp:345] relu3_1 -> conv3_1 (in-place)
+I1105 14:42:35.614436  3468 net.cpp:96] Setting up relu3_1
+I1105 14:42:35.614446  3468 net.cpp:103] Top shape: 8 256 56 56 (6422528)
+I1105 14:42:35.614461  3468 layer_factory.hpp:78] Creating layer conv3_2
+I1105 14:42:35.614471  3468 net.cpp:67] Creating Layer conv3_2
+I1105 14:42:35.614477  3468 net.cpp:394] conv3_2 <- conv3_1
+I1105 14:42:35.614486  3468 net.cpp:356] conv3_2 -> conv3_2
+I1105 14:42:35.614506  3468 net.cpp:96] Setting up conv3_2
+I1105 14:42:35.629266  3468 net.cpp:103] Top shape: 8 256 56 56 (6422528)
+I1105 14:42:35.629292  3468 layer_factory.hpp:78] Creating layer relu3_2
+I1105 14:42:35.629303  3468 net.cpp:67] Creating Layer relu3_2
+I1105 14:42:35.629310  3468 net.cpp:394] relu3_2 <- conv3_2
+I1105 14:42:35.629319  3468 net.cpp:345] relu3_2 -> conv3_2 (in-place)
+I1105 14:42:35.629329  3468 net.cpp:96] Setting up relu3_2
+I1105 14:42:35.629340  3468 net.cpp:103] Top shape: 8 256 56 56 (6422528)
+I1105 14:42:35.629346  3468 layer_factory.hpp:78] Creating layer conv3_3
+I1105 14:42:35.629364  3468 net.cpp:67] Creating Layer conv3_3
+I1105 14:42:35.629371  3468 net.cpp:394] conv3_3 <- conv3_2
+I1105 14:42:35.629384  3468 net.cpp:356] conv3_3 -> conv3_3
+I1105 14:42:35.629395  3468 net.cpp:96] Setting up conv3_3
+I1105 14:42:35.644160  3468 net.cpp:103] Top shape: 8 256 56 56 (6422528)
+I1105 14:42:35.644186  3468 layer_factory.hpp:78] Creating layer relu3_3
+I1105 14:42:35.644196  3468 net.cpp:67] Creating Layer relu3_3
+I1105 14:42:35.644203  3468 net.cpp:394] relu3_3 <- conv3_3
+I1105 14:42:35.644215  3468 net.cpp:345] relu3_3 -> conv3_3 (in-place)
+I1105 14:42:35.644227  3468 net.cpp:96] Setting up relu3_3
+I1105 14:42:35.644237  3468 net.cpp:103] Top shape: 8 256 56 56 (6422528)
+I1105 14:42:35.644243  3468 layer_factory.hpp:78] Creating layer pool3
+I1105 14:42:35.644253  3468 net.cpp:67] Creating Layer pool3
+I1105 14:42:35.644258  3468 net.cpp:394] pool3 <- conv3_3
+I1105 14:42:35.644268  3468 net.cpp:356] pool3 -> pool3
+I1105 14:42:35.644278  3468 net.cpp:96] Setting up pool3
+I1105 14:42:35.644294  3468 net.cpp:103] Top shape: 8 256 28 28 (1605632)
+I1105 14:42:35.644310  3468 layer_factory.hpp:78] Creating layer conv4_1
+I1105 14:42:35.644325  3468 net.cpp:67] Creating Layer conv4_1
+I1105 14:42:35.644330  3468 net.cpp:394] conv4_1 <- pool3
+I1105 14:42:35.644341  3468 net.cpp:356] conv4_1 -> conv4_1
+I1105 14:42:35.644359  3468 net.cpp:96] Setting up conv4_1
+I1105 14:42:35.673598  3468 net.cpp:103] Top shape: 8 512 28 28 (3211264)
+I1105 14:42:35.673629  3468 layer_factory.hpp:78] Creating layer relu4_1
+I1105 14:42:35.673640  3468 net.cpp:67] Creating Layer relu4_1
+I1105 14:42:35.673647  3468 net.cpp:394] relu4_1 <- conv4_1
+I1105 14:42:35.673660  3468 net.cpp:345] relu4_1 -> conv4_1 (in-place)
+I1105 14:42:35.673671  3468 net.cpp:96] Setting up relu4_1
+I1105 14:42:35.673681  3468 net.cpp:103] Top shape: 8 512 28 28 (3211264)
+I1105 14:42:35.673687  3468 layer_factory.hpp:78] Creating layer conv4_2
+I1105 14:42:35.673697  3468 net.cpp:67] Creating Layer conv4_2
+I1105 14:42:35.673702  3468 net.cpp:394] conv4_2 <- conv4_1
+I1105 14:42:35.673712  3468 net.cpp:356] conv4_2 -> conv4_2
+I1105 14:42:35.673723  3468 net.cpp:96] Setting up conv4_2
+I1105 14:42:35.731256  3468 net.cpp:103] Top shape: 8 512 28 28 (3211264)
+I1105 14:42:35.731299  3468 layer_factory.hpp:78] Creating layer relu4_2
+I1105 14:42:35.731312  3468 net.cpp:67] Creating Layer relu4_2
+I1105 14:42:35.731318  3468 net.cpp:394] relu4_2 <- conv4_2
+I1105 14:42:35.731328  3468 net.cpp:345] relu4_2 -> conv4_2 (in-place)
+I1105 14:42:35.731338  3468 net.cpp:96] Setting up relu4_2
+I1105 14:42:35.731348  3468 net.cpp:103] Top shape: 8 512 28 28 (3211264)
+I1105 14:42:35.731354  3468 layer_factory.hpp:78] Creating layer conv4_3
+I1105 14:42:35.731367  3468 net.cpp:67] Creating Layer conv4_3
+I1105 14:42:35.731374  3468 net.cpp:394] conv4_3 <- conv4_2
+I1105 14:42:35.731382  3468 net.cpp:356] conv4_3 -> conv4_3
+I1105 14:42:35.731397  3468 net.cpp:96] Setting up conv4_3
+I1105 14:42:35.789306  3468 net.cpp:103] Top shape: 8 512 28 28 (3211264)
+I1105 14:42:35.789342  3468 layer_factory.hpp:78] Creating layer relu4_3
+I1105 14:42:35.789353  3468 net.cpp:67] Creating Layer relu4_3
+I1105 14:42:35.789371  3468 net.cpp:394] relu4_3 <- conv4_3
+I1105 14:42:35.789381  3468 net.cpp:345] relu4_3 -> conv4_3 (in-place)
+I1105 14:42:35.789392  3468 net.cpp:96] Setting up relu4_3
+I1105 14:42:35.789402  3468 net.cpp:103] Top shape: 8 512 28 28 (3211264)
+I1105 14:42:35.789407  3468 layer_factory.hpp:78] Creating layer pool4
+I1105 14:42:35.789419  3468 net.cpp:67] Creating Layer pool4
+I1105 14:42:35.789425  3468 net.cpp:394] pool4 <- conv4_3
+I1105 14:42:35.789435  3468 net.cpp:356] pool4 -> pool4
+I1105 14:42:35.789445  3468 net.cpp:96] Setting up pool4
+I1105 14:42:35.789458  3468 net.cpp:103] Top shape: 8 512 14 14 (802816)
+I1105 14:42:35.789468  3468 layer_factory.hpp:78] Creating layer conv5_1
+I1105 14:42:35.789479  3468 net.cpp:67] Creating Layer conv5_1
+I1105 14:42:35.789496  3468 net.cpp:394] conv5_1 <- pool4
+I1105 14:42:35.789508  3468 net.cpp:356] conv5_1 -> conv5_1
+I1105 14:42:35.789518  3468 net.cpp:96] Setting up conv5_1
+I1105 14:42:35.847126  3468 net.cpp:103] Top shape: 8 512 14 14 (802816)
+I1105 14:42:35.847158  3468 layer_factory.hpp:78] Creating layer relu5_1
+I1105 14:42:35.847169  3468 net.cpp:67] Creating Layer relu5_1
+I1105 14:42:35.847177  3468 net.cpp:394] relu5_1 <- conv5_1
+I1105 14:42:35.847185  3468 net.cpp:345] relu5_1 -> conv5_1 (in-place)
+I1105 14:42:35.847196  3468 net.cpp:96] Setting up relu5_1
+I1105 14:42:35.847206  3468 net.cpp:103] Top shape: 8 512 14 14 (802816)
+I1105 14:42:35.847213  3468 layer_factory.hpp:78] Creating layer conv5_2
+I1105 14:42:35.847229  3468 net.cpp:67] Creating Layer conv5_2
+I1105 14:42:35.847242  3468 net.cpp:394] conv5_2 <- conv5_1
+I1105 14:42:35.847254  3468 net.cpp:356] conv5_2 -> conv5_2
+I1105 14:42:35.847268  3468 net.cpp:96] Setting up conv5_2
+I1105 14:42:35.906700  3468 net.cpp:103] Top shape: 8 512 14 14 (802816)
+I1105 14:42:35.906744  3468 layer_factory.hpp:78] Creating layer relu5_2
+I1105 14:42:35.907269  3468 net.cpp:67] Creating Layer relu5_2
+I1105 14:42:35.907284  3468 net.cpp:394] relu5_2 <- conv5_2
+I1105 14:42:35.907295  3468 net.cpp:345] relu5_2 -> conv5_2 (in-place)
+I1105 14:42:35.907311  3468 net.cpp:96] Setting up relu5_2
+I1105 14:42:35.907331  3468 net.cpp:103] Top shape: 8 512 14 14 (802816)
+I1105 14:42:35.907338  3468 layer_factory.hpp:78] Creating layer conv5_3
+I1105 14:42:35.907832  3468 net.cpp:67] Creating Layer conv5_3
+I1105 14:42:35.907843  3468 net.cpp:394] conv5_3 <- conv5_2
+I1105 14:42:35.907853  3468 net.cpp:356] conv5_3 -> conv5_3
+I1105 14:42:35.907881  3468 net.cpp:96] Setting up conv5_3
+I1105 14:42:35.966302  3468 net.cpp:103] Top shape: 8 512 14 14 (802816)
+I1105 14:42:35.966341  3468 layer_factory.hpp:78] Creating layer relu5_3
+I1105 14:42:35.966354  3468 net.cpp:67] Creating Layer relu5_3
+I1105 14:42:35.966362  3468 net.cpp:394] relu5_3 <- conv5_3
+I1105 14:42:35.966373  3468 net.cpp:345] relu5_3 -> conv5_3 (in-place)
+I1105 14:42:35.966384  3468 net.cpp:96] Setting up relu5_3
+I1105 14:42:35.966394  3468 net.cpp:103] Top shape: 8 512 14 14 (802816)
+I1105 14:42:35.966402  3468 layer_factory.hpp:78] Creating layer pool5
+I1105 14:42:35.966419  3468 net.cpp:67] Creating Layer pool5
+I1105 14:42:35.966428  3468 net.cpp:394] pool5 <- conv5_3
+I1105 14:42:35.966438  3468 net.cpp:356] pool5 -> pool5
+I1105 14:42:35.966449  3468 net.cpp:96] Setting up pool5
+I1105 14:42:35.966464  3468 net.cpp:103] Top shape: 8 512 7 7 (200704)
+I1105 14:42:35.966482  3468 layer_factory.hpp:78] Creating layer fc6
+I1105 14:42:35.966498  3468 net.cpp:67] Creating Layer fc6
+I1105 14:42:35.966506  3468 net.cpp:394] fc6 <- pool5
+I1105 14:42:35.966514  3468 net.cpp:356] fc6 -> fc6
+I1105 14:42:35.966534  3468 net.cpp:96] Setting up fc6
+I1105 14:42:38.468153  3468 net.cpp:103] Top shape: 8 4096 1 1 (32768)
+I1105 14:42:38.468189  3468 layer_factory.hpp:78] Creating layer relu6
+I1105 14:42:38.468199  3468 net.cpp:67] Creating Layer relu6
+I1105 14:42:38.468207  3468 net.cpp:394] relu6 <- fc6
+I1105 14:42:38.468219  3468 net.cpp:345] relu6 -> fc6 (in-place)
+I1105 14:42:38.468228  3468 net.cpp:96] Setting up relu6
+I1105 14:42:38.468247  3468 net.cpp:103] Top shape: 8 4096 1 1 (32768)
+I1105 14:42:38.468264  3468 layer_factory.hpp:78] Creating layer drop6
+I1105 14:42:38.468274  3468 net.cpp:67] Creating Layer drop6
+I1105 14:42:38.468281  3468 net.cpp:394] drop6 <- fc6
+I1105 14:42:38.468291  3468 net.cpp:345] drop6 -> fc6 (in-place)
+I1105 14:42:38.468304  3468 net.cpp:96] Setting up drop6
+I1105 14:42:38.468328  3468 net.cpp:103] Top shape: 8 4096 1 1 (32768)
+I1105 14:42:38.468335  3468 layer_factory.hpp:78] Creating layer fc7
+I1105 14:42:38.468345  3468 net.cpp:67] Creating Layer fc7
+I1105 14:42:38.468351  3468 net.cpp:394] fc7 <- fc6
+I1105 14:42:38.468359  3468 net.cpp:356] fc7 -> fc7
+I1105 14:42:38.468376  3468 net.cpp:96] Setting up fc7
+I1105 14:42:38.907567  3468 net.cpp:103] Top shape: 8 4096 1 1 (32768)
+I1105 14:42:38.907603  3468 layer_factory.hpp:78] Creating layer relu7
+I1105 14:42:38.907613  3468 net.cpp:67] Creating Layer relu7
+I1105 14:42:38.907621  3468 net.cpp:394] relu7 <- fc7
+I1105 14:42:38.907634  3468 net.cpp:345] relu7 -> fc7 (in-place)
+I1105 14:42:38.907644  3468 net.cpp:96] Setting up relu7
+I1105 14:42:38.907662  3468 net.cpp:103] Top shape: 8 4096 1 1 (32768)
+I1105 14:42:38.907670  3468 layer_factory.hpp:78] Creating layer drop7
+I1105 14:42:38.907678  3468 net.cpp:67] Creating Layer drop7
+I1105 14:42:38.907692  3468 net.cpp:394] drop7 <- fc7
+I1105 14:42:38.907701  3468 net.cpp:345] drop7 -> fc7 (in-place)
+I1105 14:42:38.907711  3468 net.cpp:96] Setting up drop7
+I1105 14:42:38.907721  3468 net.cpp:103] Top shape: 8 4096 1 1 (32768)
+I1105 14:42:38.907727  3468 layer_factory.hpp:78] Creating layer fc8_2
+I1105 14:42:38.907739  3468 net.cpp:67] Creating Layer fc8_2
+I1105 14:42:38.907747  3468 net.cpp:394] fc8_2 <- fc7
+I1105 14:42:38.907778  3468 net.cpp:356] fc8_2 -> fc8_2
+I1105 14:42:38.907793  3468 net.cpp:96] Setting up fc8_2
+I1105 14:42:38.908020  3468 net.cpp:103] Top shape: 8 2 1 1 (16)
+I1105 14:42:38.908031  3468 layer_factory.hpp:78] Creating layer fc8_2_fc8_2_0_split
+I1105 14:42:38.908043  3468 net.cpp:67] Creating Layer fc8_2_fc8_2_0_split
+I1105 14:42:38.908049  3468 net.cpp:394] fc8_2_fc8_2_0_split <- fc8_2
+I1105 14:42:38.908058  3468 net.cpp:356] fc8_2_fc8_2_0_split -> fc8_2_fc8_2_0_split_0
+I1105 14:42:38.908069  3468 net.cpp:356] fc8_2_fc8_2_0_split -> fc8_2_fc8_2_0_split_1
+I1105 14:42:38.908081  3468 net.cpp:96] Setting up fc8_2_fc8_2_0_split
+I1105 14:42:38.908088  3468 net.cpp:103] Top shape: 8 2 1 1 (16)
+I1105 14:42:38.908094  3468 net.cpp:103] Top shape: 8 2 1 1 (16)
+I1105 14:42:38.908100  3468 layer_factory.hpp:78] Creating layer loss
+I1105 14:42:38.908112  3468 net.cpp:67] Creating Layer loss
+I1105 14:42:38.908118  3468 net.cpp:394] loss <- fc8_2_fc8_2_0_split_0
+I1105 14:42:38.908125  3468 net.cpp:394] loss <- label_data_1_split_0
+I1105 14:42:38.908134  3468 net.cpp:356] loss -> (automatic)
+I1105 14:42:38.908141  3468 net.cpp:96] Setting up loss
+I1105 14:42:38.908151  3468 net.cpp:103] Top shape: 1 1 1 1 (1)
+I1105 14:42:38.908159  3468 net.cpp:109]     with loss weight 1
+I1105 14:42:38.908176  3468 layer_factory.hpp:78] Creating layer accuracy
+I1105 14:42:38.908188  3468 net.cpp:67] Creating Layer accuracy
+I1105 14:42:38.908195  3468 net.cpp:394] accuracy <- fc8_2_fc8_2_0_split_1
+I1105 14:42:38.908202  3468 net.cpp:394] accuracy <- label_data_1_split_1
+I1105 14:42:38.908211  3468 net.cpp:356] accuracy -> accuracy
+I1105 14:42:38.908226  3468 net.cpp:96] Setting up accuracy
+I1105 14:42:38.908239  3468 net.cpp:103] Top shape: 1 1 1 4 (4)
+I1105 14:42:38.908247  3468 net.cpp:172] accuracy does not need backward computation.
+I1105 14:42:38.908253  3468 net.cpp:170] loss needs backward computation.
+I1105 14:42:38.908259  3468 net.cpp:170] fc8_2_fc8_2_0_split needs backward computation.
+I1105 14:42:38.908265  3468 net.cpp:170] fc8_2 needs backward computation.
+I1105 14:42:38.908272  3468 net.cpp:170] drop7 needs backward computation.
+I1105 14:42:38.908277  3468 net.cpp:170] relu7 needs backward computation.
+I1105 14:42:38.908282  3468 net.cpp:170] fc7 needs backward computation.
+I1105 14:42:38.908288  3468 net.cpp:170] drop6 needs backward computation.
+I1105 14:42:38.908303  3468 net.cpp:170] relu6 needs backward computation.
+I1105 14:42:38.908308  3468 net.cpp:170] fc6 needs backward computation.
+I1105 14:42:38.908313  3468 net.cpp:170] pool5 needs backward computation.
+I1105 14:42:38.908367  3468 net.cpp:170] relu5_3 needs backward computation.
+I1105 14:42:38.908376  3468 net.cpp:170] conv5_3 needs backward computation.
+I1105 14:42:38.908398  3468 net.cpp:170] relu5_2 needs backward computation.
+I1105 14:42:38.908406  3468 net.cpp:170] conv5_2 needs backward computation.
+I1105 14:42:38.908412  3468 net.cpp:170] relu5_1 needs backward computation.
+I1105 14:42:38.908417  3468 net.cpp:170] conv5_1 needs backward computation.
+I1105 14:42:38.908423  3468 net.cpp:170] pool4 needs backward computation.
+I1105 14:42:38.908429  3468 net.cpp:170] relu4_3 needs backward computation.
+I1105 14:42:38.908449  3468 net.cpp:170] conv4_3 needs backward computation.
+I1105 14:42:38.908455  3468 net.cpp:170] relu4_2 needs backward computation.
+I1105 14:42:38.908462  3468 net.cpp:170] conv4_2 needs backward computation.
+I1105 14:42:38.908468  3468 net.cpp:170] relu4_1 needs backward computation.
+I1105 14:42:38.908473  3468 net.cpp:170] conv4_1 needs backward computation.
+I1105 14:42:38.908479  3468 net.cpp:170] pool3 needs backward computation.
+I1105 14:42:38.908509  3468 net.cpp:170] relu3_3 needs backward computation.
+I1105 14:42:38.908515  3468 net.cpp:170] conv3_3 needs backward computation.
+I1105 14:42:38.908521  3468 net.cpp:170] relu3_2 needs backward computation.
+I1105 14:42:38.908527  3468 net.cpp:170] conv3_2 needs backward computation.
+I1105 14:42:38.908532  3468 net.cpp:170] relu3_1 needs backward computation.
+I1105 14:42:38.908545  3468 net.cpp:170] conv3_1 needs backward computation.
+I1105 14:42:38.908551  3468 net.cpp:170] pool2 needs backward computation.
+I1105 14:42:38.908557  3468 net.cpp:170] relu2_2 needs backward computation.
+I1105 14:42:38.908562  3468 net.cpp:170] conv2_2 needs backward computation.
+I1105 14:42:38.908568  3468 net.cpp:170] relu2_1 needs backward computation.
+I1105 14:42:38.908574  3468 net.cpp:170] conv2_1 needs backward computation.
+I1105 14:42:38.908581  3468 net.cpp:170] pool1 needs backward computation.
+I1105 14:42:38.908586  3468 net.cpp:170] relu1_2 needs backward computation.
+I1105 14:42:38.908591  3468 net.cpp:170] conv1_2 needs backward computation.
+I1105 14:42:38.908597  3468 net.cpp:170] relu1_1 needs backward computation.
+I1105 14:42:38.908602  3468 net.cpp:170] conv1_1 needs backward computation.
+I1105 14:42:38.908608  3468 net.cpp:172] label_data_1_split does not need backward computation.
+I1105 14:42:38.908614  3468 net.cpp:172] data does not need backward computation.
+I1105 14:42:38.908619  3468 net.cpp:208] This network produces output accuracy
+I1105 14:42:38.908653  3468 net.cpp:467] Collecting Learning Rate and Weight Decay.
+I1105 14:42:38.908664  3468 net.cpp:219] Network initialization done.
+I1105 14:42:38.908670  3468 net.cpp:220] Memory required for data: 921616692
+I1105 14:42:38.908783  3468 solver.cpp:41] Solver scaffolding done.
+I1105 14:42:38.908792  3468 caffe.cpp:115] Finetuning from oxford/small.weights
+[libprotobuf WARNING google/protobuf/io/coded_stream.cc:505] Reading dangerously large protocol message.  If the message turns out to be larger than 1073741824 bytes, parsing will be halted for security reasons.  To increase the limit (or to disable these warnings), see CodedInputStream::SetTotalBytesLimit() in google/protobuf/io/coded_stream.h.
+[libprotobuf WARNING google/protobuf/io/coded_stream.cc:78] The total number of bytes read was 553432081
+I1105 14:42:39.674952  3468 solver.cpp:160] Solving small
+I1105 14:42:39.674980  3468 solver.cpp:161] Learning Rate Policy: step
+I1105 14:42:39.675045  3468 solver.cpp:264] Iteration 0, Testing net (#0)
+I1105 14:43:25.437438  3468 solver.cpp:302] Test loss: 0.968447
+I1105 14:43:25.437533  3468 solver.cpp:315]     Test net output #0: accuracy = 0.307963
+I1105 14:43:25.437541  3468 solver.cpp:315]     Test net output #1: accuracy = 0.8
+I1105 14:43:25.437546  3468 solver.cpp:315]     Test net output #2: accuracy = 0.553982
+I1105 14:43:25.437551  3468 solver.cpp:315]     Test net output #3: accuracy = 0.36006
+I1105 14:43:26.086724  3468 solver.cpp:209] Iteration 0, loss = 1.14689
+I1105 14:43:26.086762  3468 solver.cpp:445] Iteration 0, lr = 0.0001
+I1105 14:43:28.216333  3468 solver.cpp:209] Iteration 1, loss = 1.15799
+I1105 14:43:28.216367  3468 solver.cpp:445] Iteration 1, lr = 0.0001
+I1105 14:43:30.332625  3468 solver.cpp:209] Iteration 2, loss = 0.529146
+I1105 14:43:30.332659  3468 solver.cpp:445] Iteration 2, lr = 0.0001
+I1105 14:43:32.443832  3468 solver.cpp:209] Iteration 3, loss = 0.620454
+I1105 14:43:32.443868  3468 solver.cpp:445] Iteration 3, lr = 0.0001
+I1105 14:43:34.541194  3468 solver.cpp:209] Iteration 4, loss = 0.538175
+I1105 14:43:34.541239  3468 solver.cpp:445] Iteration 4, lr = 0.0001
+I1105 14:43:36.637258  3468 solver.cpp:209] Iteration 5, loss = 0.592124
+I1105 14:43:36.637294  3468 solver.cpp:445] Iteration 5, lr = 0.0001
+I1105 14:43:38.737536  3468 solver.cpp:209] Iteration 6, loss = 0.206045
+I1105 14:43:38.737586  3468 solver.cpp:445] Iteration 6, lr = 0.0001
+I1105 14:43:40.848996  3468 solver.cpp:209] Iteration 7, loss = 0.481058
+I1105 14:43:40.849032  3468 solver.cpp:445] Iteration 7, lr = 0.0001
+I1105 14:43:42.947149  3468 solver.cpp:209] Iteration 8, loss = 0.535053
+I1105 14:43:42.947183  3468 solver.cpp:445] Iteration 8, lr = 0.0001
+I1105 14:43:45.073447  3468 solver.cpp:209] Iteration 9, loss = 0.531278
+I1105 14:43:45.073488  3468 solver.cpp:445] Iteration 9, lr = 0.0001
+I1105 14:43:47.355814  3468 solver.cpp:209] Iteration 10, loss = 0.499566
+I1105 14:43:47.355854  3468 solver.cpp:445] Iteration 10, lr = 0.0001
+I1105 14:43:49.717461  3468 solver.cpp:209] Iteration 11, loss = 0.291327
+I1105 14:43:49.717501  3468 solver.cpp:445] Iteration 11, lr = 0.0001
+I1105 14:43:52.045538  3468 solver.cpp:209] Iteration 12, loss = 0.589798
+I1105 14:43:52.045584  3468 solver.cpp:445] Iteration 12, lr = 0.0001
+I1105 14:43:54.383065  3468 solver.cpp:209] Iteration 13, loss = 0.302317
+I1105 14:43:54.383100  3468 solver.cpp:445] Iteration 13, lr = 0.0001
+I1105 14:43:56.747079  3468 solver.cpp:209] Iteration 14, loss = 0.374333
+I1105 14:43:56.747131  3468 solver.cpp:445] Iteration 14, lr = 0.0001
+I1105 14:43:59.001132  3468 solver.cpp:209] Iteration 15, loss = 0.213634
+I1105 14:43:59.001168  3468 solver.cpp:445] Iteration 15, lr = 0.0001
+I1105 14:44:01.250310  3468 solver.cpp:209] Iteration 16, loss = 0.0937829
+I1105 14:44:01.250357  3468 solver.cpp:445] Iteration 16, lr = 0.0001
+I1105 14:44:03.499445  3468 solver.cpp:209] Iteration 17, loss = 0.0967096
+I1105 14:44:03.499480  3468 solver.cpp:445] Iteration 17, lr = 0.0001
+I1105 14:44:05.728289  3468 solver.cpp:209] Iteration 18, loss = 0.582638
+I1105 14:44:05.728340  3468 solver.cpp:445] Iteration 18, lr = 0.0001
+I1105 14:44:07.984859  3468 solver.cpp:209] Iteration 19, loss = 0.424328
+I1105 14:44:07.984894  3468 solver.cpp:445] Iteration 19, lr = 0.0001
+I1105 14:44:10.224513  3468 solver.cpp:209] Iteration 20, loss = 0.23824
+I1105 14:44:10.224545  3468 solver.cpp:445] Iteration 20, lr = 0.0001
+I1105 14:44:12.935878  3468 solver.cpp:209] Iteration 21, loss = 0.205694
+I1105 14:44:12.935909  3468 solver.cpp:445] Iteration 21, lr = 0.0001
+I1105 14:44:15.189805  3468 solver.cpp:209] Iteration 22, loss = 0.227198
+I1105 14:44:15.189836  3468 solver.cpp:445] Iteration 22, lr = 0.0001
+I1105 14:44:17.427500  3468 solver.cpp:209] Iteration 23, loss = 0.334218
+I1105 14:44:17.427539  3468 solver.cpp:445] Iteration 23, lr = 0.0001
+I1105 14:44:19.666966  3468 solver.cpp:209] Iteration 24, loss = 0.333275
+I1105 14:44:19.667013  3468 solver.cpp:445] Iteration 24, lr = 0.0001
+I1105 14:44:21.899952  3468 solver.cpp:209] Iteration 25, loss = 0.328921
+I1105 14:44:21.899988  3468 solver.cpp:445] Iteration 25, lr = 0.0001
+I1105 14:44:24.173277  3468 solver.cpp:209] Iteration 26, loss = 0.212896
+I1105 14:44:24.173310  3468 solver.cpp:445] Iteration 26, lr = 0.0001
+I1105 14:44:26.404484  3468 solver.cpp:209] Iteration 27, loss = 0.222684
+I1105 14:44:26.404517  3468 solver.cpp:445] Iteration 27, lr = 0.0001
+I1105 14:44:28.638037  3468 solver.cpp:209] Iteration 28, loss = 0.296179
+I1105 14:44:28.638095  3468 solver.cpp:445] Iteration 28, lr = 0.0001
+I1105 14:44:30.900269  3468 solver.cpp:209] Iteration 29, loss = 0.207648
+I1105 14:44:30.900301  3468 solver.cpp:445] Iteration 29, lr = 0.0001
+I1105 14:44:33.162322  3468 solver.cpp:209] Iteration 30, loss = 0.350062
+I1105 14:44:33.162364  3468 solver.cpp:445] Iteration 30, lr = 0.0001
+I1105 14:44:35.438799  3468 solver.cpp:209] Iteration 31, loss = 0.285823
+I1105 14:44:35.438832  3468 solver.cpp:445] Iteration 31, lr = 0.0001
+I1105 14:44:37.733652  3468 solver.cpp:209] Iteration 32, loss = 0.214526
+I1105 14:44:37.733685  3468 solver.cpp:445] Iteration 32, lr = 0.0001
+I1105 14:44:40.064345  3468 solver.cpp:209] Iteration 33, loss = 0.354393
+I1105 14:44:40.064379  3468 solver.cpp:445] Iteration 33, lr = 0.0001
+I1105 14:44:42.352845  3468 solver.cpp:209] Iteration 34, loss = 0.370061
+I1105 14:44:42.352880  3468 solver.cpp:445] Iteration 34, lr = 0.0001
+I1105 14:44:44.629763  3468 solver.cpp:209] Iteration 35, loss = 0.386465
+I1105 14:44:44.629798  3468 solver.cpp:445] Iteration 35, lr = 0.0001
+I1105 14:44:46.887356  3468 solver.cpp:209] Iteration 36, loss = 0.112735
+I1105 14:44:46.887390  3468 solver.cpp:445] Iteration 36, lr = 0.0001
+I1105 14:44:49.143689  3468 solver.cpp:209] Iteration 37, loss = 0.0924635
+I1105 14:44:49.143723  3468 solver.cpp:445] Iteration 37, lr = 0.0001
+I1105 14:44:51.401749  3468 solver.cpp:209] Iteration 38, loss = 0.280576
+I1105 14:44:51.401788  3468 solver.cpp:445] Iteration 38, lr = 0.0001
+I1105 14:44:53.684147  3468 solver.cpp:209] Iteration 39, loss = 0.375086
+I1105 14:44:53.684183  3468 solver.cpp:445] Iteration 39, lr = 0.0001
+I1105 14:44:55.971038  3468 solver.cpp:209] Iteration 40, loss = 0.401337
+I1105 14:44:55.971074  3468 solver.cpp:445] Iteration 40, lr = 0.0001
+I1105 14:44:58.259477  3468 solver.cpp:209] Iteration 41, loss = 0.23838
+I1105 14:44:58.259520  3468 solver.cpp:445] Iteration 41, lr = 0.0001
+I1105 14:45:00.559070  3468 solver.cpp:209] Iteration 42, loss = 0.198949
+I1105 14:45:00.559187  3468 solver.cpp:445] Iteration 42, lr = 0.0001
+I1105 14:45:02.875849  3468 solver.cpp:209] Iteration 43, loss = 0.277125
+I1105 14:45:02.875885  3468 solver.cpp:445] Iteration 43, lr = 0.0001
+I1105 14:45:05.203536  3468 solver.cpp:209] Iteration 44, loss = 0.418555
+I1105 14:45:05.203569  3468 solver.cpp:445] Iteration 44, lr = 0.0001
+I1105 14:45:07.492795  3468 solver.cpp:209] Iteration 45, loss = 0.229544
+I1105 14:45:07.492827  3468 solver.cpp:445] Iteration 45, lr = 0.0001
+I1105 14:45:09.781416  3468 solver.cpp:209] Iteration 46, loss = 0.381352
+I1105 14:45:09.781450  3468 solver.cpp:445] Iteration 46, lr = 0.0001
+I1105 14:45:12.086041  3468 solver.cpp:209] Iteration 47, loss = 0.197868
+I1105 14:45:12.086072  3468 solver.cpp:445] Iteration 47, lr = 0.0001
+I1105 14:45:14.364897  3468 solver.cpp:209] Iteration 48, loss = 0.341472
+I1105 14:45:14.364929  3468 solver.cpp:445] Iteration 48, lr = 0.0001
+I1105 14:45:16.683545  3468 solver.cpp:209] Iteration 49, loss = 0.295093
+I1105 14:45:16.683581  3468 solver.cpp:445] Iteration 49, lr = 0.0001
+I1105 14:45:16.684196  3468 solver.cpp:264] Iteration 50, Testing net (#0)
+I1105 14:46:02.506697  3468 solver.cpp:302] Test loss: 0.260627
+I1105 14:46:02.506784  3468 solver.cpp:315]     Test net output #0: accuracy = 0.984486
+I1105 14:46:02.506793  3468 solver.cpp:315]     Test net output #1: accuracy = 0.59927
+I1105 14:46:02.506798  3468 solver.cpp:315]     Test net output #2: accuracy = 0.791878
+I1105 14:46:02.506801  3468 solver.cpp:315]     Test net output #3: accuracy = 0.907371
+I1105 14:46:03.180379  3468 solver.cpp:209] Iteration 50, loss = 0.316255
+I1105 14:46:03.180423  3468 solver.cpp:445] Iteration 50, lr = 0.0001
+I1105 14:46:05.541779  3468 solver.cpp:209] Iteration 51, loss = 0.268254
+I1105 14:46:05.541818  3468 solver.cpp:445] Iteration 51, lr = 0.0001
+I1105 14:46:07.892493  3468 solver.cpp:209] Iteration 52, loss = 0.251182
+I1105 14:46:07.892526  3468 solver.cpp:445] Iteration 52, lr = 0.0001
+I1105 14:46:10.249532  3468 solver.cpp:209] Iteration 53, loss = 0.244171
+I1105 14:46:10.249565  3468 solver.cpp:445] Iteration 53, lr = 0.0001
+I1105 14:46:12.593986  3468 solver.cpp:209] Iteration 54, loss = 0.194814
+I1105 14:46:12.594022  3468 solver.cpp:445] Iteration 54, lr = 0.0001
+I1105 14:46:14.943943  3468 solver.cpp:209] Iteration 55, loss = 0.0940455
+I1105 14:46:14.943979  3468 solver.cpp:445] Iteration 55, lr = 0.0001
+I1105 14:46:17.296957  3468 solver.cpp:209] Iteration 56, loss = 0.136564
+I1105 14:46:17.296994  3468 solver.cpp:445] Iteration 56, lr = 0.0001
+I1105 14:46:19.689455  3468 solver.cpp:209] Iteration 57, loss = 0.0672444
+I1105 14:46:19.689498  3468 solver.cpp:445] Iteration 57, lr = 0.0001
+I1105 14:46:22.037426  3468 solver.cpp:209] Iteration 58, loss = 0.228028
+I1105 14:46:22.037462  3468 solver.cpp:445] Iteration 58, lr = 0.0001
+I1105 14:46:24.353217  3468 solver.cpp:209] Iteration 59, loss = 0.27223
+I1105 14:46:24.353255  3468 solver.cpp:445] Iteration 59, lr = 0.0001
+I1105 14:46:26.671730  3468 solver.cpp:209] Iteration 60, loss = 0.540571
+I1105 14:46:26.671777  3468 solver.cpp:445] Iteration 60, lr = 0.0001
+I1105 14:46:28.985424  3468 solver.cpp:209] Iteration 61, loss = 0.148126
+I1105 14:46:28.985461  3468 solver.cpp:445] Iteration 61, lr = 0.0001
+I1105 14:46:31.293179  3468 solver.cpp:209] Iteration 62, loss = 0.246593
+I1105 14:46:31.293210  3468 solver.cpp:445] Iteration 62, lr = 0.0001
+I1105 14:46:33.617389  3468 solver.cpp:209] Iteration 63, loss = 0.071375
+I1105 14:46:33.617488  3468 solver.cpp:445] Iteration 63, lr = 0.0001
+I1105 14:46:35.929559  3468 solver.cpp:209] Iteration 64, loss = 0.577942
+I1105 14:46:35.929594  3468 solver.cpp:445] Iteration 64, lr = 0.0001
+I1105 14:46:38.254909  3468 solver.cpp:209] Iteration 65, loss = 0.304171
+I1105 14:46:38.254942  3468 solver.cpp:445] Iteration 65, lr = 0.0001
+I1105 14:46:40.597106  3468 solver.cpp:209] Iteration 66, loss = 0.30666
+I1105 14:46:40.597138  3468 solver.cpp:445] Iteration 66, lr = 0.0001
+I1105 14:46:42.908017  3468 solver.cpp:209] Iteration 67, loss = 0.436176
+I1105 14:46:42.908046  3468 solver.cpp:445] Iteration 67, lr = 0.0001
+I1105 14:46:45.202994  3468 solver.cpp:209] Iteration 68, loss = 0.215809
+I1105 14:46:45.203027  3468 solver.cpp:445] Iteration 68, lr = 0.0001
+I1105 14:46:47.483033  3468 solver.cpp:209] Iteration 69, loss = 0.204867
+I1105 14:46:47.483067  3468 solver.cpp:445] Iteration 69, lr = 0.0001
+I1105 14:46:49.739927  3468 solver.cpp:209] Iteration 70, loss = 0.109515
+I1105 14:46:49.739961  3468 solver.cpp:445] Iteration 70, lr = 0.0001
+I1105 14:46:52.048809  3468 solver.cpp:209] Iteration 71, loss = 0.250674
+I1105 14:46:52.048843  3468 solver.cpp:445] Iteration 71, lr = 0.0001
+I1105 14:46:54.304815  3468 solver.cpp:209] Iteration 72, loss = 0.1827
+I1105 14:46:54.304848  3468 solver.cpp:445] Iteration 72, lr = 0.0001
+I1105 14:46:56.556046  3468 solver.cpp:209] Iteration 73, loss = 0.835375
+I1105 14:46:56.556080  3468 solver.cpp:445] Iteration 73, lr = 0.0001
+I1105 14:46:58.882508  3468 solver.cpp:209] Iteration 74, loss = 0.199952
+I1105 14:46:58.882542  3468 solver.cpp:445] Iteration 74, lr = 0.0001
+I1105 14:47:01.150904  3468 solver.cpp:209] Iteration 75, loss = 0.337433
+I1105 14:47:01.150935  3468 solver.cpp:445] Iteration 75, lr = 0.0001
+I1105 14:47:03.414304  3468 solver.cpp:209] Iteration 76, loss = 0.160524
+I1105 14:47:03.414340  3468 solver.cpp:445] Iteration 76, lr = 0.0001
+I1105 14:47:05.669430  3468 solver.cpp:209] Iteration 77, loss = 0.356427
+I1105 14:47:05.669497  3468 solver.cpp:445] Iteration 77, lr = 0.0001
+I1105 14:47:07.926973  3468 solver.cpp:209] Iteration 78, loss = 0.327809
+I1105 14:47:07.927018  3468 solver.cpp:445] Iteration 78, lr = 0.0001
+I1105 14:47:10.197263  3468 solver.cpp:209] Iteration 79, loss = 0.643873
+I1105 14:47:10.197298  3468 solver.cpp:445] Iteration 79, lr = 0.0001
+I1105 14:47:12.455719  3468 solver.cpp:209] Iteration 80, loss = 0.210054
+I1105 14:47:12.455755  3468 solver.cpp:445] Iteration 80, lr = 0.0001
+I1105 14:47:14.772459  3468 solver.cpp:209] Iteration 81, loss = 0.510555
+I1105 14:47:14.772491  3468 solver.cpp:445] Iteration 81, lr = 0.0001
+I1105 14:47:17.046334  3468 solver.cpp:209] Iteration 82, loss = 0.218784
+I1105 14:47:17.046367  3468 solver.cpp:445] Iteration 82, lr = 0.0001
+I1105 14:47:19.294606  3468 solver.cpp:209] Iteration 83, loss = 0.247512
+I1105 14:47:19.294646  3468 solver.cpp:445] Iteration 83, lr = 0.0001
+I1105 14:47:21.563266  3468 solver.cpp:209] Iteration 84, loss = 0.485909
+I1105 14:47:21.563300  3468 solver.cpp:445] Iteration 84, lr = 0.0001
+I1105 14:47:23.856200  3468 solver.cpp:209] Iteration 85, loss = 0.0812674
+I1105 14:47:23.856238  3468 solver.cpp:445] Iteration 85, lr = 0.0001
+I1105 14:47:26.153677  3468 solver.cpp:209] Iteration 86, loss = 0.474615
+I1105 14:47:26.153720  3468 solver.cpp:445] Iteration 86, lr = 0.0001
+I1105 14:47:28.456902  3468 solver.cpp:209] Iteration 87, loss = 0.150028
+I1105 14:47:28.456939  3468 solver.cpp:445] Iteration 87, lr = 0.0001
+I1105 14:47:30.745183  3468 solver.cpp:209] Iteration 88, loss = 0.159215
+I1105 14:47:30.745218  3468 solver.cpp:445] Iteration 88, lr = 0.0001
+I1105 14:47:33.036614  3468 solver.cpp:209] Iteration 89, loss = 0.445523
+I1105 14:47:33.036645  3468 solver.cpp:445] Iteration 89, lr = 0.0001
+I1105 14:47:35.328011  3468 solver.cpp:209] Iteration 90, loss = 0.378114
+I1105 14:47:35.328048  3468 solver.cpp:445] Iteration 90, lr = 0.0001
+I1105 14:47:37.659596  3468 solver.cpp:209] Iteration 91, loss = 0.165344
+I1105 14:47:37.659677  3468 solver.cpp:445] Iteration 91, lr = 0.0001
+I1105 14:47:39.940271  3468 solver.cpp:209] Iteration 92, loss = 0.308164
+I1105 14:47:39.940305  3468 solver.cpp:445] Iteration 92, lr = 0.0001
+I1105 14:47:42.227489  3468 solver.cpp:209] Iteration 93, loss = 0.17932
+I1105 14:47:42.227521  3468 solver.cpp:445] Iteration 93, lr = 0.0001
+I1105 14:47:44.512497  3468 solver.cpp:209] Iteration 94, loss = 0.333966
+I1105 14:47:44.512538  3468 solver.cpp:445] Iteration 94, lr = 0.0001
+I1105 14:47:46.804458  3468 solver.cpp:209] Iteration 95, loss = 0.0869887
+I1105 14:47:46.804491  3468 solver.cpp:445] Iteration 95, lr = 0.0001
+I1105 14:47:49.099951  3468 solver.cpp:209] Iteration 96, loss = 0.385206
+I1105 14:47:49.099987  3468 solver.cpp:445] Iteration 96, lr = 0.0001
+I1105 14:47:51.380631  3468 solver.cpp:209] Iteration 97, loss = 0.138806
+I1105 14:47:51.380672  3468 solver.cpp:445] Iteration 97, lr = 0.0001
+I1105 14:47:53.655773  3468 solver.cpp:209] Iteration 98, loss = 0.330664
+I1105 14:47:53.655809  3468 solver.cpp:445] Iteration 98, lr = 0.0001
+I1105 14:47:55.963065  3468 solver.cpp:209] Iteration 99, loss = 0.639321
+I1105 14:47:55.963099  3468 solver.cpp:445] Iteration 99, lr = 0.0001
+I1105 14:47:55.963703  3468 solver.cpp:264] Iteration 100, Testing net (#0)
+I1105 14:48:42.851291  3468 solver.cpp:302] Test loss: 0.25843
+I1105 14:48:42.851373  3468 solver.cpp:315]     Test net output #0: accuracy = 0.987834
+I1105 14:48:42.851382  3468 solver.cpp:315]     Test net output #1: accuracy = 0.609562
+I1105 14:48:42.851387  3468 solver.cpp:315]     Test net output #2: accuracy = 0.798698
+I1105 14:48:42.851390  3468 solver.cpp:315]     Test net output #3: accuracy = 0.908865
+I1105 14:48:43.540632  3468 solver.cpp:209] Iteration 100, loss = 0.0959331
+I1105 14:48:43.540664  3468 solver.cpp:445] Iteration 100, lr = 0.0001
+I1105 14:48:45.893965  3468 solver.cpp:209] Iteration 101, loss = 0.139494
+I1105 14:48:45.894001  3468 solver.cpp:445] Iteration 101, lr = 0.0001
+I1105 14:48:48.252275  3468 solver.cpp:209] Iteration 102, loss = 0.319772
+I1105 14:48:48.252312  3468 solver.cpp:445] Iteration 102, lr = 0.0001
+I1105 14:48:50.615636  3468 solver.cpp:209] Iteration 103, loss = 0.206562
+I1105 14:48:50.615671  3468 solver.cpp:445] Iteration 103, lr = 0.0001
+I1105 14:48:52.987797  3468 solver.cpp:209] Iteration 104, loss = 0.396265
+I1105 14:48:52.987828  3468 solver.cpp:445] Iteration 104, lr = 0.0001
+I1105 14:48:55.335836  3468 solver.cpp:209] Iteration 105, loss = 0.243235
+I1105 14:48:55.335871  3468 solver.cpp:445] Iteration 105, lr = 0.0001
+I1105 14:48:57.693495  3468 solver.cpp:209] Iteration 106, loss = 0.177052
+I1105 14:48:57.693531  3468 solver.cpp:445] Iteration 106, lr = 0.0001
+I1105 14:49:00.064096  3468 solver.cpp:209] Iteration 107, loss = 0.192155
+I1105 14:49:00.064131  3468 solver.cpp:445] Iteration 107, lr = 0.0001
+I1105 14:49:02.438974  3468 solver.cpp:209] Iteration 108, loss = 0.314478
+I1105 14:49:02.439014  3468 solver.cpp:445] Iteration 108, lr = 0.0001
+I1105 14:49:04.805073  3468 solver.cpp:209] Iteration 109, loss = 0.162379
+I1105 14:49:04.805104  3468 solver.cpp:445] Iteration 109, lr = 0.0001
+I1105 14:49:07.080168  3468 solver.cpp:209] Iteration 110, loss = 0.196183
+I1105 14:49:07.080202  3468 solver.cpp:445] Iteration 110, lr = 0.0001
+I1105 14:49:09.337267  3468 solver.cpp:209] Iteration 111, loss = 0.201732
+I1105 14:49:09.337302  3468 solver.cpp:445] Iteration 111, lr = 0.0001
+I1105 14:49:11.604991  3468 solver.cpp:209] Iteration 112, loss = 0.241568
+I1105 14:49:11.605022  3468 solver.cpp:445] Iteration 112, lr = 0.0001
+I1105 14:49:13.871875  3468 solver.cpp:209] Iteration 113, loss = 0.427744
+I1105 14:49:13.871968  3468 solver.cpp:445] Iteration 113, lr = 0.0001
+I1105 14:49:16.126246  3468 solver.cpp:209] Iteration 114, loss = 0.375883
+I1105 14:49:16.126278  3468 solver.cpp:445] Iteration 114, lr = 0.0001
+I1105 14:49:18.381098  3468 solver.cpp:209] Iteration 115, loss = 0.329868
+I1105 14:49:18.381132  3468 solver.cpp:445] Iteration 115, lr = 0.0001
+I1105 14:49:20.642066  3468 solver.cpp:209] Iteration 116, loss = 0.539777
+I1105 14:49:20.642099  3468 solver.cpp:445] Iteration 116, lr = 0.0001
+I1105 14:49:22.909613  3468 solver.cpp:209] Iteration 117, loss = 0.289381
+I1105 14:49:22.909649  3468 solver.cpp:445] Iteration 117, lr = 0.0001
+I1105 14:49:25.270988  3468 solver.cpp:209] Iteration 118, loss = 0.306033
+I1105 14:49:25.271023  3468 solver.cpp:445] Iteration 118, lr = 0.0001
+I1105 14:49:27.536161  3468 solver.cpp:209] Iteration 119, loss = 0.26451
+I1105 14:49:27.536198  3468 solver.cpp:445] Iteration 119, lr = 0.0001
+I1105 14:49:29.786134  3468 solver.cpp:209] Iteration 120, loss = 0.293138
+I1105 14:49:29.786178  3468 solver.cpp:445] Iteration 120, lr = 0.0001
+I1105 14:49:32.049235  3468 solver.cpp:209] Iteration 121, loss = 0.169209
+I1105 14:49:32.049271  3468 solver.cpp:445] Iteration 121, lr = 0.0001
+I1105 14:49:34.300096  3468 solver.cpp:209] Iteration 122, loss = 0.240885
+I1105 14:49:34.300132  3468 solver.cpp:445] Iteration 122, lr = 0.0001
+I1105 14:49:36.586716  3468 solver.cpp:209] Iteration 123, loss = 0.261346
+I1105 14:49:36.586747  3468 solver.cpp:445] Iteration 123, lr = 0.0001
+I1105 14:49:38.832947  3468 solver.cpp:209] Iteration 124, loss = 0.276886
+I1105 14:49:38.832993  3468 solver.cpp:445] Iteration 124, lr = 0.0001
+I1105 14:49:41.096416  3468 solver.cpp:209] Iteration 125, loss = 0.153982
+I1105 14:49:41.096448  3468 solver.cpp:445] Iteration 125, lr = 0.0001
+I1105 14:49:43.364634  3468 solver.cpp:209] Iteration 126, loss = 0.0790729
+I1105 14:49:43.364668  3468 solver.cpp:445] Iteration 126, lr = 0.0001
+I1105 14:49:45.624686  3468 solver.cpp:209] Iteration 127, loss = 0.301732
+I1105 14:49:45.624780  3468 solver.cpp:445] Iteration 127, lr = 0.0001
+I1105 14:49:47.896750  3468 solver.cpp:209] Iteration 128, loss = 0.393732
+I1105 14:49:47.896786  3468 solver.cpp:445] Iteration 128, lr = 0.0001
+I1105 14:49:50.148746  3468 solver.cpp:209] Iteration 129, loss = 0.13052
+I1105 14:49:50.148787  3468 solver.cpp:445] Iteration 129, lr = 0.0001
+I1105 14:49:52.445634  3468 solver.cpp:209] Iteration 130, loss = 0.142352
+I1105 14:49:52.445667  3468 solver.cpp:445] Iteration 130, lr = 0.0001
+I1105 14:49:54.706177  3468 solver.cpp:209] Iteration 131, loss = 0.280498
+I1105 14:49:54.706210  3468 solver.cpp:445] Iteration 131, lr = 0.0001
+I1105 14:49:56.955854  3468 solver.cpp:209] Iteration 132, loss = 0.212248
+I1105 14:49:56.955890  3468 solver.cpp:445] Iteration 132, lr = 0.0001
+I1105 14:49:59.208245  3468 solver.cpp:209] Iteration 133, loss = 0.0700547
+I1105 14:49:59.208279  3468 solver.cpp:445] Iteration 133, lr = 0.0001
+I1105 14:50:01.457283  3468 solver.cpp:209] Iteration 134, loss = 0.4767
+I1105 14:50:01.457316  3468 solver.cpp:445] Iteration 134, lr = 0.0001
+I1105 14:50:03.715144  3468 solver.cpp:209] Iteration 135, loss = 0.145145
+I1105 14:50:03.715178  3468 solver.cpp:445] Iteration 135, lr = 0.0001
+I1105 14:50:05.972298  3468 solver.cpp:209] Iteration 136, loss = 0.151255
+I1105 14:50:05.972332  3468 solver.cpp:445] Iteration 136, lr = 0.0001
+I1105 14:50:08.232430  3468 solver.cpp:209] Iteration 137, loss = 0.371853
+I1105 14:50:08.232465  3468 solver.cpp:445] Iteration 137, lr = 0.0001
+I1105 14:50:10.488049  3468 solver.cpp:209] Iteration 138, loss = 0.161211
+I1105 14:50:10.488081  3468 solver.cpp:445] Iteration 138, lr = 0.0001
+I1105 14:50:12.763792  3468 solver.cpp:209] Iteration 139, loss = 0.424562
+I1105 14:50:12.763829  3468 solver.cpp:445] Iteration 139, lr = 0.0001
+I1105 14:50:15.016494  3468 solver.cpp:209] Iteration 140, loss = 0.174486
+I1105 14:50:15.016530  3468 solver.cpp:445] Iteration 140, lr = 0.0001
+I1105 14:50:17.379515  3468 solver.cpp:209] Iteration 141, loss = 0.162529
+I1105 14:50:17.379609  3468 solver.cpp:445] Iteration 141, lr = 0.0001
+I1105 14:50:19.649361  3468 solver.cpp:209] Iteration 142, loss = 0.142969
+I1105 14:50:19.649391  3468 solver.cpp:445] Iteration 142, lr = 0.0001
+I1105 14:50:21.970805  3468 solver.cpp:209] Iteration 143, loss = 0.104474
+I1105 14:50:21.970837  3468 solver.cpp:445] Iteration 143, lr = 0.0001
+I1105 14:50:24.280923  3468 solver.cpp:209] Iteration 144, loss = 0.308242
+I1105 14:50:24.280969  3468 solver.cpp:445] Iteration 144, lr = 0.0001
+I1105 14:50:26.594081  3468 solver.cpp:209] Iteration 145, loss = 0.424012
+I1105 14:50:26.594125  3468 solver.cpp:445] Iteration 145, lr = 0.0001
+I1105 14:50:28.963675  3468 solver.cpp:209] Iteration 146, loss = 0.0988631
+I1105 14:50:28.963706  3468 solver.cpp:445] Iteration 146, lr = 0.0001
+I1105 14:50:31.289402  3468 solver.cpp:209] Iteration 147, loss = 0.146086
+I1105 14:50:31.289438  3468 solver.cpp:445] Iteration 147, lr = 0.0001
+I1105 14:50:33.624712  3468 solver.cpp:209] Iteration 148, loss = 0.0757574
+I1105 14:50:33.624747  3468 solver.cpp:445] Iteration 148, lr = 0.0001
+I1105 14:50:35.960557  3468 solver.cpp:209] Iteration 149, loss = 0.191358
+I1105 14:50:35.960593  3468 solver.cpp:445] Iteration 149, lr = 0.0001
+I1105 14:50:35.961216  3468 solver.cpp:264] Iteration 150, Testing net (#0)
+I1105 14:51:22.257205  3468 solver.cpp:302] Test loss: 0.243386
+I1105 14:51:22.257292  3468 solver.cpp:315]     Test net output #0: accuracy = 0.985757
+I1105 14:51:22.257298  3468 solver.cpp:315]     Test net output #1: accuracy = 0.638181
+I1105 14:51:22.257303  3468 solver.cpp:315]     Test net output #2: accuracy = 0.811969
+I1105 14:51:22.257308  3468 solver.cpp:315]     Test net output #3: accuracy = 0.914841
+I1105 14:51:24.235898  3468 solver.cpp:209] Iteration 150, loss = 0.249158
+I1105 14:51:24.235932  3468 solver.cpp:445] Iteration 150, lr = 0.0001
+I1105 14:51:26.465881  3468 solver.cpp:209] Iteration 151, loss = 0.193114
+I1105 14:51:26.465914  3468 solver.cpp:445] Iteration 151, lr = 0.0001
+I1105 14:51:28.691148  3468 solver.cpp:209] Iteration 152, loss = 0.0873312
+I1105 14:51:28.691182  3468 solver.cpp:445] Iteration 152, lr = 0.0001
+I1105 14:51:30.884371  3468 solver.cpp:209] Iteration 153, loss = 0.219805
+I1105 14:51:30.884408  3468 solver.cpp:445] Iteration 153, lr = 0.0001
+I1105 14:51:33.111527  3468 solver.cpp:209] Iteration 154, loss = 0.34402
+I1105 14:51:33.111560  3468 solver.cpp:445] Iteration 154, lr = 0.0001
+I1105 14:51:35.310197  3468 solver.cpp:209] Iteration 155, loss = 0.332529
+I1105 14:51:35.310241  3468 solver.cpp:445] Iteration 155, lr = 0.0001
+I1105 14:51:37.555124  3468 solver.cpp:209] Iteration 156, loss = 0.142848
+I1105 14:51:37.555161  3468 solver.cpp:445] Iteration 156, lr = 0.0001
+I1105 14:51:39.803710  3468 solver.cpp:209] Iteration 157, loss = 0.0725951
+I1105 14:51:39.803746  3468 solver.cpp:445] Iteration 157, lr = 0.0001
+I1105 14:51:42.037938  3468 solver.cpp:209] Iteration 158, loss = 0.329895
+I1105 14:51:42.037971  3468 solver.cpp:445] Iteration 158, lr = 0.0001
+I1105 14:51:44.275612  3468 solver.cpp:209] Iteration 159, loss = 0.535644
+I1105 14:51:44.275657  3468 solver.cpp:445] Iteration 159, lr = 0.0001
+I1105 14:51:46.516273  3468 solver.cpp:209] Iteration 160, loss = 0.387649
+I1105 14:51:46.516312  3468 solver.cpp:445] Iteration 160, lr = 0.0001
+I1105 14:51:48.776238  3468 solver.cpp:209] Iteration 161, loss = 0.391127
+I1105 14:51:48.776273  3468 solver.cpp:445] Iteration 161, lr = 0.0001
+I1105 14:51:51.029664  3468 solver.cpp:209] Iteration 162, loss = 0.141043
+I1105 14:51:51.029724  3468 solver.cpp:445] Iteration 162, lr = 0.0001
+I1105 14:51:53.299455  3468 solver.cpp:209] Iteration 163, loss = 0.262458
+I1105 14:51:53.299549  3468 solver.cpp:445] Iteration 163, lr = 0.0001
+I1105 14:51:55.554800  3468 solver.cpp:209] Iteration 164, loss = 0.303848
+I1105 14:51:55.554838  3468 solver.cpp:445] Iteration 164, lr = 0.0001
+I1105 14:51:57.809190  3468 solver.cpp:209] Iteration 165, loss = 0.169705
+I1105 14:51:57.809224  3468 solver.cpp:445] Iteration 165, lr = 0.0001
+I1105 14:52:00.071939  3468 solver.cpp:209] Iteration 166, loss = 0.304428
+I1105 14:52:00.071975  3468 solver.cpp:445] Iteration 166, lr = 0.0001
+I1105 14:52:02.334022  3468 solver.cpp:209] Iteration 167, loss = 0.331515
+I1105 14:52:02.334059  3468 solver.cpp:445] Iteration 167, lr = 0.0001
+I1105 14:52:04.586225  3468 solver.cpp:209] Iteration 168, loss = 0.215925
+I1105 14:52:04.586261  3468 solver.cpp:445] Iteration 168, lr = 0.0001
+I1105 14:52:06.829594  3468 solver.cpp:209] Iteration 169, loss = 0.108749
+I1105 14:52:06.829632  3468 solver.cpp:445] Iteration 169, lr = 0.0001
+I1105 14:52:09.104384  3468 solver.cpp:209] Iteration 170, loss = 0.201784
+I1105 14:52:09.104434  3468 solver.cpp:445] Iteration 170, lr = 0.0001
+I1105 14:52:11.382894  3468 solver.cpp:209] Iteration 171, loss = 0.357812
+I1105 14:52:11.382930  3468 solver.cpp:445] Iteration 171, lr = 0.0001
+I1105 14:52:13.704321  3468 solver.cpp:209] Iteration 172, loss = 0.115977
+I1105 14:52:13.704355  3468 solver.cpp:445] Iteration 172, lr = 0.0001
+I1105 14:52:15.960387  3468 solver.cpp:209] Iteration 173, loss = 0.142439
+I1105 14:52:15.960423  3468 solver.cpp:445] Iteration 173, lr = 0.0001
+I1105 14:52:18.219419  3468 solver.cpp:209] Iteration 174, loss = 0.252592
+I1105 14:52:18.219455  3468 solver.cpp:445] Iteration 174, lr = 0.0001
+I1105 14:52:20.488968  3468 solver.cpp:209] Iteration 175, loss = 0.13192
+I1105 14:52:20.489001  3468 solver.cpp:445] Iteration 175, lr = 0.0001
+I1105 14:52:22.752856  3468 solver.cpp:209] Iteration 176, loss = 0.288842
+I1105 14:52:22.752888  3468 solver.cpp:445] Iteration 176, lr = 0.0001
+I1105 14:52:24.987090  3468 solver.cpp:209] Iteration 177, loss = 0.104665
+I1105 14:52:24.987177  3468 solver.cpp:445] Iteration 177, lr = 0.0001
+I1105 14:52:27.240846  3468 solver.cpp:209] Iteration 178, loss = 0.253457
+I1105 14:52:27.240883  3468 solver.cpp:445] Iteration 178, lr = 0.0001
+I1105 14:52:29.514621  3468 solver.cpp:209] Iteration 179, loss = 0.128034
+I1105 14:52:29.514653  3468 solver.cpp:445] Iteration 179, lr = 0.0001
+I1105 14:52:31.746009  3468 solver.cpp:209] Iteration 180, loss = 0.134877
+I1105 14:52:31.746053  3468 solver.cpp:445] Iteration 180, lr = 0.0001
+I1105 14:52:33.983386  3468 solver.cpp:209] Iteration 181, loss = 0.38189
+I1105 14:52:33.983417  3468 solver.cpp:445] Iteration 181, lr = 0.0001
+I1105 14:52:36.238523  3468 solver.cpp:209] Iteration 182, loss = 0.119296
+I1105 14:52:36.238558  3468 solver.cpp:445] Iteration 182, lr = 0.0001
+I1105 14:52:38.485756  3468 solver.cpp:209] Iteration 183, loss = 0.155122
+I1105 14:52:38.485791  3468 solver.cpp:445] Iteration 183, lr = 0.0001
+I1105 14:52:40.732864  3468 solver.cpp:209] Iteration 184, loss = 0.15266
+I1105 14:52:40.732898  3468 solver.cpp:445] Iteration 184, lr = 0.0001
+I1105 14:52:42.965864  3468 solver.cpp:209] Iteration 185, loss = 0.20818
+I1105 14:52:42.965898  3468 solver.cpp:445] Iteration 185, lr = 0.0001
+I1105 14:52:45.209264  3468 solver.cpp:209] Iteration 186, loss = 0.0784072
+I1105 14:52:45.209300  3468 solver.cpp:445] Iteration 186, lr = 0.0001
+I1105 14:52:47.443508  3468 solver.cpp:209] Iteration 187, loss = 0.175139
+I1105 14:52:47.443542  3468 solver.cpp:445] Iteration 187, lr = 0.0001
+I1105 14:52:49.680256  3468 solver.cpp:209] Iteration 188, loss = 0.112968
+I1105 14:52:49.680291  3468 solver.cpp:445] Iteration 188, lr = 0.0001
+I1105 14:52:51.917853  3468 solver.cpp:209] Iteration 189, loss = 0.306928
+I1105 14:52:51.917889  3468 solver.cpp:445] Iteration 189, lr = 0.0001
+I1105 14:52:54.167237  3468 solver.cpp:209] Iteration 190, loss = 0.259039
+I1105 14:52:54.167273  3468 solver.cpp:445] Iteration 190, lr = 0.0001
+I1105 14:52:56.421900  3468 solver.cpp:209] Iteration 191, loss = 0.257524
+I1105 14:52:56.421986  3468 solver.cpp:445] Iteration 191, lr = 0.0001
+I1105 14:52:58.678503  3468 solver.cpp:209] Iteration 192, loss = 0.550521
+I1105 14:52:58.678542  3468 solver.cpp:445] Iteration 192, lr = 0.0001
+I1105 14:53:00.913081  3468 solver.cpp:209] Iteration 193, loss = 0.48272
+I1105 14:53:00.913120  3468 solver.cpp:445] Iteration 193, lr = 0.0001
+I1105 14:53:03.143234  3468 solver.cpp:209] Iteration 194, loss = 0.193344
+I1105 14:53:03.143270  3468 solver.cpp:445] Iteration 194, lr = 0.0001
+I1105 14:53:05.372395  3468 solver.cpp:209] Iteration 195, loss = 0.141418
+I1105 14:53:05.372431  3468 solver.cpp:445] Iteration 195, lr = 0.0001
+I1105 14:53:07.618907  3468 solver.cpp:209] Iteration 196, loss = 0.554624
+I1105 14:53:07.618942  3468 solver.cpp:445] Iteration 196, lr = 0.0001
+I1105 14:53:09.858392  3468 solver.cpp:209] Iteration 197, loss = 0.192233
+I1105 14:53:09.858424  3468 solver.cpp:445] Iteration 197, lr = 0.0001
+I1105 14:53:12.098332  3468 solver.cpp:209] Iteration 198, loss = 0.362858
+I1105 14:53:12.098366  3468 solver.cpp:445] Iteration 198, lr = 0.0001
+I1105 14:53:14.331413  3468 solver.cpp:209] Iteration 199, loss = 0.229692
+I1105 14:53:14.331447  3468 solver.cpp:445] Iteration 199, lr = 0.0001
+I1105 14:53:16.286480  3468 solver.cpp:334] Snapshotting to /data/ad6813/devCaffe/caffe/oxford/snapshots/_iter_200.caffemodel
+I1105 14:53:17.536785  3468 solver.cpp:342] Snapshotting solver state to /data/ad6813/devCaffe/caffe/oxford/snapshots/_iter_200.solverstate
+I1105 14:53:18.180902  3468 solver.cpp:264] Iteration 200, Testing net (#0)
+I1105 14:54:01.760372  3468 solver.cpp:302] Test loss: 0.232682
+I1105 14:54:01.778854  3468 solver.cpp:315]     Test net output #0: accuracy = 0.977571
+I1105 14:54:01.778880  3468 solver.cpp:315]     Test net output #1: accuracy = 0.701859
+I1105 14:54:01.778884  3468 solver.cpp:315]     Test net output #2: accuracy = 0.839715
+I1105 14:54:01.778889  3468 solver.cpp:315]     Test net output #3: accuracy = 0.920817
+I1105 14:54:02.446604  3468 solver.cpp:209] Iteration 200, loss = 0.454393
+I1105 14:54:02.446640  3468 solver.cpp:445] Iteration 200, lr = 0.0001
+I1105 14:54:04.711797  3468 solver.cpp:209] Iteration 201, loss = 0.119791
+I1105 14:54:04.711829  3468 solver.cpp:445] Iteration 201, lr = 0.0001
+I1105 14:54:06.971161  3468 solver.cpp:209] Iteration 202, loss = 0.354239
+I1105 14:54:06.971204  3468 solver.cpp:445] Iteration 202, lr = 0.0001
+I1105 14:54:09.224299  3468 solver.cpp:209] Iteration 203, loss = 0.331141
+I1105 14:54:09.224333  3468 solver.cpp:445] Iteration 203, lr = 0.0001
+I1105 14:54:11.500058  3468 solver.cpp:209] Iteration 204, loss = 0.218733
+I1105 14:54:11.500093  3468 solver.cpp:445] Iteration 204, lr = 0.0001
+I1105 14:54:13.758241  3468 solver.cpp:209] Iteration 205, loss = 0.207503
+I1105 14:54:13.758275  3468 solver.cpp:445] Iteration 205, lr = 0.0001
+I1105 14:54:16.014854  3468 solver.cpp:209] Iteration 206, loss = 0.288887
+I1105 14:54:16.014900  3468 solver.cpp:445] Iteration 206, lr = 0.0001
+I1105 14:54:18.256986  3468 solver.cpp:209] Iteration 207, loss = 0.184183
+I1105 14:54:18.257020  3468 solver.cpp:445] Iteration 207, lr = 0.0001
+I1105 14:54:59.012681  3468 solver.cpp:209] Iteration 208, loss = 0.236836
+I1105 14:54:59.012759  3468 solver.cpp:445] Iteration 208, lr = 0.0001
+I1105 14:55:01.121119  3468 solver.cpp:209] Iteration 209, loss = 0.358645
+I1105 14:55:01.121166  3468 solver.cpp:445] Iteration 209, lr = 0.0001
+I1105 14:55:03.213848  3468 solver.cpp:209] Iteration 210, loss = 0.311442
+I1105 14:55:03.213882  3468 solver.cpp:445] Iteration 210, lr = 0.0001
+I1105 14:55:05.319449  3468 solver.cpp:209] Iteration 211, loss = 0.14924
+I1105 14:55:05.319484  3468 solver.cpp:445] Iteration 211, lr = 0.0001
+I1105 14:55:07.412679  3468 solver.cpp:209] Iteration 212, loss = 0.168087
+I1105 14:55:07.412710  3468 solver.cpp:445] Iteration 212, lr = 0.0001
+I1105 14:55:09.515559  3468 solver.cpp:209] Iteration 213, loss = 0.309792
+I1105 14:55:09.515594  3468 solver.cpp:445] Iteration 213, lr = 0.0001
+I1105 14:55:11.597384  3468 solver.cpp:209] Iteration 214, loss = 0.224604
+I1105 14:55:11.597424  3468 solver.cpp:445] Iteration 214, lr = 0.0001
+I1105 14:55:13.686221  3468 solver.cpp:209] Iteration 215, loss = 0.644377
+I1105 14:55:13.686252  3468 solver.cpp:445] Iteration 215, lr = 0.0001
+I1105 14:55:15.774981  3468 solver.cpp:209] Iteration 216, loss = 0.246565
+I1105 14:55:15.775022  3468 solver.cpp:445] Iteration 216, lr = 0.0001
+I1105 14:55:17.861660  3468 solver.cpp:209] Iteration 217, loss = 0.243269
+I1105 14:55:17.861691  3468 solver.cpp:445] Iteration 217, lr = 0.0001
+I1105 14:55:19.956900  3468 solver.cpp:209] Iteration 218, loss = 0.199165
+I1105 14:55:19.956943  3468 solver.cpp:445] Iteration 218, lr = 0.0001
+I1105 14:55:22.043222  3468 solver.cpp:209] Iteration 219, loss = 0.206398
+I1105 14:55:22.043267  3468 solver.cpp:445] Iteration 219, lr = 0.0001
+I1105 14:55:24.135726  3468 solver.cpp:209] Iteration 220, loss = 0.283286
+I1105 14:55:24.135752  3468 solver.cpp:445] Iteration 220, lr = 0.0001
+I1105 14:55:26.224025  3468 solver.cpp:209] Iteration 221, loss = 0.316596
+I1105 14:55:26.224053  3468 solver.cpp:445] Iteration 221, lr = 0.0001
+I1105 14:55:28.320332  3468 solver.cpp:209] Iteration 222, loss = 0.407594
+I1105 14:55:28.320360  3468 solver.cpp:445] Iteration 222, lr = 0.0001
+I1105 14:55:30.413653  3468 solver.cpp:209] Iteration 223, loss = 0.193775
+I1105 14:55:30.413708  3468 solver.cpp:445] Iteration 223, lr = 0.0001
+I1105 14:55:32.505810  3468 solver.cpp:209] Iteration 224, loss = 0.152066
+I1105 14:55:32.505852  3468 solver.cpp:445] Iteration 224, lr = 0.0001
+I1105 14:55:34.595381  3468 solver.cpp:209] Iteration 225, loss = 0.377498
+I1105 14:55:34.595412  3468 solver.cpp:445] Iteration 225, lr = 0.0001
+I1105 14:55:36.698104  3468 solver.cpp:209] Iteration 226, loss = 0.21747
+I1105 14:55:36.698130  3468 solver.cpp:445] Iteration 226, lr = 0.0001
+I1105 14:55:38.799562  3468 solver.cpp:209] Iteration 227, loss = 0.23369
+I1105 14:55:38.799604  3468 solver.cpp:445] Iteration 227, lr = 0.0001
+I1105 14:55:40.889381  3468 solver.cpp:209] Iteration 228, loss = 0.354216
+I1105 14:55:40.889423  3468 solver.cpp:445] Iteration 228, lr = 0.0001
+I1105 14:55:43.025764  3468 solver.cpp:209] Iteration 229, loss = 0.189231
+I1105 14:55:43.025804  3468 solver.cpp:445] Iteration 229, lr = 0.0001
+I1105 14:55:45.282460  3468 solver.cpp:209] Iteration 230, loss = 0.118058
+I1105 14:55:45.282490  3468 solver.cpp:445] Iteration 230, lr = 0.0001
+I1105 14:55:47.540024  3468 solver.cpp:209] Iteration 231, loss = 0.243395
+I1105 14:55:47.540051  3468 solver.cpp:445] Iteration 231, lr = 0.0001
+I1105 14:55:49.804957  3468 solver.cpp:209] Iteration 232, loss = 0.351516
+I1105 14:55:49.804986  3468 solver.cpp:445] Iteration 232, lr = 0.0001
+I1105 14:55:52.088511  3468 solver.cpp:209] Iteration 233, loss = 0.15663
+I1105 14:55:52.088554  3468 solver.cpp:445] Iteration 233, lr = 0.0001
+I1105 14:55:54.363224  3468 solver.cpp:209] Iteration 234, loss = 0.100271
+I1105 14:55:54.363263  3468 solver.cpp:445] Iteration 234, lr = 0.0001
+I1105 14:55:56.638321  3468 solver.cpp:209] Iteration 235, loss = 0.285745
+I1105 14:55:56.638348  3468 solver.cpp:445] Iteration 235, lr = 0.0001
+I1105 14:55:58.917819  3468 solver.cpp:209] Iteration 236, loss = 0.362385
+I1105 14:55:58.917860  3468 solver.cpp:445] Iteration 236, lr = 0.0001
+I1105 14:56:01.196220  3468 solver.cpp:209] Iteration 237, loss = 0.0915152
+I1105 14:56:01.196260  3468 solver.cpp:445] Iteration 237, lr = 0.0001
+I1105 14:56:03.472448  3468 solver.cpp:209] Iteration 238, loss = 0.151328
+I1105 14:56:03.472479  3468 solver.cpp:445] Iteration 238, lr = 0.0001
+I1105 14:56:05.748258  3468 solver.cpp:209] Iteration 239, loss = 0.309358
+I1105 14:56:05.748297  3468 solver.cpp:445] Iteration 239, lr = 0.0001
+I1105 14:56:08.031838  3468 solver.cpp:209] Iteration 240, loss = 0.368005
+I1105 14:56:08.031868  3468 solver.cpp:445] Iteration 240, lr = 0.0001
+I1105 14:56:10.315783  3468 solver.cpp:209] Iteration 241, loss = 0.0795729
+I1105 14:56:10.315814  3468 solver.cpp:445] Iteration 241, lr = 0.0001
+I1105 14:56:12.601485  3468 solver.cpp:209] Iteration 242, loss = 0.19798
+I1105 14:56:12.601516  3468 solver.cpp:445] Iteration 242, lr = 0.0001
+I1105 14:56:14.882488  3468 solver.cpp:209] Iteration 243, loss = 0.184573
+I1105 14:56:14.882527  3468 solver.cpp:445] Iteration 243, lr = 0.0001
+I1105 14:56:17.158793  3468 solver.cpp:209] Iteration 244, loss = 0.301291
+I1105 14:56:17.158834  3468 solver.cpp:445] Iteration 244, lr = 0.0001
+I1105 14:56:19.437485  3468 solver.cpp:209] Iteration 245, loss = 0.113572
+I1105 14:56:19.437515  3468 solver.cpp:445] Iteration 245, lr = 0.0001
+I1105 14:56:21.721220  3468 solver.cpp:209] Iteration 246, loss = 0.11533
+I1105 14:56:21.721262  3468 solver.cpp:445] Iteration 246, lr = 0.0001
+I1105 14:56:23.998064  3468 solver.cpp:209] Iteration 247, loss = 0.0982714
+I1105 14:56:23.998100  3468 solver.cpp:445] Iteration 247, lr = 0.0001
+I1105 14:56:26.274658  3468 solver.cpp:209] Iteration 248, loss = 0.330628
+I1105 14:56:26.274701  3468 solver.cpp:445] Iteration 248, lr = 0.0001
+I1105 14:56:28.560714  3468 solver.cpp:209] Iteration 249, loss = 0.198848
+I1105 14:56:28.560742  3468 solver.cpp:445] Iteration 249, lr = 0.0001
+I1105 14:56:28.561344  3468 solver.cpp:264] Iteration 250, Testing net (#0)
+I1105 14:57:14.862952  3468 solver.cpp:302] Test loss: 0.234434
+I1105 14:57:14.863006  3468 solver.cpp:315]     Test net output #0: accuracy = 0.988247
+I1105 14:57:14.863014  3468 solver.cpp:315]     Test net output #1: accuracy = 0.641434
+I1105 14:57:14.863019  3468 solver.cpp:315]     Test net output #2: accuracy = 0.814841
+I1105 14:57:14.863023  3468 solver.cpp:315]     Test net output #3: accuracy = 0.918825
+I1105 14:57:15.544558  3468 solver.cpp:209] Iteration 250, loss = 0.202253
+I1105 14:57:15.544584  3468 solver.cpp:445] Iteration 250, lr = 0.0001
+I1105 14:57:17.910904  3468 solver.cpp:209] Iteration 251, loss = 0.232985
+I1105 14:57:17.910946  3468 solver.cpp:445] Iteration 251, lr = 0.0001
+I1105 14:57:20.281205  3468 solver.cpp:209] Iteration 252, loss = 0.237285
+I1105 14:57:20.281235  3468 solver.cpp:445] Iteration 252, lr = 0.0001
+I1105 14:57:22.639505  3468 solver.cpp:209] Iteration 253, loss = 0.146277
+I1105 14:57:22.639549  3468 solver.cpp:445] Iteration 253, lr = 0.0001
+I1105 14:57:24.986196  3468 solver.cpp:209] Iteration 254, loss = 0.174456
+I1105 14:57:24.986224  3468 solver.cpp:445] Iteration 254, lr = 0.0001
+I1105 14:57:27.313565  3468 solver.cpp:209] Iteration 255, loss = 0.0959791
+I1105 14:57:27.313607  3468 solver.cpp:445] Iteration 255, lr = 0.0001
+I1105 14:57:29.629623  3468 solver.cpp:209] Iteration 256, loss = 0.0881307
+I1105 14:57:29.629665  3468 solver.cpp:445] Iteration 256, lr = 0.0001
+I1105 14:57:31.954916  3468 solver.cpp:209] Iteration 257, loss = 0.168757
+I1105 14:57:31.954957  3468 solver.cpp:445] Iteration 257, lr = 0.0001
+I1105 14:57:34.280062  3468 solver.cpp:209] Iteration 258, loss = 0.345906
+I1105 14:57:34.280100  3468 solver.cpp:445] Iteration 258, lr = 0.0001
+I1105 14:57:36.586335  3468 solver.cpp:209] Iteration 259, loss = 0.0807889
+I1105 14:57:36.586374  3468 solver.cpp:445] Iteration 259, lr = 0.0001
+I1105 14:57:38.905196  3468 solver.cpp:209] Iteration 260, loss = 0.171135
+I1105 14:57:38.905226  3468 solver.cpp:445] Iteration 260, lr = 0.0001
+I1105 14:57:41.217429  3468 solver.cpp:209] Iteration 261, loss = 0.0867161
+I1105 14:57:41.217460  3468 solver.cpp:445] Iteration 261, lr = 0.0001
+I1105 14:57:43.527271  3468 solver.cpp:209] Iteration 262, loss = 0.3027
+I1105 14:57:43.527312  3468 solver.cpp:445] Iteration 262, lr = 0.0001
+I1105 14:57:45.840595  3468 solver.cpp:209] Iteration 263, loss = 0.334112
+I1105 14:57:45.840641  3468 solver.cpp:445] Iteration 263, lr = 0.0001
+I1105 14:57:48.148874  3468 solver.cpp:209] Iteration 264, loss = 0.121397
+I1105 14:57:48.148915  3468 solver.cpp:445] Iteration 264, lr = 0.0001
+I1105 14:57:50.461908  3468 solver.cpp:209] Iteration 265, loss = 0.222175
+I1105 14:57:50.461951  3468 solver.cpp:445] Iteration 265, lr = 0.0001
+I1105 14:57:52.757124  3468 solver.cpp:209] Iteration 266, loss = 0.239897
+I1105 14:57:52.757154  3468 solver.cpp:445] Iteration 266, lr = 0.0001
+I1105 14:57:55.040163  3468 solver.cpp:209] Iteration 267, loss = 0.302915
+I1105 14:57:55.040204  3468 solver.cpp:445] Iteration 267, lr = 0.0001
+I1105 14:57:57.331197  3468 solver.cpp:209] Iteration 268, loss = 0.5186
+I1105 14:57:57.331240  3468 solver.cpp:445] Iteration 268, lr = 0.0001
+I1105 14:57:59.613646  3468 solver.cpp:209] Iteration 269, loss = 0.478761
+I1105 14:57:59.613688  3468 solver.cpp:445] Iteration 269, lr = 0.0001
+I1105 14:58:01.868459  3468 solver.cpp:209] Iteration 270, loss = 0.36236
+I1105 14:58:01.868501  3468 solver.cpp:445] Iteration 270, lr = 0.0001
+I1105 14:58:04.117357  3468 solver.cpp:209] Iteration 271, loss = 0.263896
+I1105 14:58:04.117395  3468 solver.cpp:445] Iteration 271, lr = 0.0001
+I1105 14:58:06.363046  3468 solver.cpp:209] Iteration 272, loss = 0.346767
+I1105 14:58:06.363090  3468 solver.cpp:445] Iteration 272, lr = 0.0001
+I1105 14:58:08.622175  3468 solver.cpp:209] Iteration 273, loss = 0.186363
+I1105 14:58:08.622215  3468 solver.cpp:445] Iteration 273, lr = 0.0001
+I1105 14:58:10.871290  3468 solver.cpp:209] Iteration 274, loss = 0.174326
+I1105 14:58:10.871320  3468 solver.cpp:445] Iteration 274, lr = 0.0001
+I1105 14:58:13.126538  3468 solver.cpp:209] Iteration 275, loss = 0.214574
+I1105 14:58:13.126564  3468 solver.cpp:445] Iteration 275, lr = 0.0001
+I1105 14:58:15.378958  3468 solver.cpp:209] Iteration 276, loss = 0.252706
+I1105 14:58:15.378988  3468 solver.cpp:445] Iteration 276, lr = 0.0001
+I1105 14:58:17.630300  3468 solver.cpp:209] Iteration 277, loss = 0.324052
+I1105 14:58:17.630352  3468 solver.cpp:445] Iteration 277, lr = 0.0001
+I1105 14:58:19.886378  3468 solver.cpp:209] Iteration 278, loss = 0.105802
+I1105 14:58:19.886418  3468 solver.cpp:445] Iteration 278, lr = 0.0001
+I1105 14:58:22.147491  3468 solver.cpp:209] Iteration 279, loss = 0.400732
+I1105 14:58:22.147533  3468 solver.cpp:445] Iteration 279, lr = 0.0001
+I1105 14:58:24.426398  3468 solver.cpp:209] Iteration 280, loss = 0.112495
+I1105 14:58:24.426437  3468 solver.cpp:445] Iteration 280, lr = 0.0001
+I1105 14:58:26.708226  3468 solver.cpp:209] Iteration 281, loss = 0.569907
+I1105 14:58:26.708253  3468 solver.cpp:445] Iteration 281, lr = 0.0001
+I1105 14:58:28.984838  3468 solver.cpp:209] Iteration 282, loss = 0.14215
+I1105 14:58:28.984879  3468 solver.cpp:445] Iteration 282, lr = 0.0001
+I1105 14:58:31.270838  3468 solver.cpp:209] Iteration 283, loss = 0.0815988
+I1105 14:58:31.270879  3468 solver.cpp:445] Iteration 283, lr = 0.0001
+I1105 14:58:33.562774  3468 solver.cpp:209] Iteration 284, loss = 0.115806
+I1105 14:58:33.562805  3468 solver.cpp:445] Iteration 284, lr = 0.0001
+I1105 14:58:35.848342  3468 solver.cpp:209] Iteration 285, loss = 0.282339
+I1105 14:58:35.848373  3468 solver.cpp:445] Iteration 285, lr = 0.0001
+I1105 14:58:38.142513  3468 solver.cpp:209] Iteration 286, loss = 0.146117
+I1105 14:58:38.142554  3468 solver.cpp:445] Iteration 286, lr = 0.0001
+I1105 14:58:40.422116  3468 solver.cpp:209] Iteration 287, loss = 0.151957
+I1105 14:58:40.422147  3468 solver.cpp:445] Iteration 287, lr = 0.0001
+I1105 14:58:42.707375  3468 solver.cpp:209] Iteration 288, loss = 0.472994
+I1105 14:58:42.707415  3468 solver.cpp:445] Iteration 288, lr = 0.0001
+I1105 14:58:44.986810  3468 solver.cpp:209] Iteration 289, loss = 0.0798115
+I1105 14:58:44.986838  3468 solver.cpp:445] Iteration 289, lr = 0.0001
+I1105 14:58:47.268087  3468 solver.cpp:209] Iteration 290, loss = 0.248472
+I1105 14:58:47.268116  3468 solver.cpp:445] Iteration 290, lr = 0.0001
+I1105 14:58:49.551687  3468 solver.cpp:209] Iteration 291, loss = 0.0988861
+I1105 14:58:49.551725  3468 solver.cpp:445] Iteration 291, lr = 0.0001
+I1105 14:58:51.828603  3468 solver.cpp:209] Iteration 292, loss = 0.326175
+I1105 14:58:51.828644  3468 solver.cpp:445] Iteration 292, lr = 0.0001
+I1105 14:58:54.113618  3468 solver.cpp:209] Iteration 293, loss = 0.290344
+I1105 14:58:54.113656  3468 solver.cpp:445] Iteration 293, lr = 0.0001
+I1105 14:58:56.402246  3468 solver.cpp:209] Iteration 294, loss = 0.121096
+I1105 14:58:56.402288  3468 solver.cpp:445] Iteration 294, lr = 0.0001
+I1105 14:58:58.686648  3468 solver.cpp:209] Iteration 295, loss = 0.166103
+I1105 14:58:58.686689  3468 solver.cpp:445] Iteration 295, lr = 0.0001
+I1105 14:59:00.970819  3468 solver.cpp:209] Iteration 296, loss = 0.0724625
+I1105 14:59:00.970862  3468 solver.cpp:445] Iteration 296, lr = 0.0001
+I1105 14:59:03.253006  3468 solver.cpp:209] Iteration 297, loss = 0.175398
+I1105 14:59:03.253044  3468 solver.cpp:445] Iteration 297, lr = 0.0001
+I1105 14:59:05.535248  3468 solver.cpp:209] Iteration 298, loss = 0.200137
+I1105 14:59:05.535285  3468 solver.cpp:445] Iteration 298, lr = 0.0001
+I1105 14:59:07.810670  3468 solver.cpp:209] Iteration 299, loss = 0.357411
+I1105 14:59:07.810708  3468 solver.cpp:445] Iteration 299, lr = 0.0001
+I1105 14:59:07.811339  3468 solver.cpp:264] Iteration 300, Testing net (#0)
+I1105 14:59:54.174243  3468 solver.cpp:302] Test loss: 0.227314
+I1105 14:59:54.174285  3468 solver.cpp:315]     Test net output #0: accuracy = 0.978007
+I1105 14:59:54.174291  3468 solver.cpp:315]     Test net output #1: accuracy = 0.721182
+I1105 14:59:54.174296  3468 solver.cpp:315]     Test net output #2: accuracy = 0.849594
+I1105 14:59:54.174300  3468 solver.cpp:315]     Test net output #3: accuracy = 0.922311
+I1105 14:59:54.853914  3468 solver.cpp:209] Iteration 300, loss = 0.37951
+I1105 14:59:54.853953  3468 solver.cpp:445] Iteration 300, lr = 0.0001
+I1105 14:59:57.195711  3468 solver.cpp:209] Iteration 301, loss = 0.385316
+I1105 14:59:57.195744  3468 solver.cpp:445] Iteration 301, lr = 0.0001
+I1105 14:59:59.533490  3468 solver.cpp:209] Iteration 302, loss = 0.451685
+I1105 14:59:59.533532  3468 solver.cpp:445] Iteration 302, lr = 0.0001
+I1105 15:00:01.879020  3468 solver.cpp:209] Iteration 303, loss = 0.231026
+I1105 15:00:01.879060  3468 solver.cpp:445] Iteration 303, lr = 0.0001
+I1105 15:00:04.219789  3468 solver.cpp:209] Iteration 304, loss = 0.107476
+I1105 15:00:04.219816  3468 solver.cpp:445] Iteration 304, lr = 0.0001
+I1105 15:00:06.565157  3468 solver.cpp:209] Iteration 305, loss = 0.188807
+I1105 15:00:06.565184  3468 solver.cpp:445] Iteration 305, lr = 0.0001
+I1105 15:00:08.882081  3468 solver.cpp:209] Iteration 306, loss = 0.230412
+I1105 15:00:08.882122  3468 solver.cpp:445] Iteration 306, lr = 0.0001
+I1105 15:00:11.190534  3468 solver.cpp:209] Iteration 307, loss = 0.186774
+I1105 15:00:11.190577  3468 solver.cpp:445] Iteration 307, lr = 0.0001
+I1105 15:00:13.503965  3468 solver.cpp:209] Iteration 308, loss = 0.125783
+I1105 15:00:13.503996  3468 solver.cpp:445] Iteration 308, lr = 0.0001
+I1105 15:00:15.810550  3468 solver.cpp:209] Iteration 309, loss = 0.150409
+I1105 15:00:15.810591  3468 solver.cpp:445] Iteration 309, lr = 0.0001
+I1105 15:00:18.103154  3468 solver.cpp:209] Iteration 310, loss = 0.320799
+I1105 15:00:18.103195  3468 solver.cpp:445] Iteration 310, lr = 0.0001
+I1105 15:00:20.384886  3468 solver.cpp:209] Iteration 311, loss = 0.0709914
+I1105 15:00:20.384915  3468 solver.cpp:445] Iteration 311, lr = 0.0001
+I1105 15:00:22.668344  3468 solver.cpp:209] Iteration 312, loss = 0.349843
+I1105 15:00:22.668371  3468 solver.cpp:445] Iteration 312, lr = 0.0001
+I1105 15:00:24.953618  3468 solver.cpp:209] Iteration 313, loss = 0.243676
+I1105 15:00:24.953688  3468 solver.cpp:445] Iteration 313, lr = 0.0001
+I1105 15:00:27.198328  3468 solver.cpp:209] Iteration 314, loss = 0.153237
+I1105 15:00:27.198356  3468 solver.cpp:445] Iteration 314, lr = 0.0001
+I1105 15:00:29.450891  3468 solver.cpp:209] Iteration 315, loss = 0.449475
+I1105 15:00:29.450932  3468 solver.cpp:445] Iteration 315, lr = 0.0001
+I1105 15:00:31.697288  3468 solver.cpp:209] Iteration 316, loss = 0.145132
+I1105 15:00:31.697317  3468 solver.cpp:445] Iteration 316, lr = 0.0001
+I1105 15:00:33.939991  3468 solver.cpp:209] Iteration 317, loss = 0.219402
+I1105 15:00:33.940021  3468 solver.cpp:445] Iteration 317, lr = 0.0001
+I1105 15:00:36.218667  3468 solver.cpp:209] Iteration 318, loss = 0.0975693
+I1105 15:00:36.218696  3468 solver.cpp:445] Iteration 318, lr = 0.0001
+I1105 15:00:38.481168  3468 solver.cpp:209] Iteration 319, loss = 0.103084
+I1105 15:00:38.481197  3468 solver.cpp:445] Iteration 319, lr = 0.0001
+I1105 15:00:40.733676  3468 solver.cpp:209] Iteration 320, loss = 0.365884
+I1105 15:00:40.733717  3468 solver.cpp:445] Iteration 320, lr = 0.0001
+I1105 15:00:42.985642  3468 solver.cpp:209] Iteration 321, loss = 0.232994
+I1105 15:00:42.985680  3468 solver.cpp:445] Iteration 321, lr = 0.0001
+I1105 15:00:45.228400  3468 solver.cpp:209] Iteration 322, loss = 0.15747
+I1105 15:00:45.228430  3468 solver.cpp:445] Iteration 322, lr = 0.0001
+I1105 15:00:47.481433  3468 solver.cpp:209] Iteration 323, loss = 0.161561
+I1105 15:00:47.481473  3468 solver.cpp:445] Iteration 323, lr = 0.0001
+I1105 15:00:49.734292  3468 solver.cpp:209] Iteration 324, loss = 0.246941
+I1105 15:00:49.734321  3468 solver.cpp:445] Iteration 324, lr = 0.0001
+I1105 15:00:51.982127  3468 solver.cpp:209] Iteration 325, loss = 0.188624
+I1105 15:00:51.982168  3468 solver.cpp:445] Iteration 325, lr = 0.0001
+I1105 15:00:54.240293  3468 solver.cpp:209] Iteration 326, loss = 0.230976
+I1105 15:00:54.240319  3468 solver.cpp:445] Iteration 326, lr = 0.0001
+I1105 15:00:56.506007  3468 solver.cpp:209] Iteration 327, loss = 0.419799
+I1105 15:00:56.506048  3468 solver.cpp:445] Iteration 327, lr = 0.0001
+I1105 15:00:58.765064  3468 solver.cpp:209] Iteration 328, loss = 0.151794
+I1105 15:00:58.765095  3468 solver.cpp:445] Iteration 328, lr = 0.0001
+I1105 15:01:01.034025  3468 solver.cpp:209] Iteration 329, loss = 0.294953
+I1105 15:01:01.034067  3468 solver.cpp:445] Iteration 329, lr = 0.0001
+I1105 15:01:03.315253  3468 solver.cpp:209] Iteration 330, loss = 0.368234
+I1105 15:01:03.315294  3468 solver.cpp:445] Iteration 330, lr = 0.0001
+I1105 15:01:05.592717  3468 solver.cpp:209] Iteration 331, loss = 0.334287
+I1105 15:01:05.592756  3468 solver.cpp:445] Iteration 331, lr = 0.0001
+I1105 15:01:07.869765  3468 solver.cpp:209] Iteration 332, loss = 0.116005
+I1105 15:01:07.869794  3468 solver.cpp:445] Iteration 332, lr = 0.0001
+I1105 15:01:10.153400  3468 solver.cpp:209] Iteration 333, loss = 0.413102
+I1105 15:01:10.153444  3468 solver.cpp:445] Iteration 333, lr = 0.0001
+I1105 15:01:12.432760  3468 solver.cpp:209] Iteration 334, loss = 0.129123
+I1105 15:01:12.432801  3468 solver.cpp:445] Iteration 334, lr = 0.0001
+I1105 15:01:14.716317  3468 solver.cpp:209] Iteration 335, loss = 0.180705
+I1105 15:01:14.716356  3468 solver.cpp:445] Iteration 335, lr = 0.0001
+I1105 15:01:17.009310  3468 solver.cpp:209] Iteration 336, loss = 0.10118
+I1105 15:01:17.009340  3468 solver.cpp:445] Iteration 336, lr = 0.0001
+I1105 15:01:19.291323  3468 solver.cpp:209] Iteration 337, loss = 0.486802
+I1105 15:01:19.291352  3468 solver.cpp:445] Iteration 337, lr = 0.0001
+I1105 15:01:21.577349  3468 solver.cpp:209] Iteration 338, loss = 0.332198
+I1105 15:01:21.577378  3468 solver.cpp:445] Iteration 338, lr = 0.0001
+I1105 15:01:23.866827  3468 solver.cpp:209] Iteration 339, loss = 0.133932
+I1105 15:01:23.866855  3468 solver.cpp:445] Iteration 339, lr = 0.0001
+I1105 15:01:26.148114  3468 solver.cpp:209] Iteration 340, loss = 0.149819
+I1105 15:01:26.148159  3468 solver.cpp:445] Iteration 340, lr = 0.0001
+I1105 15:01:28.430222  3468 solver.cpp:209] Iteration 341, loss = 0.444994
+I1105 15:01:28.430289  3468 solver.cpp:445] Iteration 341, lr = 0.0001
+I1105 15:01:30.706712  3468 solver.cpp:209] Iteration 342, loss = 0.276616
+I1105 15:01:30.706753  3468 solver.cpp:445] Iteration 342, lr = 0.0001
+I1105 15:01:32.983495  3468 solver.cpp:209] Iteration 343, loss = 0.257391
+I1105 15:01:32.983532  3468 solver.cpp:445] Iteration 343, lr = 0.0001
+I1105 15:01:35.264093  3468 solver.cpp:209] Iteration 344, loss = 0.389424
+I1105 15:01:35.264122  3468 solver.cpp:445] Iteration 344, lr = 0.0001
+I1105 15:01:37.572976  3468 solver.cpp:209] Iteration 345, loss = 0.32007
+I1105 15:01:37.573014  3468 solver.cpp:445] Iteration 345, lr = 0.0001
+I1105 15:01:39.868842  3468 solver.cpp:209] Iteration 346, loss = 0.330646
+I1105 15:01:39.868883  3468 solver.cpp:445] Iteration 346, lr = 0.0001
+I1105 15:01:42.126464  3468 solver.cpp:209] Iteration 347, loss = 0.177728
+I1105 15:01:42.126502  3468 solver.cpp:445] Iteration 347, lr = 0.0001
+I1105 15:01:44.402961  3468 solver.cpp:209] Iteration 348, loss = 0.206512
+I1105 15:01:44.403000  3468 solver.cpp:445] Iteration 348, lr = 0.0001
+I1105 15:01:46.659610  3468 solver.cpp:209] Iteration 349, loss = 0.0997796
+I1105 15:01:46.659639  3468 solver.cpp:445] Iteration 349, lr = 0.0001
+I1105 15:01:46.660249  3468 solver.cpp:264] Iteration 350, Testing net (#0)
+I1105 15:02:32.288851  3468 solver.cpp:302] Test loss: 0.229138
+I1105 15:02:32.288905  3468 solver.cpp:315]     Test net output #0: accuracy = 0.971784
+I1105 15:02:32.288913  3468 solver.cpp:315]     Test net output #1: accuracy = 0.7417
+I1105 15:02:32.288918  3468 solver.cpp:315]     Test net output #2: accuracy = 0.856742
+I1105 15:02:32.288923  3468 solver.cpp:315]     Test net output #3: accuracy = 0.921315
+I1105 15:02:32.958802  3468 solver.cpp:209] Iteration 350, loss = 0.425864
+I1105 15:02:32.958828  3468 solver.cpp:445] Iteration 350, lr = 0.0001
+I1105 15:02:35.273269  3468 solver.cpp:209] Iteration 351, loss = 0.194141
+I1105 15:02:35.273298  3468 solver.cpp:445] Iteration 351, lr = 0.0001
+I1105 15:02:37.600908  3468 solver.cpp:209] Iteration 352, loss = 0.173844
+I1105 15:02:37.600946  3468 solver.cpp:445] Iteration 352, lr = 0.0001
+I1105 15:02:39.918836  3468 solver.cpp:209] Iteration 353, loss = 0.111828
+I1105 15:02:39.918877  3468 solver.cpp:445] Iteration 353, lr = 0.0001
+I1105 15:02:42.235971  3468 solver.cpp:209] Iteration 354, loss = 0.279635
+I1105 15:02:42.236001  3468 solver.cpp:445] Iteration 354, lr = 0.0001
+I1105 15:02:44.550253  3468 solver.cpp:209] Iteration 355, loss = 0.169336
+I1105 15:02:44.550294  3468 solver.cpp:445] Iteration 355, lr = 0.0001
+I1105 15:02:46.845691  3468 solver.cpp:209] Iteration 356, loss = 0.116752
+I1105 15:02:46.845731  3468 solver.cpp:445] Iteration 356, lr = 0.0001
+I1105 15:02:49.078142  3468 solver.cpp:209] Iteration 357, loss = 0.144637
+I1105 15:02:49.078172  3468 solver.cpp:445] Iteration 357, lr = 0.0001
+I1105 15:02:51.308799  3468 solver.cpp:209] Iteration 358, loss = 0.0752118
+I1105 15:02:51.308840  3468 solver.cpp:445] Iteration 358, lr = 0.0001
+I1105 15:02:53.539978  3468 solver.cpp:209] Iteration 359, loss = 0.335531
+I1105 15:02:53.540009  3468 solver.cpp:445] Iteration 359, lr = 0.0001
+I1105 15:02:55.769409  3468 solver.cpp:209] Iteration 360, loss = 0.231253
+I1105 15:02:55.769448  3468 solver.cpp:445] Iteration 360, lr = 0.0001
+I1105 15:02:58.006973  3468 solver.cpp:209] Iteration 361, loss = 0.183857
+I1105 15:02:58.007014  3468 solver.cpp:445] Iteration 361, lr = 0.0001
+I1105 15:03:00.242357  3468 solver.cpp:209] Iteration 362, loss = 0.098671
+I1105 15:03:00.242399  3468 solver.cpp:445] Iteration 362, lr = 0.0001
+I1105 15:03:02.482468  3468 solver.cpp:209] Iteration 363, loss = 0.0983729
+I1105 15:03:02.482545  3468 solver.cpp:445] Iteration 363, lr = 0.0001
+I1105 15:03:04.710095  3468 solver.cpp:209] Iteration 364, loss = 0.295138
+I1105 15:03:04.710122  3468 solver.cpp:445] Iteration 364, lr = 0.0001
+I1105 15:03:06.936193  3468 solver.cpp:209] Iteration 365, loss = 0.317586
+I1105 15:03:06.936223  3468 solver.cpp:445] Iteration 365, lr = 0.0001
+I1105 15:03:09.170212  3468 solver.cpp:209] Iteration 366, loss = 0.270204
+I1105 15:03:09.170243  3468 solver.cpp:445] Iteration 366, lr = 0.0001
+I1105 15:03:11.400921  3468 solver.cpp:209] Iteration 367, loss = 0.213044
+I1105 15:03:11.400964  3468 solver.cpp:445] Iteration 367, lr = 0.0001
+I1105 15:03:13.644316  3468 solver.cpp:209] Iteration 368, loss = 0.389738
+I1105 15:03:13.644357  3468 solver.cpp:445] Iteration 368, lr = 0.0001
+I1105 15:03:15.879448  3468 solver.cpp:209] Iteration 369, loss = 0.335088
+I1105 15:03:15.879479  3468 solver.cpp:445] Iteration 369, lr = 0.0001
+I1105 15:03:18.114337  3468 solver.cpp:209] Iteration 370, loss = 0.309064
+I1105 15:03:18.114367  3468 solver.cpp:445] Iteration 370, lr = 0.0001
+I1105 15:03:20.354353  3468 solver.cpp:209] Iteration 371, loss = 0.206327
+I1105 15:03:20.354394  3468 solver.cpp:445] Iteration 371, lr = 0.0001
+I1105 15:03:22.600878  3468 solver.cpp:209] Iteration 372, loss = 0.0814117
+I1105 15:03:22.600919  3468 solver.cpp:445] Iteration 372, lr = 0.0001
+I1105 15:03:24.848356  3468 solver.cpp:209] Iteration 373, loss = 0.186315
+I1105 15:03:24.848383  3468 solver.cpp:445] Iteration 373, lr = 0.0001
+I1105 15:03:27.092013  3468 solver.cpp:209] Iteration 374, loss = 0.149619
+I1105 15:03:27.092044  3468 solver.cpp:445] Iteration 374, lr = 0.0001
+I1105 15:03:29.340162  3468 solver.cpp:209] Iteration 375, loss = 0.107716
+I1105 15:03:29.340204  3468 solver.cpp:445] Iteration 375, lr = 0.0001
+I1105 15:03:31.591439  3468 solver.cpp:209] Iteration 376, loss = 0.309509
+I1105 15:03:31.591470  3468 solver.cpp:445] Iteration 376, lr = 0.0001
+I1105 15:03:33.839937  3468 solver.cpp:209] Iteration 377, loss = 0.175802
+I1105 15:03:33.839983  3468 solver.cpp:445] Iteration 377, lr = 0.0001
+I1105 15:03:36.095904  3468 solver.cpp:209] Iteration 378, loss = 0.112024
+I1105 15:03:36.095932  3468 solver.cpp:445] Iteration 378, lr = 0.0001
+I1105 15:03:38.356052  3468 solver.cpp:209] Iteration 379, loss = 0.146403
+I1105 15:03:38.356082  3468 solver.cpp:445] Iteration 379, lr = 0.0001
+I1105 15:03:40.601145  3468 solver.cpp:209] Iteration 380, loss = 0.202935
+I1105 15:03:40.601174  3468 solver.cpp:445] Iteration 380, lr = 0.0001
+I1105 15:03:42.848778  3468 solver.cpp:209] Iteration 381, loss = 0.174569
+I1105 15:03:42.848816  3468 solver.cpp:445] Iteration 381, lr = 0.0001
+I1105 15:03:45.095479  3468 solver.cpp:209] Iteration 382, loss = 0.165988
+I1105 15:03:45.095504  3468 solver.cpp:445] Iteration 382, lr = 0.0001
+I1105 15:03:47.351930  3468 solver.cpp:209] Iteration 383, loss = 0.375161
+I1105 15:03:47.351960  3468 solver.cpp:445] Iteration 383, lr = 0.0001
+I1105 15:03:49.603929  3468 solver.cpp:209] Iteration 384, loss = 0.0760354
+I1105 15:03:49.603961  3468 solver.cpp:445] Iteration 384, lr = 0.0001
+I1105 15:03:51.850599  3468 solver.cpp:209] Iteration 385, loss = 0.229126
+I1105 15:03:51.850641  3468 solver.cpp:445] Iteration 385, lr = 0.0001
+I1105 15:03:54.104532  3468 solver.cpp:209] Iteration 386, loss = 0.151737
+I1105 15:03:54.104570  3468 solver.cpp:445] Iteration 386, lr = 0.0001
+I1105 15:03:56.346802  3468 solver.cpp:209] Iteration 387, loss = 0.249514
+I1105 15:03:56.346843  3468 solver.cpp:445] Iteration 387, lr = 0.0001
+I1105 15:03:58.598664  3468 solver.cpp:209] Iteration 388, loss = 0.333974
+I1105 15:03:58.598695  3468 solver.cpp:445] Iteration 388, lr = 0.0001
+I1105 15:04:00.845180  3468 solver.cpp:209] Iteration 389, loss = 0.0469129
+I1105 15:04:00.845223  3468 solver.cpp:445] Iteration 389, lr = 0.0001
+I1105 15:04:03.094240  3468 solver.cpp:209] Iteration 390, loss = 0.274269
+I1105 15:04:03.094279  3468 solver.cpp:445] Iteration 390, lr = 0.0001
+I1105 15:04:05.348167  3468 solver.cpp:209] Iteration 391, loss = 0.389883
+I1105 15:04:05.348207  3468 solver.cpp:445] Iteration 391, lr = 0.0001
+I1105 15:04:07.603286  3468 solver.cpp:209] Iteration 392, loss = 0.174067
+I1105 15:04:07.603312  3468 solver.cpp:445] Iteration 392, lr = 0.0001
+I1105 15:04:09.862613  3468 solver.cpp:209] Iteration 393, loss = 0.249772
+I1105 15:04:09.862654  3468 solver.cpp:445] Iteration 393, lr = 0.0001
+I1105 15:04:12.113657  3468 solver.cpp:209] Iteration 394, loss = 0.407889
+I1105 15:04:12.113688  3468 solver.cpp:445] Iteration 394, lr = 0.0001
+I1105 15:04:14.361862  3468 solver.cpp:209] Iteration 395, loss = 0.631515
+I1105 15:04:14.361904  3468 solver.cpp:445] Iteration 395, lr = 0.0001
+I1105 15:04:16.607137  3468 solver.cpp:209] Iteration 396, loss = 0.149187
+I1105 15:04:16.607164  3468 solver.cpp:445] Iteration 396, lr = 0.0001
+I1105 15:04:18.847091  3468 solver.cpp:209] Iteration 397, loss = 0.115324
+I1105 15:04:18.847122  3468 solver.cpp:445] Iteration 397, lr = 0.0001
+I1105 15:04:21.081574  3468 solver.cpp:209] Iteration 398, loss = 0.198189
+I1105 15:04:21.081616  3468 solver.cpp:445] Iteration 398, lr = 0.0001
+I1105 15:04:23.326226  3468 solver.cpp:209] Iteration 399, loss = 0.315717
+I1105 15:04:23.326256  3468 solver.cpp:445] Iteration 399, lr = 0.0001
+I1105 15:04:25.255816  3468 solver.cpp:334] Snapshotting to /data/ad6813/devCaffe/caffe/oxford/snapshots/_iter_400.caffemodel
+I1105 15:04:26.310156  3468 solver.cpp:342] Snapshotting solver state to /data/ad6813/devCaffe/caffe/oxford/snapshots/_iter_400.solverstate
+I1105 15:04:26.898679  3468 solver.cpp:264] Iteration 400, Testing net (#0)
+I1105 15:05:10.345404  3468 solver.cpp:302] Test loss: 0.219095
+I1105 15:05:10.345448  3468 solver.cpp:315]     Test net output #0: accuracy = 0.973828
+I1105 15:05:10.345468  3468 solver.cpp:315]     Test net output #1: accuracy = 0.738114
+I1105 15:05:10.345473  3468 solver.cpp:315]     Test net output #2: accuracy = 0.855971
+I1105 15:05:10.345476  3468 solver.cpp:315]     Test net output #3: accuracy = 0.923805
+I1105 15:05:10.996801  3468 solver.cpp:209] Iteration 400, loss = 0.146033
+I1105 15:05:10.996844  3468 solver.cpp:445] Iteration 400, lr = 1e-05
+I1105 15:05:13.246731  3468 solver.cpp:209] Iteration 401, loss = 0.075256
+I1105 15:05:13.246757  3468 solver.cpp:445] Iteration 401, lr = 1e-05
+I1105 15:05:15.491847  3468 solver.cpp:209] Iteration 402, loss = 0.332608
+I1105 15:05:15.491874  3468 solver.cpp:445] Iteration 402, lr = 1e-05
+I1105 15:05:17.738667  3468 solver.cpp:209] Iteration 403, loss = 0.0931891
+I1105 15:05:17.738706  3468 solver.cpp:445] Iteration 403, lr = 1e-05
+I1105 15:05:19.985517  3468 solver.cpp:209] Iteration 404, loss = 0.117363
+I1105 15:05:19.985559  3468 solver.cpp:445] Iteration 404, lr = 1e-05
+I1105 15:05:22.243667  3468 solver.cpp:209] Iteration 405, loss = 0.221475
+I1105 15:05:22.243710  3468 solver.cpp:445] Iteration 405, lr = 1e-05
+I1105 15:05:24.498980  3468 solver.cpp:209] Iteration 406, loss = 0.129586
+I1105 15:05:24.499022  3468 solver.cpp:445] Iteration 406, lr = 1e-05
+I1105 15:05:26.748581  3468 solver.cpp:209] Iteration 407, loss = 0.119423
+I1105 15:05:26.748608  3468 solver.cpp:445] Iteration 407, lr = 1e-05
+I1105 15:05:29.001459  3468 solver.cpp:209] Iteration 408, loss = 0.273537
+I1105 15:05:29.001500  3468 solver.cpp:445] Iteration 408, lr = 1e-05
+I1105 15:05:31.249220  3468 solver.cpp:209] Iteration 409, loss = 0.354586
+I1105 15:05:31.249259  3468 solver.cpp:445] Iteration 409, lr = 1e-05
+I1105 15:05:33.495590  3468 solver.cpp:209] Iteration 410, loss = 0.118648
+I1105 15:05:33.495620  3468 solver.cpp:445] Iteration 410, lr = 1e-05
+I1105 15:05:35.737069  3468 solver.cpp:209] Iteration 411, loss = 0.299423
+I1105 15:05:35.737095  3468 solver.cpp:445] Iteration 411, lr = 1e-05
+I1105 15:05:37.967445  3468 solver.cpp:209] Iteration 412, loss = 0.149687
+I1105 15:05:37.967485  3468 solver.cpp:445] Iteration 412, lr = 1e-05
+I1105 15:05:40.201903  3468 solver.cpp:209] Iteration 413, loss = 0.290304
+I1105 15:05:40.201946  3468 solver.cpp:445] Iteration 413, lr = 1e-05
+I1105 15:05:42.438895  3468 solver.cpp:209] Iteration 414, loss = 0.129261
+I1105 15:05:42.438947  3468 solver.cpp:445] Iteration 414, lr = 1e-05
+I1105 15:05:44.671303  3468 solver.cpp:209] Iteration 415, loss = 0.204281
+I1105 15:05:44.671344  3468 solver.cpp:445] Iteration 415, lr = 1e-05
+I1105 15:05:46.906312  3468 solver.cpp:209] Iteration 416, loss = 0.159712
+I1105 15:05:46.906342  3468 solver.cpp:445] Iteration 416, lr = 1e-05
+I1105 15:05:49.132498  3468 solver.cpp:209] Iteration 417, loss = 0.232012
+I1105 15:05:49.132540  3468 solver.cpp:445] Iteration 417, lr = 1e-05
+I1105 15:05:51.369340  3468 solver.cpp:209] Iteration 418, loss = 0.192231
+I1105 15:05:51.369369  3468 solver.cpp:445] Iteration 418, lr = 1e-05
+I1105 15:05:53.603982  3468 solver.cpp:209] Iteration 419, loss = 0.263193
+I1105 15:05:53.604013  3468 solver.cpp:445] Iteration 419, lr = 1e-05
+I1105 15:05:55.846407  3468 solver.cpp:209] Iteration 420, loss = 0.382228
+I1105 15:05:55.846439  3468 solver.cpp:445] Iteration 420, lr = 1e-05
+I1105 15:05:58.084985  3468 solver.cpp:209] Iteration 421, loss = 0.181548
+I1105 15:05:58.085026  3468 solver.cpp:445] Iteration 421, lr = 1e-05
+I1105 15:06:00.320574  3468 solver.cpp:209] Iteration 422, loss = 0.0747144
+I1105 15:06:00.320618  3468 solver.cpp:445] Iteration 422, lr = 1e-05
+I1105 15:06:02.550169  3468 solver.cpp:209] Iteration 423, loss = 0.249801
+I1105 15:06:02.550212  3468 solver.cpp:445] Iteration 423, lr = 1e-05
+I1105 15:06:04.779495  3468 solver.cpp:209] Iteration 424, loss = 0.276453
+I1105 15:06:04.779522  3468 solver.cpp:445] Iteration 424, lr = 1e-05
+I1105 15:06:07.008527  3468 solver.cpp:209] Iteration 425, loss = 0.245103
+I1105 15:06:07.008558  3468 solver.cpp:445] Iteration 425, lr = 1e-05
+I1105 15:06:09.248477  3468 solver.cpp:209] Iteration 426, loss = 0.13738
+I1105 15:06:09.248507  3468 solver.cpp:445] Iteration 426, lr = 1e-05
+I1105 15:06:11.486737  3468 solver.cpp:209] Iteration 427, loss = 0.246429
+I1105 15:06:11.486778  3468 solver.cpp:445] Iteration 427, lr = 1e-05
+I1105 15:06:13.724776  3468 solver.cpp:209] Iteration 428, loss = 0.218835
+I1105 15:06:13.724864  3468 solver.cpp:445] Iteration 428, lr = 1e-05
+I1105 15:06:15.967835  3468 solver.cpp:209] Iteration 429, loss = 0.177495
+I1105 15:06:15.967864  3468 solver.cpp:445] Iteration 429, lr = 1e-05
+I1105 15:06:18.198878  3468 solver.cpp:209] Iteration 430, loss = 0.238447
+I1105 15:06:18.198918  3468 solver.cpp:445] Iteration 430, lr = 1e-05
+I1105 15:06:20.428014  3468 solver.cpp:209] Iteration 431, loss = 0.157548
+I1105 15:06:20.428045  3468 solver.cpp:445] Iteration 431, lr = 1e-05
+I1105 15:06:22.653686  3468 solver.cpp:209] Iteration 432, loss = 0.216082
+I1105 15:06:22.653728  3468 solver.cpp:445] Iteration 432, lr = 1e-05
+I1105 15:06:24.885608  3468 solver.cpp:209] Iteration 433, loss = 0.173644
+I1105 15:06:24.885648  3468 solver.cpp:445] Iteration 433, lr = 1e-05
+I1105 15:06:27.130480  3468 solver.cpp:209] Iteration 434, loss = 0.174295
+I1105 15:06:27.130522  3468 solver.cpp:445] Iteration 434, lr = 1e-05
+I1105 15:06:29.367377  3468 solver.cpp:209] Iteration 435, loss = 0.243118
+I1105 15:06:29.367419  3468 solver.cpp:445] Iteration 435, lr = 1e-05
+I1105 15:06:31.604830  3468 solver.cpp:209] Iteration 436, loss = 0.346054
+I1105 15:06:31.604861  3468 solver.cpp:445] Iteration 436, lr = 1e-05
+I1105 15:06:33.832487  3468 solver.cpp:209] Iteration 437, loss = 0.217455
+I1105 15:06:33.832517  3468 solver.cpp:445] Iteration 437, lr = 1e-05
+I1105 15:06:36.060642  3468 solver.cpp:209] Iteration 438, loss = 0.123184
+I1105 15:06:36.060681  3468 solver.cpp:445] Iteration 438, lr = 1e-05
+I1105 15:06:38.307375  3468 solver.cpp:209] Iteration 439, loss = 0.361889
+I1105 15:06:38.307404  3468 solver.cpp:445] Iteration 439, lr = 1e-05
+I1105 15:06:40.537817  3468 solver.cpp:209] Iteration 440, loss = 0.226235
+I1105 15:06:40.537858  3468 solver.cpp:445] Iteration 440, lr = 1e-05
+I1105 15:06:42.782311  3468 solver.cpp:209] Iteration 441, loss = 0.159518
+I1105 15:06:42.782352  3468 solver.cpp:445] Iteration 441, lr = 1e-05
+I1105 15:06:45.009933  3468 solver.cpp:209] Iteration 442, loss = 0.12543
+I1105 15:06:45.009974  3468 solver.cpp:445] Iteration 442, lr = 1e-05
+I1105 15:06:47.247822  3468 solver.cpp:209] Iteration 443, loss = 0.306379
+I1105 15:06:47.247853  3468 solver.cpp:445] Iteration 443, lr = 1e-05
+I1105 15:06:49.477224  3468 solver.cpp:209] Iteration 444, loss = 0.231976
+I1105 15:06:49.477257  3468 solver.cpp:445] Iteration 444, lr = 1e-05
+I1105 15:06:51.711022  3468 solver.cpp:209] Iteration 445, loss = 0.385746
+I1105 15:06:51.711053  3468 solver.cpp:445] Iteration 445, lr = 1e-05
+I1105 15:06:53.947129  3468 solver.cpp:209] Iteration 446, loss = 0.215258
+I1105 15:06:53.947160  3468 solver.cpp:445] Iteration 446, lr = 1e-05
+I1105 15:06:56.181037  3468 solver.cpp:209] Iteration 447, loss = 0.297024
+I1105 15:06:56.181063  3468 solver.cpp:445] Iteration 447, lr = 1e-05
+I1105 15:06:58.417572  3468 solver.cpp:209] Iteration 448, loss = 0.144014
+I1105 15:06:58.417601  3468 solver.cpp:445] Iteration 448, lr = 1e-05
+I1105 15:07:00.651348  3468 solver.cpp:209] Iteration 449, loss = 0.440447
+I1105 15:07:00.651391  3468 solver.cpp:445] Iteration 449, lr = 1e-05
+I1105 15:07:00.652034  3468 solver.cpp:264] Iteration 450, Testing net (#0)
+I1105 15:07:45.575525  3468 solver.cpp:302] Test loss: 0.219165
+I1105 15:07:45.575608  3468 solver.cpp:315]     Test net output #0: accuracy = 0.97361
+I1105 15:07:45.575614  3468 solver.cpp:315]     Test net output #1: accuracy = 0.710491
+I1105 15:07:45.575619  3468 solver.cpp:315]     Test net output #2: accuracy = 0.842051
+I1105 15:07:45.575623  3468 solver.cpp:315]     Test net output #3: accuracy = 0.921813
+I1105 15:07:46.230309  3468 solver.cpp:209] Iteration 450, loss = 0.275529
+I1105 15:07:46.230347  3468 solver.cpp:445] Iteration 450, lr = 1e-05
+I1105 15:07:48.480253  3468 solver.cpp:209] Iteration 451, loss = 0.118538
+I1105 15:07:48.480283  3468 solver.cpp:445] Iteration 451, lr = 1e-05
+I1105 15:07:50.730726  3468 solver.cpp:209] Iteration 452, loss = 0.316711
+I1105 15:07:50.730754  3468 solver.cpp:445] Iteration 452, lr = 1e-05
+I1105 15:07:52.974395  3468 solver.cpp:209] Iteration 453, loss = 0.06048
+I1105 15:07:52.974421  3468 solver.cpp:445] Iteration 453, lr = 1e-05
+I1105 15:07:55.222980  3468 solver.cpp:209] Iteration 454, loss = 0.327845
+I1105 15:07:55.223008  3468 solver.cpp:445] Iteration 454, lr = 1e-05
+I1105 15:07:57.471462  3468 solver.cpp:209] Iteration 455, loss = 0.268119
+I1105 15:07:57.471501  3468 solver.cpp:445] Iteration 455, lr = 1e-05
+I1105 15:07:59.725785  3468 solver.cpp:209] Iteration 456, loss = 0.33917
+I1105 15:07:59.725827  3468 solver.cpp:445] Iteration 456, lr = 1e-05
+I1105 15:08:01.980480  3468 solver.cpp:209] Iteration 457, loss = 0.157438
+I1105 15:08:01.980521  3468 solver.cpp:445] Iteration 457, lr = 1e-05
+I1105 15:08:04.229678  3468 solver.cpp:209] Iteration 458, loss = 0.0834524
+I1105 15:08:04.229715  3468 solver.cpp:445] Iteration 458, lr = 1e-05
+I1105 15:08:06.469542  3468 solver.cpp:209] Iteration 459, loss = 0.114596
+I1105 15:08:06.469585  3468 solver.cpp:445] Iteration 459, lr = 1e-05
+I1105 15:08:08.707080  3468 solver.cpp:209] Iteration 460, loss = 0.307474
+I1105 15:08:08.707109  3468 solver.cpp:445] Iteration 460, lr = 1e-05
+I1105 15:08:10.933363  3468 solver.cpp:209] Iteration 461, loss = 0.19917
+I1105 15:08:10.933404  3468 solver.cpp:445] Iteration 461, lr = 1e-05
+I1105 15:08:13.130178  3468 solver.cpp:209] Iteration 462, loss = 0.256169
+I1105 15:08:13.130216  3468 solver.cpp:445] Iteration 462, lr = 1e-05
+I1105 15:08:15.334106  3468 solver.cpp:209] Iteration 463, loss = 0.277937
+I1105 15:08:15.334136  3468 solver.cpp:445] Iteration 463, lr = 1e-05
+I1105 15:08:17.538664  3468 solver.cpp:209] Iteration 464, loss = 0.323131
+I1105 15:08:17.538738  3468 solver.cpp:445] Iteration 464, lr = 1e-05
+I1105 15:08:19.740833  3468 solver.cpp:209] Iteration 465, loss = 0.403225
+I1105 15:08:19.740876  3468 solver.cpp:445] Iteration 465, lr = 1e-05
+I1105 15:08:21.938941  3468 solver.cpp:209] Iteration 466, loss = 0.0721517
+I1105 15:08:21.938982  3468 solver.cpp:445] Iteration 466, lr = 1e-05
+I1105 15:08:24.138627  3468 solver.cpp:209] Iteration 467, loss = 0.131199
+I1105 15:08:24.138665  3468 solver.cpp:445] Iteration 467, lr = 1e-05
+I1105 15:08:26.330653  3468 solver.cpp:209] Iteration 468, loss = 0.117117
+I1105 15:08:26.330694  3468 solver.cpp:445] Iteration 468, lr = 1e-05
+I1105 15:08:28.540513  3468 solver.cpp:209] Iteration 469, loss = 0.128897
+I1105 15:08:28.540540  3468 solver.cpp:445] Iteration 469, lr = 1e-05
+I1105 15:08:30.744346  3468 solver.cpp:209] Iteration 470, loss = 0.25317
+I1105 15:08:30.744376  3468 solver.cpp:445] Iteration 470, lr = 1e-05
+I1105 15:08:32.950633  3468 solver.cpp:209] Iteration 471, loss = 0.238382
+I1105 15:08:32.950670  3468 solver.cpp:445] Iteration 471, lr = 1e-05
+I1105 15:08:35.164333  3468 solver.cpp:209] Iteration 472, loss = 0.0946702
+I1105 15:08:35.164363  3468 solver.cpp:445] Iteration 472, lr = 1e-05
+I1105 15:08:37.397094  3468 solver.cpp:209] Iteration 473, loss = 0.275819
+I1105 15:08:37.397120  3468 solver.cpp:445] Iteration 473, lr = 1e-05
+I1105 15:08:39.627352  3468 solver.cpp:209] Iteration 474, loss = 0.295549
+I1105 15:08:39.627383  3468 solver.cpp:445] Iteration 474, lr = 1e-05
+I1105 15:08:41.862480  3468 solver.cpp:209] Iteration 475, loss = 0.119947
+I1105 15:08:41.862522  3468 solver.cpp:445] Iteration 475, lr = 1e-05
+I1105 15:08:44.101464  3468 solver.cpp:209] Iteration 476, loss = 0.130075
+I1105 15:08:44.101502  3468 solver.cpp:445] Iteration 476, lr = 1e-05
+I1105 15:08:46.341848  3468 solver.cpp:209] Iteration 477, loss = 0.283323
+I1105 15:08:46.341877  3468 solver.cpp:445] Iteration 477, lr = 1e-05
+I1105 15:08:48.573657  3468 solver.cpp:209] Iteration 478, loss = 0.284765
+I1105 15:08:48.573709  3468 solver.cpp:445] Iteration 478, lr = 1e-05
+I1105 15:08:50.805610  3468 solver.cpp:209] Iteration 479, loss = 0.102633
+I1105 15:08:50.805640  3468 solver.cpp:445] Iteration 479, lr = 1e-05
+I1105 15:08:53.036905  3468 solver.cpp:209] Iteration 480, loss = 0.157678
+I1105 15:08:53.036932  3468 solver.cpp:445] Iteration 480, lr = 1e-05
+I1105 15:08:55.267189  3468 solver.cpp:209] Iteration 481, loss = 0.278952
+I1105 15:08:55.267217  3468 solver.cpp:445] Iteration 481, lr = 1e-05
+I1105 15:08:57.503515  3468 solver.cpp:209] Iteration 482, loss = 0.104208
+I1105 15:08:57.503552  3468 solver.cpp:445] Iteration 482, lr = 1e-05
+I1105 15:08:59.738469  3468 solver.cpp:209] Iteration 483, loss = 0.215077
+I1105 15:08:59.738512  3468 solver.cpp:445] Iteration 483, lr = 1e-05
+I1105 15:09:01.971508  3468 solver.cpp:209] Iteration 484, loss = 0.0467194
+I1105 15:09:01.971549  3468 solver.cpp:445] Iteration 484, lr = 1e-05
+I1105 15:09:04.213031  3468 solver.cpp:209] Iteration 485, loss = 0.0682908
+I1105 15:09:04.213069  3468 solver.cpp:445] Iteration 485, lr = 1e-05
+I1105 15:09:06.449668  3468 solver.cpp:209] Iteration 486, loss = 0.317824
+I1105 15:09:06.449710  3468 solver.cpp:445] Iteration 486, lr = 1e-05
+I1105 15:09:08.686031  3468 solver.cpp:209] Iteration 487, loss = 0.120388
+I1105 15:09:08.686060  3468 solver.cpp:445] Iteration 487, lr = 1e-05
+I1105 15:09:10.912104  3468 solver.cpp:209] Iteration 488, loss = 0.0592111
+I1105 15:09:10.912137  3468 solver.cpp:445] Iteration 488, lr = 1e-05
+I1105 15:09:13.148885  3468 solver.cpp:209] Iteration 489, loss = 0.396227
+I1105 15:09:13.148910  3468 solver.cpp:445] Iteration 489, lr = 1e-05
+I1105 15:09:15.391942  3468 solver.cpp:209] Iteration 490, loss = 0.0808192
+I1105 15:09:15.391968  3468 solver.cpp:445] Iteration 490, lr = 1e-05
+I1105 15:09:17.624485  3468 solver.cpp:209] Iteration 491, loss = 0.4015
+I1105 15:09:17.624522  3468 solver.cpp:445] Iteration 491, lr = 1e-05
+I1105 15:09:19.858188  3468 solver.cpp:209] Iteration 492, loss = 0.0765271
+I1105 15:09:19.858243  3468 solver.cpp:445] Iteration 492, lr = 1e-05
+I1105 15:09:22.084473  3468 solver.cpp:209] Iteration 493, loss = 0.094829
+I1105 15:09:22.084514  3468 solver.cpp:445] Iteration 493, lr = 1e-05
+I1105 15:09:24.313035  3468 solver.cpp:209] Iteration 494, loss = 0.180396
+I1105 15:09:24.313073  3468 solver.cpp:445] Iteration 494, lr = 1e-05
+I1105 15:09:26.544363  3468 solver.cpp:209] Iteration 495, loss = 0.334239
+I1105 15:09:26.544389  3468 solver.cpp:445] Iteration 495, lr = 1e-05
+I1105 15:09:28.773900  3468 solver.cpp:209] Iteration 496, loss = 0.234337
+I1105 15:09:28.773941  3468 solver.cpp:445] Iteration 496, lr = 1e-05
+I1105 15:09:31.018256  3468 solver.cpp:209] Iteration 497, loss = 0.28171
+I1105 15:09:31.018297  3468 solver.cpp:445] Iteration 497, lr = 1e-05
+I1105 15:09:33.253687  3468 solver.cpp:209] Iteration 498, loss = 0.0647529
+I1105 15:09:33.253725  3468 solver.cpp:445] Iteration 498, lr = 1e-05
+I1105 15:09:35.495009  3468 solver.cpp:209] Iteration 499, loss = 0.536616
+I1105 15:09:35.495048  3468 solver.cpp:445] Iteration 499, lr = 1e-05
+I1105 15:09:35.495645  3468 solver.cpp:264] Iteration 500, Testing net (#0)
+I1105 15:10:20.189981  3468 solver.cpp:302] Test loss: 0.21862
+I1105 15:10:20.190033  3468 solver.cpp:315]     Test net output #0: accuracy = 0.979354
+I1105 15:10:20.190040  3468 solver.cpp:315]     Test net output #1: accuracy = 0.72344
+I1105 15:10:20.190044  3468 solver.cpp:315]     Test net output #2: accuracy = 0.851397
+I1105 15:10:20.190049  3468 solver.cpp:315]     Test net output #3: accuracy = 0.922809
+I1105 15:10:20.843194  3468 solver.cpp:209] Iteration 500, loss = 0.200899
+I1105 15:10:20.843235  3468 solver.cpp:445] Iteration 500, lr = 1e-05
+I1105 15:10:23.088603  3468 solver.cpp:209] Iteration 501, loss = 0.367518
+I1105 15:10:23.088629  3468 solver.cpp:445] Iteration 501, lr = 1e-05
+I1105 15:10:25.338208  3468 solver.cpp:209] Iteration 502, loss = 0.256488
+I1105 15:10:25.338238  3468 solver.cpp:445] Iteration 502, lr = 1e-05
+I1105 15:10:27.594355  3468 solver.cpp:209] Iteration 503, loss = 0.33028
+I1105 15:10:27.594393  3468 solver.cpp:445] Iteration 503, lr = 1e-05
+I1105 15:10:29.851801  3468 solver.cpp:209] Iteration 504, loss = 0.105374
+I1105 15:10:29.851830  3468 solver.cpp:445] Iteration 504, lr = 1e-05
+I1105 15:10:32.102833  3468 solver.cpp:209] Iteration 505, loss = 0.0746898
+I1105 15:10:32.102874  3468 solver.cpp:445] Iteration 505, lr = 1e-05
+I1105 15:10:34.346830  3468 solver.cpp:209] Iteration 506, loss = 0.16585
+I1105 15:10:34.346868  3468 solver.cpp:445] Iteration 506, lr = 1e-05
+I1105 15:10:36.569658  3468 solver.cpp:209] Iteration 507, loss = 0.251102
+I1105 15:10:36.569685  3468 solver.cpp:445] Iteration 507, lr = 1e-05
+I1105 15:10:38.765130  3468 solver.cpp:209] Iteration 508, loss = 0.180223
+I1105 15:10:38.765171  3468 solver.cpp:445] Iteration 508, lr = 1e-05
+I1105 15:10:40.962795  3468 solver.cpp:209] Iteration 509, loss = 0.232001
+I1105 15:10:40.962836  3468 solver.cpp:445] Iteration 509, lr = 1e-05
+I1105 15:10:43.188571  3468 solver.cpp:209] Iteration 510, loss = 0.412257
+I1105 15:10:43.188609  3468 solver.cpp:445] Iteration 510, lr = 1e-05
+I1105 15:10:45.386615  3468 solver.cpp:209] Iteration 511, loss = 0.224869
+I1105 15:10:45.386652  3468 solver.cpp:445] Iteration 511, lr = 1e-05
+I1105 15:10:47.595131  3468 solver.cpp:209] Iteration 512, loss = 0.214563
+I1105 15:10:47.595157  3468 solver.cpp:445] Iteration 512, lr = 1e-05
+I1105 15:10:49.789930  3468 solver.cpp:209] Iteration 513, loss = 0.488221
+I1105 15:10:49.789971  3468 solver.cpp:445] Iteration 513, lr = 1e-05
+I1105 15:10:51.983294  3468 solver.cpp:209] Iteration 514, loss = 0.154832
+I1105 15:10:51.983376  3468 solver.cpp:445] Iteration 514, lr = 1e-05
+I1105 15:10:54.176698  3468 solver.cpp:209] Iteration 515, loss = 0.188195
+I1105 15:10:54.176735  3468 solver.cpp:445] Iteration 515, lr = 1e-05
+I1105 15:10:56.383499  3468 solver.cpp:209] Iteration 516, loss = 0.170528
+I1105 15:10:56.383540  3468 solver.cpp:445] Iteration 516, lr = 1e-05
+I1105 15:10:58.586083  3468 solver.cpp:209] Iteration 517, loss = 0.166678
+I1105 15:10:58.586112  3468 solver.cpp:445] Iteration 517, lr = 1e-05
+I1105 15:11:00.788173  3468 solver.cpp:209] Iteration 518, loss = 0.192211
+I1105 15:11:00.788215  3468 solver.cpp:445] Iteration 518, lr = 1e-05
+I1105 15:11:02.984350  3468 solver.cpp:209] Iteration 519, loss = 0.0944144
+I1105 15:11:02.984376  3468 solver.cpp:445] Iteration 519, lr = 1e-05
+I1105 15:11:05.175088  3468 solver.cpp:209] Iteration 520, loss = 0.242213
+I1105 15:11:05.175117  3468 solver.cpp:445] Iteration 520, lr = 1e-05
+I1105 15:11:07.391034  3468 solver.cpp:209] Iteration 521, loss = 0.1311
+I1105 15:11:07.391062  3468 solver.cpp:445] Iteration 521, lr = 1e-05
+I1105 15:11:09.629676  3468 solver.cpp:209] Iteration 522, loss = 0.157818
+I1105 15:11:09.629711  3468 solver.cpp:445] Iteration 522, lr = 1e-05
+I1105 15:11:11.863618  3468 solver.cpp:209] Iteration 523, loss = 0.248634
+I1105 15:11:11.863659  3468 solver.cpp:445] Iteration 523, lr = 1e-05
+I1105 15:11:14.096905  3468 solver.cpp:209] Iteration 524, loss = 0.213672
+I1105 15:11:14.096942  3468 solver.cpp:445] Iteration 524, lr = 1e-05
+I1105 15:11:16.327720  3468 solver.cpp:209] Iteration 525, loss = 0.141704
+I1105 15:11:16.327771  3468 solver.cpp:445] Iteration 525, lr = 1e-05
+I1105 15:11:18.562122  3468 solver.cpp:209] Iteration 526, loss = 0.0605201
+I1105 15:11:18.562152  3468 solver.cpp:445] Iteration 526, lr = 1e-05
+I1105 15:11:20.795526  3468 solver.cpp:209] Iteration 527, loss = 0.244281
+I1105 15:11:20.795557  3468 solver.cpp:445] Iteration 527, lr = 1e-05
+I1105 15:11:23.026092  3468 solver.cpp:209] Iteration 528, loss = 0.234812
+I1105 15:11:23.026144  3468 solver.cpp:445] Iteration 528, lr = 1e-05
+I1105 15:11:25.256492  3468 solver.cpp:209] Iteration 529, loss = 0.289293
+I1105 15:11:25.256520  3468 solver.cpp:445] Iteration 529, lr = 1e-05
+I1105 15:11:27.489594  3468 solver.cpp:209] Iteration 530, loss = 0.181346
+I1105 15:11:27.489632  3468 solver.cpp:445] Iteration 530, lr = 1e-05
+I1105 15:11:29.728420  3468 solver.cpp:209] Iteration 531, loss = 0.222757
+I1105 15:11:29.728461  3468 solver.cpp:445] Iteration 531, lr = 1e-05
+I1105 15:11:31.961349  3468 solver.cpp:209] Iteration 532, loss = 0.0815558
+I1105 15:11:31.961377  3468 solver.cpp:445] Iteration 532, lr = 1e-05
+I1105 15:11:34.188083  3468 solver.cpp:209] Iteration 533, loss = 0.46659
+I1105 15:11:34.188108  3468 solver.cpp:445] Iteration 533, lr = 1e-05
+I1105 15:11:36.413502  3468 solver.cpp:209] Iteration 534, loss = 0.319917
+I1105 15:11:36.413530  3468 solver.cpp:445] Iteration 534, lr = 1e-05
+I1105 15:11:38.648782  3468 solver.cpp:209] Iteration 535, loss = 0.127941
+I1105 15:11:38.648821  3468 solver.cpp:445] Iteration 535, lr = 1e-05
+I1105 15:11:40.883059  3468 solver.cpp:209] Iteration 536, loss = 0.212311
+I1105 15:11:40.883088  3468 solver.cpp:445] Iteration 536, lr = 1e-05
+I1105 15:11:43.123476  3468 solver.cpp:209] Iteration 537, loss = 0.1901
+I1105 15:11:43.123512  3468 solver.cpp:445] Iteration 537, lr = 1e-05
+I1105 15:11:45.356920  3468 solver.cpp:209] Iteration 538, loss = 0.299169
+I1105 15:11:45.356948  3468 solver.cpp:445] Iteration 538, lr = 1e-05
+I1105 15:11:47.588850  3468 solver.cpp:209] Iteration 539, loss = 0.261656
+I1105 15:11:47.588887  3468 solver.cpp:445] Iteration 539, lr = 1e-05
+I1105 15:11:49.811861  3468 solver.cpp:209] Iteration 540, loss = 0.196952
+I1105 15:11:49.811889  3468 solver.cpp:445] Iteration 540, lr = 1e-05
+I1105 15:11:52.045289  3468 solver.cpp:209] Iteration 541, loss = 0.0809386
+I1105 15:11:52.045317  3468 solver.cpp:445] Iteration 541, lr = 1e-05
+I1105 15:11:54.278096  3468 solver.cpp:209] Iteration 542, loss = 0.176961
+I1105 15:11:54.278177  3468 solver.cpp:445] Iteration 542, lr = 1e-05
+I1105 15:11:56.512440  3468 solver.cpp:209] Iteration 543, loss = 0.0642596
+I1105 15:11:56.512470  3468 solver.cpp:445] Iteration 543, lr = 1e-05
+I1105 15:11:58.747407  3468 solver.cpp:209] Iteration 544, loss = 0.118615
+I1105 15:11:58.747438  3468 solver.cpp:445] Iteration 544, lr = 1e-05
+I1105 15:12:00.980207  3468 solver.cpp:209] Iteration 545, loss = 0.345889
+I1105 15:12:00.980239  3468 solver.cpp:445] Iteration 545, lr = 1e-05
+I1105 15:12:03.216272  3468 solver.cpp:209] Iteration 546, loss = 0.148601
+I1105 15:12:03.216303  3468 solver.cpp:445] Iteration 546, lr = 1e-05
+I1105 15:12:05.448811  3468 solver.cpp:209] Iteration 547, loss = 0.333606
+I1105 15:12:05.448839  3468 solver.cpp:445] Iteration 547, lr = 1e-05
+I1105 15:12:07.677727  3468 solver.cpp:209] Iteration 548, loss = 0.487394
+I1105 15:12:07.677759  3468 solver.cpp:445] Iteration 548, lr = 1e-05
+I1105 15:12:09.884909  3468 solver.cpp:209] Iteration 549, loss = 0.36644
+I1105 15:12:09.884942  3468 solver.cpp:445] Iteration 549, lr = 1e-05
+I1105 15:12:09.885545  3468 solver.cpp:264] Iteration 550, Testing net (#0)
+I1105 15:12:54.489465  3468 solver.cpp:302] Test loss: 0.223314
+I1105 15:12:54.489538  3468 solver.cpp:315]     Test net output #0: accuracy = 0.980198
+I1105 15:12:54.489547  3468 solver.cpp:315]     Test net output #1: accuracy = 0.713546
+I1105 15:12:54.489550  3468 solver.cpp:315]     Test net output #2: accuracy = 0.846872
+I1105 15:12:54.489555  3468 solver.cpp:315]     Test net output #3: accuracy = 0.924801
+I1105 15:12:55.146361  3468 solver.cpp:209] Iteration 550, loss = 0.276271
+I1105 15:12:55.146388  3468 solver.cpp:445] Iteration 550, lr = 1e-05
+I1105 15:12:57.404960  3468 solver.cpp:209] Iteration 551, loss = 0.236633
+I1105 15:12:57.404986  3468 solver.cpp:445] Iteration 551, lr = 1e-05
+I1105 15:12:59.652178  3468 solver.cpp:209] Iteration 552, loss = 0.0993838
+I1105 15:12:59.652207  3468 solver.cpp:445] Iteration 552, lr = 1e-05
+I1105 15:13:01.902729  3468 solver.cpp:209] Iteration 553, loss = 0.169352
+I1105 15:13:01.902770  3468 solver.cpp:445] Iteration 553, lr = 1e-05
+I1105 15:13:04.150087  3468 solver.cpp:209] Iteration 554, loss = 0.300809
+I1105 15:13:04.150125  3468 solver.cpp:445] Iteration 554, lr = 1e-05
+I1105 15:13:06.400053  3468 solver.cpp:209] Iteration 555, loss = 0.117712
+I1105 15:13:06.400095  3468 solver.cpp:445] Iteration 555, lr = 1e-05
+I1105 15:13:08.664294  3468 solver.cpp:209] Iteration 556, loss = 0.258087
+I1105 15:13:08.664322  3468 solver.cpp:445] Iteration 556, lr = 1e-05
+I1105 15:13:10.899615  3468 solver.cpp:209] Iteration 557, loss = 0.1859
+I1105 15:13:10.899657  3468 solver.cpp:445] Iteration 557, lr = 1e-05
+I1105 15:13:13.144114  3468 solver.cpp:209] Iteration 558, loss = 0.13076
+I1105 15:13:13.144152  3468 solver.cpp:445] Iteration 558, lr = 1e-05
+I1105 15:13:15.398459  3468 solver.cpp:209] Iteration 559, loss = 0.319767
+I1105 15:13:15.398497  3468 solver.cpp:445] Iteration 559, lr = 1e-05
+I1105 15:13:17.630296  3468 solver.cpp:209] Iteration 560, loss = 0.363715
+I1105 15:13:17.630334  3468 solver.cpp:445] Iteration 560, lr = 1e-05
+I1105 15:13:19.868067  3468 solver.cpp:209] Iteration 561, loss = 0.0545515
+I1105 15:13:19.868098  3468 solver.cpp:445] Iteration 561, lr = 1e-05
+I1105 15:13:22.097488  3468 solver.cpp:209] Iteration 562, loss = 0.213453
+I1105 15:13:22.097530  3468 solver.cpp:445] Iteration 562, lr = 1e-05
+I1105 15:13:24.333103  3468 solver.cpp:209] Iteration 563, loss = 0.197911
+I1105 15:13:24.333129  3468 solver.cpp:445] Iteration 563, lr = 1e-05
+I1105 15:13:26.574956  3468 solver.cpp:209] Iteration 564, loss = 0.271516
+I1105 15:13:26.575029  3468 solver.cpp:445] Iteration 564, lr = 1e-05
+I1105 15:13:28.811460  3468 solver.cpp:209] Iteration 565, loss = 0.222855
+I1105 15:13:28.811501  3468 solver.cpp:445] Iteration 565, lr = 1e-05
+I1105 15:13:31.053369  3468 solver.cpp:209] Iteration 566, loss = 0.170017
+I1105 15:13:31.053411  3468 solver.cpp:445] Iteration 566, lr = 1e-05
+I1105 15:13:33.281709  3468 solver.cpp:209] Iteration 567, loss = 0.27784
+I1105 15:13:33.281750  3468 solver.cpp:445] Iteration 567, lr = 1e-05
+I1105 15:13:35.506300  3468 solver.cpp:209] Iteration 568, loss = 0.203587
+I1105 15:13:35.506338  3468 solver.cpp:445] Iteration 568, lr = 1e-05
+I1105 15:13:37.704538  3468 solver.cpp:209] Iteration 569, loss = 0.218467
+I1105 15:13:37.704566  3468 solver.cpp:445] Iteration 569, lr = 1e-05
+I1105 15:13:39.904301  3468 solver.cpp:209] Iteration 570, loss = 0.142394
+I1105 15:13:39.904343  3468 solver.cpp:445] Iteration 570, lr = 1e-05
+I1105 15:13:42.108036  3468 solver.cpp:209] Iteration 571, loss = 0.444649
+I1105 15:13:42.108078  3468 solver.cpp:445] Iteration 571, lr = 1e-05
+I1105 15:13:44.309556  3468 solver.cpp:209] Iteration 572, loss = 0.0737469
+I1105 15:13:44.309583  3468 solver.cpp:445] Iteration 572, lr = 1e-05
+I1105 15:13:46.510272  3468 solver.cpp:209] Iteration 573, loss = 0.269158
+I1105 15:13:46.510298  3468 solver.cpp:445] Iteration 573, lr = 1e-05
+I1105 15:13:48.706773  3468 solver.cpp:209] Iteration 574, loss = 0.439563
+I1105 15:13:48.706800  3468 solver.cpp:445] Iteration 574, lr = 1e-05
+I1105 15:13:50.902459  3468 solver.cpp:209] Iteration 575, loss = 0.0705032
+I1105 15:13:50.902503  3468 solver.cpp:445] Iteration 575, lr = 1e-05
+I1105 15:13:53.106086  3468 solver.cpp:209] Iteration 576, loss = 0.232883
+I1105 15:13:53.106125  3468 solver.cpp:445] Iteration 576, lr = 1e-05
+I1105 15:13:55.305585  3468 solver.cpp:209] Iteration 577, loss = 0.435735
+I1105 15:13:55.305615  3468 solver.cpp:445] Iteration 577, lr = 1e-05
+I1105 15:13:57.508306  3468 solver.cpp:209] Iteration 578, loss = 0.339052
+I1105 15:13:57.508358  3468 solver.cpp:445] Iteration 578, lr = 1e-05
+I1105 15:13:59.705817  3468 solver.cpp:209] Iteration 579, loss = 0.22031
+I1105 15:13:59.705859  3468 solver.cpp:445] Iteration 579, lr = 1e-05
+I1105 15:14:01.902544  3468 solver.cpp:209] Iteration 580, loss = 0.162426
+I1105 15:14:01.902581  3468 solver.cpp:445] Iteration 580, lr = 1e-05
+I1105 15:14:04.121028  3468 solver.cpp:209] Iteration 581, loss = 0.18806
+I1105 15:14:04.121057  3468 solver.cpp:445] Iteration 581, lr = 1e-05
+I1105 15:14:06.350391  3468 solver.cpp:209] Iteration 582, loss = 0.327238
+I1105 15:14:06.350421  3468 solver.cpp:445] Iteration 582, lr = 1e-05
+I1105 15:14:08.590965  3468 solver.cpp:209] Iteration 583, loss = 0.107601
+I1105 15:14:08.590994  3468 solver.cpp:445] Iteration 583, lr = 1e-05
+I1105 15:14:10.820000  3468 solver.cpp:209] Iteration 584, loss = 0.126331
+I1105 15:14:10.820029  3468 solver.cpp:445] Iteration 584, lr = 1e-05
+I1105 15:14:13.051501  3468 solver.cpp:209] Iteration 585, loss = 0.5377
+I1105 15:14:13.051532  3468 solver.cpp:445] Iteration 585, lr = 1e-05
+I1105 15:14:15.282666  3468 solver.cpp:209] Iteration 586, loss = 0.284335
+I1105 15:14:15.282697  3468 solver.cpp:445] Iteration 586, lr = 1e-05
+I1105 15:14:17.510102  3468 solver.cpp:209] Iteration 587, loss = 0.248569
+I1105 15:14:17.510131  3468 solver.cpp:445] Iteration 587, lr = 1e-05
+I1105 15:14:19.738925  3468 solver.cpp:209] Iteration 588, loss = 0.0762746
+I1105 15:14:19.738957  3468 solver.cpp:445] Iteration 588, lr = 1e-05
+I1105 15:14:21.972442  3468 solver.cpp:209] Iteration 589, loss = 0.24802
+I1105 15:14:21.972475  3468 solver.cpp:445] Iteration 589, lr = 1e-05
+I1105 15:14:24.211750  3468 solver.cpp:209] Iteration 590, loss = 0.297206
+I1105 15:14:24.211794  3468 solver.cpp:445] Iteration 590, lr = 1e-05
+I1105 15:14:26.445202  3468 solver.cpp:209] Iteration 591, loss = 0.378398
+I1105 15:14:26.445235  3468 solver.cpp:445] Iteration 591, lr = 1e-05
+I1105 15:14:28.677017  3468 solver.cpp:209] Iteration 592, loss = 0.233629
+I1105 15:14:28.677073  3468 solver.cpp:445] Iteration 592, lr = 1e-05
+I1105 15:14:30.905822  3468 solver.cpp:209] Iteration 593, loss = 0.138697
+I1105 15:14:30.905854  3468 solver.cpp:445] Iteration 593, lr = 1e-05
+I1105 15:14:33.130233  3468 solver.cpp:209] Iteration 594, loss = 0.249784
+I1105 15:14:33.130264  3468 solver.cpp:445] Iteration 594, lr = 1e-05
+I1105 15:14:35.365950  3468 solver.cpp:209] Iteration 595, loss = 0.119653
+I1105 15:14:35.365981  3468 solver.cpp:445] Iteration 595, lr = 1e-05
+I1105 15:14:37.609429  3468 solver.cpp:209] Iteration 596, loss = 0.152142
+I1105 15:14:37.609459  3468 solver.cpp:445] Iteration 596, lr = 1e-05
+I1105 15:14:39.842893  3468 solver.cpp:209] Iteration 597, loss = 0.1436
+I1105 15:14:39.842923  3468 solver.cpp:445] Iteration 597, lr = 1e-05
+I1105 15:14:42.078922  3468 solver.cpp:209] Iteration 598, loss = 0.212907
+I1105 15:14:42.078953  3468 solver.cpp:445] Iteration 598, lr = 1e-05
+I1105 15:14:44.314331  3468 solver.cpp:209] Iteration 599, loss = 0.516112
+I1105 15:14:44.314357  3468 solver.cpp:445] Iteration 599, lr = 1e-05
+I1105 15:14:46.229912  3468 solver.cpp:334] Snapshotting to /data/ad6813/devCaffe/caffe/oxford/snapshots/_iter_600.caffemodel
+I1105 15:14:47.244199  3468 solver.cpp:342] Snapshotting solver state to /data/ad6813/devCaffe/caffe/oxford/snapshots/_iter_600.solverstate
+I1105 15:14:47.828995  3468 solver.cpp:264] Iteration 600, Testing net (#0)
+I1105 15:15:30.710172  3468 solver.cpp:302] Test loss: 0.221037
+I1105 15:15:30.710264  3468 solver.cpp:315]     Test net output #0: accuracy = 0.978391
+I1105 15:15:30.710273  3468 solver.cpp:315]     Test net output #1: accuracy = 0.713811
+I1105 15:15:30.710276  3468 solver.cpp:315]     Test net output #2: accuracy = 0.846101
+I1105 15:15:30.710281  3468 solver.cpp:315]     Test net output #3: accuracy = 0.923805
+I1105 15:15:31.360002  3468 solver.cpp:209] Iteration 600, loss = 0.0912983
+I1105 15:15:31.360031  3468 solver.cpp:445] Iteration 600, lr = 1e-05
+I1105 15:15:33.600049  3468 solver.cpp:209] Iteration 601, loss = 0.249526
+I1105 15:15:33.600081  3468 solver.cpp:445] Iteration 601, lr = 1e-05
+I1105 15:15:35.834066  3468 solver.cpp:209] Iteration 602, loss = 0.115111
+I1105 15:15:35.834100  3468 solver.cpp:445] Iteration 602, lr = 1e-05
+I1105 15:15:38.065310  3468 solver.cpp:209] Iteration 603, loss = 0.215811
+I1105 15:15:38.065352  3468 solver.cpp:445] Iteration 603, lr = 1e-05
+I1105 15:15:40.295202  3468 solver.cpp:209] Iteration 604, loss = 0.188844
+I1105 15:15:40.295233  3468 solver.cpp:445] Iteration 604, lr = 1e-05
+I1105 15:15:42.530802  3468 solver.cpp:209] Iteration 605, loss = 0.227412
+I1105 15:15:42.530843  3468 solver.cpp:445] Iteration 605, lr = 1e-05
+I1105 15:15:44.772672  3468 solver.cpp:209] Iteration 606, loss = 0.128951
+I1105 15:15:44.772698  3468 solver.cpp:445] Iteration 606, lr = 1e-05
+I1105 15:15:47.012092  3468 solver.cpp:209] Iteration 607, loss = 0.374707
+I1105 15:15:47.012122  3468 solver.cpp:445] Iteration 607, lr = 1e-05
+I1105 15:15:49.245017  3468 solver.cpp:209] Iteration 608, loss = 0.491887
+I1105 15:15:49.245044  3468 solver.cpp:445] Iteration 608, lr = 1e-05
+I1105 15:15:51.470115  3468 solver.cpp:209] Iteration 609, loss = 0.061526
+I1105 15:15:51.470159  3468 solver.cpp:445] Iteration 609, lr = 1e-05
+I1105 15:15:53.699415  3468 solver.cpp:209] Iteration 610, loss = 0.33578
+I1105 15:15:53.699458  3468 solver.cpp:445] Iteration 610, lr = 1e-05
+I1105 15:15:55.897445  3468 solver.cpp:209] Iteration 611, loss = 0.099889
+I1105 15:15:55.897490  3468 solver.cpp:445] Iteration 611, lr = 1e-05
+I1105 15:15:58.096703  3468 solver.cpp:209] Iteration 612, loss = 0.27464
+I1105 15:15:58.096742  3468 solver.cpp:445] Iteration 612, lr = 1e-05
+I1105 15:16:00.297193  3468 solver.cpp:209] Iteration 613, loss = 0.296899
+I1105 15:16:00.297235  3468 solver.cpp:445] Iteration 613, lr = 1e-05
+I1105 15:16:02.499240  3468 solver.cpp:209] Iteration 614, loss = 0.382623
+I1105 15:16:02.499300  3468 solver.cpp:445] Iteration 614, lr = 1e-05
+I1105 15:16:04.700120  3468 solver.cpp:209] Iteration 615, loss = 0.222431
+I1105 15:16:04.700147  3468 solver.cpp:445] Iteration 615, lr = 1e-05
+I1105 15:16:06.903100  3468 solver.cpp:209] Iteration 616, loss = 0.431092
+I1105 15:16:06.903126  3468 solver.cpp:445] Iteration 616, lr = 1e-05
+I1105 15:16:09.108506  3468 solver.cpp:209] Iteration 617, loss = 0.175162
+I1105 15:16:09.108537  3468 solver.cpp:445] Iteration 617, lr = 1e-05
+I1105 15:16:11.311740  3468 solver.cpp:209] Iteration 618, loss = 0.117628
+I1105 15:16:11.311791  3468 solver.cpp:445] Iteration 618, lr = 1e-05
+I1105 15:16:13.512158  3468 solver.cpp:209] Iteration 619, loss = 0.330062
+I1105 15:16:13.512202  3468 solver.cpp:445] Iteration 619, lr = 1e-05
+I1105 15:16:15.717696  3468 solver.cpp:209] Iteration 620, loss = 0.306953
+I1105 15:16:15.717733  3468 solver.cpp:445] Iteration 620, lr = 1e-05
+I1105 15:16:17.915712  3468 solver.cpp:209] Iteration 621, loss = 0.0999522
+I1105 15:16:17.915742  3468 solver.cpp:445] Iteration 621, lr = 1e-05
+I1105 15:16:20.112736  3468 solver.cpp:209] Iteration 622, loss = 0.324877
+I1105 15:16:20.112776  3468 solver.cpp:445] Iteration 622, lr = 1e-05
+I1105 15:16:22.311524  3468 solver.cpp:209] Iteration 623, loss = 0.0996304
+I1105 15:16:22.311568  3468 solver.cpp:445] Iteration 623, lr = 1e-05
+I1105 15:16:24.513811  3468 solver.cpp:209] Iteration 624, loss = 0.153659
+I1105 15:16:24.513854  3468 solver.cpp:445] Iteration 624, lr = 1e-05
+I1105 15:16:26.723667  3468 solver.cpp:209] Iteration 625, loss = 0.104352
+I1105 15:16:26.723695  3468 solver.cpp:445] Iteration 625, lr = 1e-05
+I1105 15:16:28.921635  3468 solver.cpp:209] Iteration 626, loss = 0.197598
+I1105 15:16:28.921676  3468 solver.cpp:445] Iteration 626, lr = 1e-05
+I1105 15:16:31.149629  3468 solver.cpp:209] Iteration 627, loss = 0.181625
+I1105 15:16:31.149670  3468 solver.cpp:445] Iteration 627, lr = 1e-05
+I1105 15:16:33.396570  3468 solver.cpp:209] Iteration 628, loss = 0.251836
+I1105 15:16:33.396626  3468 solver.cpp:445] Iteration 628, lr = 1e-05
+I1105 15:16:35.637663  3468 solver.cpp:209] Iteration 629, loss = 0.457875
+I1105 15:16:35.637691  3468 solver.cpp:445] Iteration 629, lr = 1e-05
+I1105 15:16:37.894667  3468 solver.cpp:209] Iteration 630, loss = 0.266375
+I1105 15:16:37.894708  3468 solver.cpp:445] Iteration 630, lr = 1e-05
+I1105 15:16:40.151392  3468 solver.cpp:209] Iteration 631, loss = 0.561418
+I1105 15:16:40.151422  3468 solver.cpp:445] Iteration 631, lr = 1e-05
+I1105 15:16:42.409873  3468 solver.cpp:209] Iteration 632, loss = 0.195206
+I1105 15:16:42.409914  3468 solver.cpp:445] Iteration 632, lr = 1e-05
+I1105 15:16:44.666574  3468 solver.cpp:209] Iteration 633, loss = 0.288376
+I1105 15:16:44.666617  3468 solver.cpp:445] Iteration 633, lr = 1e-05
+I1105 15:16:46.917923  3468 solver.cpp:209] Iteration 634, loss = 0.257521
+I1105 15:16:46.917960  3468 solver.cpp:445] Iteration 634, lr = 1e-05
+I1105 15:16:49.155293  3468 solver.cpp:209] Iteration 635, loss = 0.263541
+I1105 15:16:49.155324  3468 solver.cpp:445] Iteration 635, lr = 1e-05
+I1105 15:16:51.386574  3468 solver.cpp:209] Iteration 636, loss = 0.210436
+I1105 15:16:51.386602  3468 solver.cpp:445] Iteration 636, lr = 1e-05
+I1105 15:16:53.617938  3468 solver.cpp:209] Iteration 637, loss = 0.34393
+I1105 15:16:53.617980  3468 solver.cpp:445] Iteration 637, lr = 1e-05
+I1105 15:16:55.848320  3468 solver.cpp:209] Iteration 638, loss = 0.393807
+I1105 15:16:55.848351  3468 solver.cpp:445] Iteration 638, lr = 1e-05
+I1105 15:16:58.075444  3468 solver.cpp:209] Iteration 639, loss = 0.0838854
+I1105 15:16:58.075485  3468 solver.cpp:445] Iteration 639, lr = 1e-05
+I1105 15:17:00.278772  3468 solver.cpp:209] Iteration 640, loss = 0.260243
+I1105 15:17:00.278815  3468 solver.cpp:445] Iteration 640, lr = 1e-05
+I1105 15:17:02.474714  3468 solver.cpp:209] Iteration 641, loss = 0.197504
+I1105 15:17:02.474756  3468 solver.cpp:445] Iteration 641, lr = 1e-05
+I1105 15:17:04.671249  3468 solver.cpp:209] Iteration 642, loss = 0.584137
+I1105 15:17:04.671331  3468 solver.cpp:445] Iteration 642, lr = 1e-05
+I1105 15:17:06.864475  3468 solver.cpp:209] Iteration 643, loss = 0.371019
+I1105 15:17:06.864503  3468 solver.cpp:445] Iteration 643, lr = 1e-05
+I1105 15:17:09.065839  3468 solver.cpp:209] Iteration 644, loss = 0.281334
+I1105 15:17:09.065868  3468 solver.cpp:445] Iteration 644, lr = 1e-05
+I1105 15:17:11.269677  3468 solver.cpp:209] Iteration 645, loss = 0.200132
+I1105 15:17:11.269718  3468 solver.cpp:445] Iteration 645, lr = 1e-05
+I1105 15:17:13.473414  3468 solver.cpp:209] Iteration 646, loss = 0.168345
+I1105 15:17:13.473443  3468 solver.cpp:445] Iteration 646, lr = 1e-05
+I1105 15:17:15.671241  3468 solver.cpp:209] Iteration 647, loss = 0.20251
+I1105 15:17:15.671279  3468 solver.cpp:445] Iteration 647, lr = 1e-05
+I1105 15:17:17.865066  3468 solver.cpp:209] Iteration 648, loss = 0.11187
+I1105 15:17:17.865097  3468 solver.cpp:445] Iteration 648, lr = 1e-05
+I1105 15:17:20.061527  3468 solver.cpp:209] Iteration 649, loss = 0.214399
+I1105 15:17:20.061554  3468 solver.cpp:445] Iteration 649, lr = 1e-05
+I1105 15:17:20.062175  3468 solver.cpp:264] Iteration 650, Testing net (#0)
+I1105 15:18:04.843585  3468 solver.cpp:302] Test loss: 0.217553
+I1105 15:18:04.843637  3468 solver.cpp:315]     Test net output #0: accuracy = 0.976684
+I1105 15:18:04.843644  3468 solver.cpp:315]     Test net output #1: accuracy = 0.725764
+I1105 15:18:04.843650  3468 solver.cpp:315]     Test net output #2: accuracy = 0.851224
+I1105 15:18:04.843654  3468 solver.cpp:315]     Test net output #3: accuracy = 0.923307
+I1105 15:18:05.497650  3468 solver.cpp:209] Iteration 650, loss = 0.0530932
+I1105 15:18:05.497676  3468 solver.cpp:445] Iteration 650, lr = 1e-05
+I1105 15:18:07.747874  3468 solver.cpp:209] Iteration 651, loss = 0.242491
+I1105 15:18:07.747900  3468 solver.cpp:445] Iteration 651, lr = 1e-05
+I1105 15:18:09.999305  3468 solver.cpp:209] Iteration 652, loss = 0.129725
+I1105 15:18:09.999347  3468 solver.cpp:445] Iteration 652, lr = 1e-05
+I1105 15:18:12.255691  3468 solver.cpp:209] Iteration 653, loss = 0.128414
+I1105 15:18:12.255733  3468 solver.cpp:445] Iteration 653, lr = 1e-05
+I1105 15:18:14.500867  3468 solver.cpp:209] Iteration 654, loss = 0.143052
+I1105 15:18:14.500898  3468 solver.cpp:445] Iteration 654, lr = 1e-05
+I1105 15:18:16.749518  3468 solver.cpp:209] Iteration 655, loss = 0.239755
+I1105 15:18:16.749555  3468 solver.cpp:445] Iteration 655, lr = 1e-05
+I1105 15:18:18.975852  3468 solver.cpp:209] Iteration 656, loss = 0.35146
+I1105 15:18:18.975880  3468 solver.cpp:445] Iteration 656, lr = 1e-05
+I1105 15:18:21.179841  3468 solver.cpp:209] Iteration 657, loss = 0.684588
+I1105 15:18:21.179868  3468 solver.cpp:445] Iteration 657, lr = 1e-05
+I1105 15:18:23.385117  3468 solver.cpp:209] Iteration 658, loss = 0.252488
+I1105 15:18:23.385143  3468 solver.cpp:445] Iteration 658, lr = 1e-05
+I1105 15:18:25.584597  3468 solver.cpp:209] Iteration 659, loss = 0.241133
+I1105 15:18:25.584626  3468 solver.cpp:445] Iteration 659, lr = 1e-05
+I1105 15:18:27.780455  3468 solver.cpp:209] Iteration 660, loss = 0.117492
+I1105 15:18:27.780485  3468 solver.cpp:445] Iteration 660, lr = 1e-05
+I1105 15:18:29.978256  3468 solver.cpp:209] Iteration 661, loss = 0.0706676
+I1105 15:18:29.978288  3468 solver.cpp:445] Iteration 661, lr = 1e-05
+I1105 15:18:32.179744  3468 solver.cpp:209] Iteration 662, loss = 0.101893
+I1105 15:18:32.179785  3468 solver.cpp:445] Iteration 662, lr = 1e-05
+I1105 15:18:34.386459  3468 solver.cpp:209] Iteration 663, loss = 0.377717
+I1105 15:18:34.386492  3468 solver.cpp:445] Iteration 663, lr = 1e-05
+I1105 15:18:36.585769  3468 solver.cpp:209] Iteration 664, loss = 0.0800367
+I1105 15:18:36.585849  3468 solver.cpp:445] Iteration 664, lr = 1e-05
+I1105 15:18:38.786484  3468 solver.cpp:209] Iteration 665, loss = 0.174072
+I1105 15:18:38.786517  3468 solver.cpp:445] Iteration 665, lr = 1e-05
+I1105 15:18:40.988759  3468 solver.cpp:209] Iteration 666, loss = 0.287077
+I1105 15:18:40.988790  3468 solver.cpp:445] Iteration 666, lr = 1e-05
+I1105 15:18:43.189160  3468 solver.cpp:209] Iteration 667, loss = 0.0663802
+I1105 15:18:43.189193  3468 solver.cpp:445] Iteration 667, lr = 1e-05
+I1105 15:18:45.397718  3468 solver.cpp:209] Iteration 668, loss = 0.200233
+I1105 15:18:45.397748  3468 solver.cpp:445] Iteration 668, lr = 1e-05
+I1105 15:18:47.625311  3468 solver.cpp:209] Iteration 669, loss = 0.271185
+I1105 15:18:47.625342  3468 solver.cpp:445] Iteration 669, lr = 1e-05
+I1105 15:18:49.861279  3468 solver.cpp:209] Iteration 670, loss = 0.211527
+I1105 15:18:49.861310  3468 solver.cpp:445] Iteration 670, lr = 1e-05
+I1105 15:18:52.102200  3468 solver.cpp:209] Iteration 671, loss = 0.289988
+I1105 15:18:52.102228  3468 solver.cpp:445] Iteration 671, lr = 1e-05
+I1105 15:18:54.346230  3468 solver.cpp:209] Iteration 672, loss = 0.263629
+I1105 15:18:54.346268  3468 solver.cpp:445] Iteration 672, lr = 1e-05
+I1105 15:18:56.579120  3468 solver.cpp:209] Iteration 673, loss = 0.334721
+I1105 15:18:56.579148  3468 solver.cpp:445] Iteration 673, lr = 1e-05
+I1105 15:18:58.809795  3468 solver.cpp:209] Iteration 674, loss = 0.218714
+I1105 15:18:58.809823  3468 solver.cpp:445] Iteration 674, lr = 1e-05
+I1105 15:19:01.035868  3468 solver.cpp:209] Iteration 675, loss = 0.260774
+I1105 15:19:01.035899  3468 solver.cpp:445] Iteration 675, lr = 1e-05
+I1105 15:19:03.271320  3468 solver.cpp:209] Iteration 676, loss = 0.088738
+I1105 15:19:03.271358  3468 solver.cpp:445] Iteration 676, lr = 1e-05
+I1105 15:19:05.519316  3468 solver.cpp:209] Iteration 677, loss = 0.262222
+I1105 15:19:05.519343  3468 solver.cpp:445] Iteration 677, lr = 1e-05
+I1105 15:19:07.760646  3468 solver.cpp:209] Iteration 678, loss = 0.193732
+I1105 15:19:07.760721  3468 solver.cpp:445] Iteration 678, lr = 1e-05
+I1105 15:19:09.997838  3468 solver.cpp:209] Iteration 679, loss = 0.152035
+I1105 15:19:09.997866  3468 solver.cpp:445] Iteration 679, lr = 1e-05
+I1105 15:19:12.226809  3468 solver.cpp:209] Iteration 680, loss = 0.125177
+I1105 15:19:12.226847  3468 solver.cpp:445] Iteration 680, lr = 1e-05
+I1105 15:19:14.459449  3468 solver.cpp:209] Iteration 681, loss = 0.43963
+I1105 15:19:14.459489  3468 solver.cpp:445] Iteration 681, lr = 1e-05
+I1105 15:19:16.693985  3468 solver.cpp:209] Iteration 682, loss = 0.260908
+I1105 15:19:16.694012  3468 solver.cpp:445] Iteration 682, lr = 1e-05
+I1105 15:19:18.926779  3468 solver.cpp:209] Iteration 683, loss = 0.305404
+I1105 15:19:18.926820  3468 solver.cpp:445] Iteration 683, lr = 1e-05
+I1105 15:19:21.172359  3468 solver.cpp:209] Iteration 684, loss = 0.211857
+I1105 15:19:21.172397  3468 solver.cpp:445] Iteration 684, lr = 1e-05
+I1105 15:19:23.408819  3468 solver.cpp:209] Iteration 685, loss = 0.0987252
+I1105 15:19:23.408859  3468 solver.cpp:445] Iteration 685, lr = 1e-05
+I1105 15:19:25.648887  3468 solver.cpp:209] Iteration 686, loss = 0.372824
+I1105 15:19:25.648913  3468 solver.cpp:445] Iteration 686, lr = 1e-05
+I1105 15:19:27.880321  3468 solver.cpp:209] Iteration 687, loss = 0.17244
+I1105 15:19:27.880348  3468 solver.cpp:445] Iteration 687, lr = 1e-05
+I1105 15:19:30.112457  3468 solver.cpp:209] Iteration 688, loss = 0.471454
+I1105 15:19:30.112494  3468 solver.cpp:445] Iteration 688, lr = 1e-05
+I1105 15:19:32.343709  3468 solver.cpp:209] Iteration 689, loss = 0.0497149
+I1105 15:19:32.343739  3468 solver.cpp:445] Iteration 689, lr = 1e-05
+I1105 15:19:34.575922  3468 solver.cpp:209] Iteration 690, loss = 0.191696
+I1105 15:19:34.575948  3468 solver.cpp:445] Iteration 690, lr = 1e-05
+I1105 15:19:36.821229  3468 solver.cpp:209] Iteration 691, loss = 0.176112
+I1105 15:19:36.821255  3468 solver.cpp:445] Iteration 691, lr = 1e-05
+I1105 15:19:39.060183  3468 solver.cpp:209] Iteration 692, loss = 0.324797
+I1105 15:19:39.060263  3468 solver.cpp:445] Iteration 692, lr = 1e-05
+I1105 15:19:41.302361  3468 solver.cpp:209] Iteration 693, loss = 0.20034
+I1105 15:19:41.302403  3468 solver.cpp:445] Iteration 693, lr = 1e-05
+I1105 15:19:43.532958  3468 solver.cpp:209] Iteration 694, loss = 0.404228
+I1105 15:19:43.532999  3468 solver.cpp:445] Iteration 694, lr = 1e-05
+I1105 15:19:45.761589  3468 solver.cpp:209] Iteration 695, loss = 0.179706
+I1105 15:19:45.761615  3468 solver.cpp:445] Iteration 695, lr = 1e-05
+I1105 15:19:47.994767  3468 solver.cpp:209] Iteration 696, loss = 0.239026
+I1105 15:19:47.994799  3468 solver.cpp:445] Iteration 696, lr = 1e-05
+I1105 15:19:50.234232  3468 solver.cpp:209] Iteration 697, loss = 0.396033
+I1105 15:19:50.234272  3468 solver.cpp:445] Iteration 697, lr = 1e-05
+I1105 15:19:52.472960  3468 solver.cpp:209] Iteration 698, loss = 0.181741
+I1105 15:19:52.473002  3468 solver.cpp:445] Iteration 698, lr = 1e-05
+I1105 15:19:54.708104  3468 solver.cpp:209] Iteration 699, loss = 0.225543
+I1105 15:19:54.708143  3468 solver.cpp:445] Iteration 699, lr = 1e-05
+I1105 15:19:54.708747  3468 solver.cpp:264] Iteration 700, Testing net (#0)
+I1105 15:20:39.397243  3468 solver.cpp:302] Test loss: 0.218987
+I1105 15:20:39.397326  3468 solver.cpp:315]     Test net output #0: accuracy = 0.980948
+I1105 15:20:39.397333  3468 solver.cpp:315]     Test net output #1: accuracy = 0.719854
+I1105 15:20:39.397338  3468 solver.cpp:315]     Test net output #2: accuracy = 0.850401
+I1105 15:20:39.397342  3468 solver.cpp:315]     Test net output #3: accuracy = 0.927789
+I1105 15:20:40.049041  3468 solver.cpp:209] Iteration 700, loss = 0.207366
+I1105 15:20:40.049068  3468 solver.cpp:445] Iteration 700, lr = 1e-05
+I1105 15:20:42.299226  3468 solver.cpp:209] Iteration 701, loss = 0.457813
+I1105 15:20:42.299257  3468 solver.cpp:445] Iteration 701, lr = 1e-05
+I1105 15:20:44.543350  3468 solver.cpp:209] Iteration 702, loss = 0.282422
+I1105 15:20:44.543380  3468 solver.cpp:445] Iteration 702, lr = 1e-05
+I1105 15:20:46.788827  3468 solver.cpp:209] Iteration 703, loss = 0.116828
+I1105 15:20:46.788854  3468 solver.cpp:445] Iteration 703, lr = 1e-05
+I1105 15:20:49.034344  3468 solver.cpp:209] Iteration 704, loss = 0.0388378
+I1105 15:20:49.034375  3468 solver.cpp:445] Iteration 704, lr = 1e-05
+I1105 15:20:51.294842  3468 solver.cpp:209] Iteration 705, loss = 0.246435
+I1105 15:20:51.294870  3468 solver.cpp:445] Iteration 705, lr = 1e-05
+I1105 15:20:53.554451  3468 solver.cpp:209] Iteration 706, loss = 0.340228
+I1105 15:20:53.554492  3468 solver.cpp:445] Iteration 706, lr = 1e-05
+I1105 15:20:55.803503  3468 solver.cpp:209] Iteration 707, loss = 0.189134
+I1105 15:20:55.803531  3468 solver.cpp:445] Iteration 707, lr = 1e-05
+I1105 15:20:58.036752  3468 solver.cpp:209] Iteration 708, loss = 0.370279
+I1105 15:20:58.036793  3468 solver.cpp:445] Iteration 708, lr = 1e-05
+I1105 15:21:00.247445  3468 solver.cpp:209] Iteration 709, loss = 0.178905
+I1105 15:21:00.247475  3468 solver.cpp:445] Iteration 709, lr = 1e-05
+I1105 15:21:02.445220  3468 solver.cpp:209] Iteration 710, loss = 0.236064
+I1105 15:21:02.445256  3468 solver.cpp:445] Iteration 710, lr = 1e-05
+I1105 15:21:04.645915  3468 solver.cpp:209] Iteration 711, loss = 0.192178
+I1105 15:21:04.645958  3468 solver.cpp:445] Iteration 711, lr = 1e-05
+I1105 15:21:06.848326  3468 solver.cpp:209] Iteration 712, loss = 0.240203
+I1105 15:21:06.848353  3468 solver.cpp:445] Iteration 712, lr = 1e-05
+I1105 15:21:09.054527  3468 solver.cpp:209] Iteration 713, loss = 0.371311
+I1105 15:21:09.054558  3468 solver.cpp:445] Iteration 713, lr = 1e-05
+I1105 15:21:11.254134  3468 solver.cpp:209] Iteration 714, loss = 0.349601
+I1105 15:21:11.254215  3468 solver.cpp:445] Iteration 714, lr = 1e-05
+I1105 15:21:13.448634  3468 solver.cpp:209] Iteration 715, loss = 0.163098
+I1105 15:21:13.448663  3468 solver.cpp:445] Iteration 715, lr = 1e-05
+I1105 15:21:15.652963  3468 solver.cpp:209] Iteration 716, loss = 0.200271
+I1105 15:21:15.653000  3468 solver.cpp:445] Iteration 716, lr = 1e-05
+I1105 15:21:17.870733  3468 solver.cpp:209] Iteration 717, loss = 0.18988
+I1105 15:21:17.870775  3468 solver.cpp:445] Iteration 717, lr = 1e-05
+I1105 15:21:20.072767  3468 solver.cpp:209] Iteration 718, loss = 0.0818758
+I1105 15:21:20.072796  3468 solver.cpp:445] Iteration 718, lr = 1e-05
+I1105 15:21:22.274731  3468 solver.cpp:209] Iteration 719, loss = 0.16574
+I1105 15:21:22.274772  3468 solver.cpp:445] Iteration 719, lr = 1e-05
+I1105 15:21:24.472774  3468 solver.cpp:209] Iteration 720, loss = 0.105776
+I1105 15:21:24.472815  3468 solver.cpp:445] Iteration 720, lr = 1e-05
+I1105 15:21:26.673593  3468 solver.cpp:209] Iteration 721, loss = 0.242448
+I1105 15:21:26.673620  3468 solver.cpp:445] Iteration 721, lr = 1e-05
+I1105 15:21:28.883769  3468 solver.cpp:209] Iteration 722, loss = 0.344659
+I1105 15:21:28.883800  3468 solver.cpp:445] Iteration 722, lr = 1e-05
+I1105 15:21:31.114609  3468 solver.cpp:209] Iteration 723, loss = 0.374029
+I1105 15:21:31.114650  3468 solver.cpp:445] Iteration 723, lr = 1e-05
+I1105 15:21:33.358106  3468 solver.cpp:209] Iteration 724, loss = 0.436719
+I1105 15:21:33.358145  3468 solver.cpp:445] Iteration 724, lr = 1e-05
+I1105 15:21:35.597004  3468 solver.cpp:209] Iteration 725, loss = 0.0787401
+I1105 15:21:35.597030  3468 solver.cpp:445] Iteration 725, lr = 1e-05
+I1105 15:21:37.843472  3468 solver.cpp:209] Iteration 726, loss = 0.307103
+I1105 15:21:37.843513  3468 solver.cpp:445] Iteration 726, lr = 1e-05
+I1105 15:21:40.072350  3468 solver.cpp:209] Iteration 727, loss = 0.103666
+I1105 15:21:40.072383  3468 solver.cpp:445] Iteration 727, lr = 1e-05
+I1105 15:21:42.301597  3468 solver.cpp:209] Iteration 728, loss = 0.155037
+I1105 15:21:42.301653  3468 solver.cpp:445] Iteration 728, lr = 1e-05
+I1105 15:21:44.531003  3468 solver.cpp:209] Iteration 729, loss = 0.0584364
+I1105 15:21:44.531040  3468 solver.cpp:445] Iteration 729, lr = 1e-05
+I1105 15:21:46.760983  3468 solver.cpp:209] Iteration 730, loss = 0.375017
+I1105 15:21:46.761010  3468 solver.cpp:445] Iteration 730, lr = 1e-05
+I1105 15:21:49.008321  3468 solver.cpp:209] Iteration 731, loss = 0.299338
+I1105 15:21:49.008358  3468 solver.cpp:445] Iteration 731, lr = 1e-05
+I1105 15:21:51.242954  3468 solver.cpp:209] Iteration 732, loss = 0.27095
+I1105 15:21:51.242982  3468 solver.cpp:445] Iteration 732, lr = 1e-05
+I1105 15:21:53.506353  3468 solver.cpp:209] Iteration 733, loss = 0.257859
+I1105 15:21:53.506392  3468 solver.cpp:445] Iteration 733, lr = 1e-05
+I1105 15:21:55.744223  3468 solver.cpp:209] Iteration 734, loss = 0.135503
+I1105 15:21:55.744261  3468 solver.cpp:445] Iteration 734, lr = 1e-05
+I1105 15:21:57.972934  3468 solver.cpp:209] Iteration 735, loss = 0.126977
+I1105 15:21:57.972972  3468 solver.cpp:445] Iteration 735, lr = 1e-05
+I1105 15:22:00.204905  3468 solver.cpp:209] Iteration 736, loss = 0.0886538
+I1105 15:22:00.204947  3468 solver.cpp:445] Iteration 736, lr = 1e-05
+I1105 15:22:02.433733  3468 solver.cpp:209] Iteration 737, loss = 0.245957
+I1105 15:22:02.433769  3468 solver.cpp:445] Iteration 737, lr = 1e-05
+I1105 15:22:04.667513  3468 solver.cpp:209] Iteration 738, loss = 0.342057
+I1105 15:22:04.667556  3468 solver.cpp:445] Iteration 738, lr = 1e-05
+I1105 15:22:06.903359  3468 solver.cpp:209] Iteration 739, loss = 0.214672
+I1105 15:22:06.903391  3468 solver.cpp:445] Iteration 739, lr = 1e-05
+I1105 15:22:09.143682  3468 solver.cpp:209] Iteration 740, loss = 0.177105
+I1105 15:22:09.143723  3468 solver.cpp:445] Iteration 740, lr = 1e-05
+I1105 15:22:11.378926  3468 solver.cpp:209] Iteration 741, loss = 0.288489
+I1105 15:22:11.378968  3468 solver.cpp:445] Iteration 741, lr = 1e-05
+I1105 15:22:13.606156  3468 solver.cpp:209] Iteration 742, loss = 0.25559
+I1105 15:22:13.606216  3468 solver.cpp:445] Iteration 742, lr = 1e-05
+I1105 15:22:15.834329  3468 solver.cpp:209] Iteration 743, loss = 0.17023
+I1105 15:22:15.834370  3468 solver.cpp:445] Iteration 743, lr = 1e-05
+I1105 15:22:18.067315  3468 solver.cpp:209] Iteration 744, loss = 0.278455
+I1105 15:22:18.067343  3468 solver.cpp:445] Iteration 744, lr = 1e-05
+I1105 15:22:20.303722  3468 solver.cpp:209] Iteration 745, loss = 0.279759
+I1105 15:22:20.303771  3468 solver.cpp:445] Iteration 745, lr = 1e-05
+I1105 15:22:22.542891  3468 solver.cpp:209] Iteration 746, loss = 0.211293
+I1105 15:22:22.542933  3468 solver.cpp:445] Iteration 746, lr = 1e-05
+I1105 15:22:24.773700  3468 solver.cpp:209] Iteration 747, loss = 0.137301
+I1105 15:22:24.773738  3468 solver.cpp:445] Iteration 747, lr = 1e-05
+I1105 15:22:27.004379  3468 solver.cpp:209] Iteration 748, loss = 0.139923
+I1105 15:22:27.004420  3468 solver.cpp:445] Iteration 748, lr = 1e-05
+I1105 15:22:29.234442  3468 solver.cpp:209] Iteration 749, loss = 0.128215
+I1105 15:22:29.234472  3468 solver.cpp:445] Iteration 749, lr = 1e-05
+I1105 15:22:29.235110  3468 solver.cpp:264] Iteration 750, Testing net (#0)
+I1105 15:23:13.936187  3468 solver.cpp:302] Test loss: 0.215909
+I1105 15:23:13.936246  3468 solver.cpp:315]     Test net output #0: accuracy = 0.979307
+I1105 15:23:13.936254  3468 solver.cpp:315]     Test net output #1: accuracy = 0.726096
+I1105 15:23:13.936259  3468 solver.cpp:315]     Test net output #2: accuracy = 0.852701
+I1105 15:23:13.936264  3468 solver.cpp:315]     Test net output #3: accuracy = 0.924801
+I1105 15:23:14.591516  3468 solver.cpp:209] Iteration 750, loss = 0.211454
+I1105 15:23:14.591549  3468 solver.cpp:445] Iteration 750, lr = 1e-05
+I1105 15:23:16.844372  3468 solver.cpp:209] Iteration 751, loss = 0.0698233
+I1105 15:23:16.844403  3468 solver.cpp:445] Iteration 751, lr = 1e-05
+I1105 15:23:19.100893  3468 solver.cpp:209] Iteration 752, loss = 0.33798
+I1105 15:23:19.100924  3468 solver.cpp:445] Iteration 752, lr = 1e-05
+I1105 15:23:21.353497  3468 solver.cpp:209] Iteration 753, loss = 0.264377
+I1105 15:23:21.353529  3468 solver.cpp:445] Iteration 753, lr = 1e-05
+I1105 15:23:23.607002  3468 solver.cpp:209] Iteration 754, loss = 0.0975451
+I1105 15:23:23.607035  3468 solver.cpp:445] Iteration 754, lr = 1e-05
+I1105 15:23:25.850469  3468 solver.cpp:209] Iteration 755, loss = 0.152131
+I1105 15:23:25.850502  3468 solver.cpp:445] Iteration 755, lr = 1e-05
+I1105 15:23:28.099236  3468 solver.cpp:209] Iteration 756, loss = 0.215699
+I1105 15:23:28.099268  3468 solver.cpp:445] Iteration 756, lr = 1e-05
+I1105 15:23:30.347870  3468 solver.cpp:209] Iteration 757, loss = 0.142119
+I1105 15:23:30.347903  3468 solver.cpp:445] Iteration 757, lr = 1e-05
+I1105 15:23:32.585327  3468 solver.cpp:209] Iteration 758, loss = 0.390602
+I1105 15:23:32.585358  3468 solver.cpp:445] Iteration 758, lr = 1e-05
+I1105 15:23:34.819129  3468 solver.cpp:209] Iteration 759, loss = 0.191944
+I1105 15:23:34.819161  3468 solver.cpp:445] Iteration 759, lr = 1e-05
+I1105 15:23:37.052413  3468 solver.cpp:209] Iteration 760, loss = 0.15296
+I1105 15:23:37.052444  3468 solver.cpp:445] Iteration 760, lr = 1e-05
+I1105 15:23:39.299525  3468 solver.cpp:209] Iteration 761, loss = 0.14596
+I1105 15:23:39.299566  3468 solver.cpp:445] Iteration 761, lr = 1e-05
+I1105 15:23:41.537128  3468 solver.cpp:209] Iteration 762, loss = 0.241054
+I1105 15:23:41.537160  3468 solver.cpp:445] Iteration 762, lr = 1e-05
+I1105 15:23:43.766664  3468 solver.cpp:209] Iteration 763, loss = 0.181154
+I1105 15:23:43.766696  3468 solver.cpp:445] Iteration 763, lr = 1e-05
+I1105 15:23:45.988034  3468 solver.cpp:209] Iteration 764, loss = 0.273781
+I1105 15:23:45.988136  3468 solver.cpp:445] Iteration 764, lr = 1e-05
+I1105 15:23:48.184706  3468 solver.cpp:209] Iteration 765, loss = 0.115133
+I1105 15:23:48.184737  3468 solver.cpp:445] Iteration 765, lr = 1e-05
+I1105 15:23:50.394301  3468 solver.cpp:209] Iteration 766, loss = 0.215716
+I1105 15:23:50.394333  3468 solver.cpp:445] Iteration 766, lr = 1e-05
+I1105 15:23:52.600967  3468 solver.cpp:209] Iteration 767, loss = 0.265027
+I1105 15:23:52.600999  3468 solver.cpp:445] Iteration 767, lr = 1e-05
+I1105 15:23:54.801329  3468 solver.cpp:209] Iteration 768, loss = 0.415703
+I1105 15:23:54.801360  3468 solver.cpp:445] Iteration 768, lr = 1e-05
+I1105 15:23:56.994424  3468 solver.cpp:209] Iteration 769, loss = 0.38214
+I1105 15:23:56.994456  3468 solver.cpp:445] Iteration 769, lr = 1e-05
+I1105 15:23:59.190742  3468 solver.cpp:209] Iteration 770, loss = 0.0776446
+I1105 15:23:59.190774  3468 solver.cpp:445] Iteration 770, lr = 1e-05
+I1105 15:24:01.389130  3468 solver.cpp:209] Iteration 771, loss = 0.0358763
+I1105 15:24:01.389163  3468 solver.cpp:445] Iteration 771, lr = 1e-05
+I1105 15:24:03.599284  3468 solver.cpp:209] Iteration 772, loss = 0.220788
+I1105 15:24:03.599316  3468 solver.cpp:445] Iteration 772, lr = 1e-05
+I1105 15:24:05.794345  3468 solver.cpp:209] Iteration 773, loss = 0.219421
+I1105 15:24:05.794378  3468 solver.cpp:445] Iteration 773, lr = 1e-05
+I1105 15:24:07.994786  3468 solver.cpp:209] Iteration 774, loss = 0.20673
+I1105 15:24:07.994817  3468 solver.cpp:445] Iteration 774, lr = 1e-05
+I1105 15:24:10.200531  3468 solver.cpp:209] Iteration 775, loss = 0.205702
+I1105 15:24:10.200561  3468 solver.cpp:445] Iteration 775, lr = 1e-05
+I1105 15:24:12.434196  3468 solver.cpp:209] Iteration 776, loss = 0.181314
+I1105 15:24:12.434228  3468 solver.cpp:445] Iteration 776, lr = 1e-05
+I1105 15:24:14.671421  3468 solver.cpp:209] Iteration 777, loss = 0.18284
+I1105 15:24:14.671452  3468 solver.cpp:445] Iteration 777, lr = 1e-05
+I1105 15:24:16.901854  3468 solver.cpp:209] Iteration 778, loss = 0.379373
+I1105 15:24:16.901933  3468 solver.cpp:445] Iteration 778, lr = 1e-05
+I1105 15:24:19.134723  3468 solver.cpp:209] Iteration 779, loss = 0.15178
+I1105 15:24:19.134754  3468 solver.cpp:445] Iteration 779, lr = 1e-05
+I1105 15:24:21.371034  3468 solver.cpp:209] Iteration 780, loss = 0.315525
+I1105 15:24:21.371065  3468 solver.cpp:445] Iteration 780, lr = 1e-05
+I1105 15:24:23.602999  3468 solver.cpp:209] Iteration 781, loss = 0.200647
+I1105 15:24:23.603029  3468 solver.cpp:445] Iteration 781, lr = 1e-05
+I1105 15:24:25.834357  3468 solver.cpp:209] Iteration 782, loss = 0.327834
+I1105 15:24:25.834388  3468 solver.cpp:445] Iteration 782, lr = 1e-05
+I1105 15:24:28.058861  3468 solver.cpp:209] Iteration 783, loss = 0.302101
+I1105 15:24:28.058892  3468 solver.cpp:445] Iteration 783, lr = 1e-05
+I1105 15:24:30.288789  3468 solver.cpp:209] Iteration 784, loss = 0.297875
+I1105 15:24:30.288820  3468 solver.cpp:445] Iteration 784, lr = 1e-05
+I1105 15:24:32.524870  3468 solver.cpp:209] Iteration 785, loss = 0.18486
+I1105 15:24:32.524899  3468 solver.cpp:445] Iteration 785, lr = 1e-05
+I1105 15:24:34.759039  3468 solver.cpp:209] Iteration 786, loss = 0.210937
+I1105 15:24:34.759066  3468 solver.cpp:445] Iteration 786, lr = 1e-05
+I1105 15:24:36.997603  3468 solver.cpp:209] Iteration 787, loss = 0.152175
+I1105 15:24:36.997634  3468 solver.cpp:445] Iteration 787, lr = 1e-05
+I1105 15:24:39.231994  3468 solver.cpp:209] Iteration 788, loss = 0.193617
+I1105 15:24:39.232023  3468 solver.cpp:445] Iteration 788, lr = 1e-05
+I1105 15:24:41.458698  3468 solver.cpp:209] Iteration 789, loss = 0.138779
+I1105 15:24:41.458729  3468 solver.cpp:445] Iteration 789, lr = 1e-05
+I1105 15:24:43.687786  3468 solver.cpp:209] Iteration 790, loss = 0.0886003
+I1105 15:24:43.687819  3468 solver.cpp:445] Iteration 790, lr = 1e-05
+I1105 15:24:45.916888  3468 solver.cpp:209] Iteration 791, loss = 0.0456302
+I1105 15:24:45.916918  3468 solver.cpp:445] Iteration 791, lr = 1e-05
+I1105 15:24:48.157438  3468 solver.cpp:209] Iteration 792, loss = 0.270781
+I1105 15:24:48.157526  3468 solver.cpp:445] Iteration 792, lr = 1e-05
+I1105 15:24:50.396361  3468 solver.cpp:209] Iteration 793, loss = 0.269781
+I1105 15:24:50.396392  3468 solver.cpp:445] Iteration 793, lr = 1e-05
+I1105 15:24:52.629740  3468 solver.cpp:209] Iteration 794, loss = 0.195193
+I1105 15:24:52.629771  3468 solver.cpp:445] Iteration 794, lr = 1e-05
+I1105 15:24:54.862802  3468 solver.cpp:209] Iteration 795, loss = 0.261303
+I1105 15:24:54.862829  3468 solver.cpp:445] Iteration 795, lr = 1e-05
+I1105 15:24:57.091194  3468 solver.cpp:209] Iteration 796, loss = 0.214319
+I1105 15:24:57.091227  3468 solver.cpp:445] Iteration 796, lr = 1e-05
+I1105 15:24:59.321521  3468 solver.cpp:209] Iteration 797, loss = 0.0575678
+I1105 15:24:59.321552  3468 solver.cpp:445] Iteration 797, lr = 1e-05
+I1105 15:25:01.549463  3468 solver.cpp:209] Iteration 798, loss = 0.399225
+I1105 15:25:01.549491  3468 solver.cpp:445] Iteration 798, lr = 1e-05
+I1105 15:25:03.782770  3468 solver.cpp:209] Iteration 799, loss = 0.390305
+I1105 15:25:03.782809  3468 solver.cpp:445] Iteration 799, lr = 1e-05
+I1105 15:25:05.782752  3468 solver.cpp:334] Snapshotting to /data/ad6813/devCaffe/caffe/oxford/snapshots/_iter_800.caffemodel
+I1105 15:25:06.827716  3468 solver.cpp:342] Snapshotting solver state to /data/ad6813/devCaffe/caffe/oxford/snapshots/_iter_800.solverstate
+I1105 15:25:07.421445  3468 solver.cpp:264] Iteration 800, Testing net (#0)
+*** Aborted at 1415201128 (unix time) try "date -d @1415201128" if you are using GNU date ***
+PC: @     0x7fffb0ffe7c2 (unknown)
+*** SIGTERM (@0x74b3) received by PID 3468 (TID 0x7f077ad43a40) from PID 29875; stack trace: ***
+    @     0x7f0770f1ec30 (unknown)
+    @     0x7fffb0ffe7c2 (unknown)
+    @     0x7f0770ff146d (unknown)
+    @     0x7f075795bc7e (unknown)
+    @     0x7f07572bf9a3 (unknown)
+    @     0x7f07572a0173 (unknown)
+    @     0x7f07572982b0 (unknown)
+    @     0x7f0757298af3 (unknown)
+    @     0x7f075720d05a (unknown)
+    @     0x7f075720d1ca (unknown)
+    @     0x7f07571deac5 (unknown)
+    @     0x7f077a955389 (unknown)
+    @     0x7f077a97c5a8 (unknown)
+    @           0x56edbe caffe::caffe_gpu_memcpy()
+    @           0x52e0be caffe::SyncedMemory::gpu_data()
+    @           0x455b62 caffe::Blob<>::gpu_data()
+    @           0x55e50b caffe::InnerProductLayer<>::Forward_gpu()
+    @           0x512c6b caffe::Net<>::ForwardFromTo()
+    @           0x513097 caffe::Net<>::ForwardPrefilled()
+    @           0x524653 caffe::Solver<>::Test()
+    @           0x524f26 caffe::Solver<>::TestAll()
+    @           0x52bb65 caffe::Solver<>::Solve()
+    @           0x417822 train()
+    @           0x411461 main
+    @     0x7f0770f09ec5 (unknown)
+    @           0x416257 (unknown)
