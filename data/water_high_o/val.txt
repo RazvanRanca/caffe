@@ -1,10 +1,4 @@
 /data/ad6813/pipe-data/Bluebox/202551.jpg 1
-/data/ad6813/pipe-data/Bluebox/198888.jpg 0
-/data/ad6813/pipe-data/Bluebox/188226.jpg 0
-/data/ad6813/pipe-data/Bluebox/153908.jpg 0
-/data/ad6813/pipe-data/Bluebox/192070.jpg 0
-/data/ad6813/pipe-data/Bluebox/169060.jpg 0
-/data/ad6813/pipe-data/Bluebox/188310.jpg 0
 /data/ad6813/pipe-data/Bluebox/180213.jpg 0
 /data/ad6813/pipe-data/Bluebox/172257.jpg 0
 /data/ad6813/pipe-data/Bluebox/135549.jpg 0
