@@ -1,5 +1,6 @@
 import sys
 import subprocess 
+import os
 
 def getLogName(folder):
   with open("task/"+folder+"/train_val.prototxt", 'r') as f:
@@ -61,16 +62,22 @@ def getLogName(folder):
 
 
 if __name__ == "__main__":
-  if sys.argv[1][-1] =='/':
-    sys.argv[1] = sys.argv[1][:-1]
-  folder = sys.argv[1].split('/')[-1]
-  logName = getLogName(folder)
-  command = "nohup ./build/tools/caffe train -solver task/" + folder + "/solver.prototxt -weights oxford/small.weights 2>&1 | tee task/" + folder + "/logs/" + logName + " &"
-  print "Running command:", command
-  process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True)
-  while(True):
-    retcode = process.poll() #returns None while subprocess is running
-    line = process.stdout.readline()
-    print line,
-    if(retcode is not None):
-      break
+  for d in range(1, len(sys.argv)):
+    if sys.argv[d][-1] =='/':
+      sys.argv[d] = sys.argv[d][:-1]
+    folder = sys.argv[d].split('/')[-1]
+    logFold = "task/" + folder + "/logs/"
+    if not os.path.isdir(logFold):
+      os.makedirs(logFold)
+    logName = getLogName(folder)
+    command = "nohup ./build/tools/caffe train -solver task/" + folder + "/solver.prototxt -weights oxford/small.weights 2>&1 | tee task/" + folder + "/logs/" + logName + " &"
+    print "Running command:", command
+    process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True)
+    while(True):
+      print command
+      retcode = process.poll() #returns None while subprocess is running
+      line = process.stdout.readline()
+      print line,
+      if(retcode is not None):
+        print retcode
+	break
