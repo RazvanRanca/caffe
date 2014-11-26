@@ -70,11 +70,10 @@ if __name__ == "__main__":
     if not os.path.isdir(logFold):
       os.makedirs(logFold)
     logName = getLogName(folder)
-    command = "nohup ./build/tools/caffe train -solver task/" + folder + "/solver.prototxt -weights oxford/small.weights 2>&1 | tee task/" + folder + "/logs/" + logName + " &"
+    command = "nohup ./build/tools/caffe train -solver task/" + folder + "/solver.prototxt -weights oxford/small.weights 2>&1 | tee task/" + folder + "/logs/" + logName
     print "Running command:", command
     process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True)
     while(True):
-      print command
       retcode = process.poll() #returns None while subprocess is running
       line = process.stdout.readline()
       print line,
