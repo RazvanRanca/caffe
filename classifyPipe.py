@@ -122,24 +122,25 @@ def main(argv):
     if args.input_file.endswith('npy'):
         inputs = np.load(args.input_file)
     elif os.path.isdir(args.input_file):
-      inputs = []
       for im_f in glob.glob(args.input_file + '/*.' + args.ext):
-        inputs.append(caffe.io.load_image(im_f))
         names.append(im_f)
     else:
         inputs = [caffe.io.load_image(args.input_file)]
         names.append(args.input_file)
 
-    print "Classifying %d inputs." % len(inputs)
+    print "Classifying %d inputs." % len(names)
 
     # Classify.
     start = time.time()
     
     predictions = []
-    for bs in range(0, len(inputs), int(args.batchSize)):
-      print bs, "/", len(inputs)
-      be = min(len(inputs), bs + int(args.batchSize)) 
-      predictions += list(classifier.predict(inputs[bs:be], not args.center_only))
+    for bs in range(0, len(names), int(args.batchSize)):
+      print bs, "/", len(names)
+      be = min(len(names), bs + int(args.batchSize)) 
+      inputs = []
+      for name in names[bs:be]:
+        inputs.append(caffe.io.load_image(name))
+      predictions += list(classifier.predict(inputs, not args.center_only))
     print "-=-=-START-=-=-"
     print "Done in %.2f s." % (time.time() - start)
     print "Probability flag present:\n" + "\n".join([names[i] + " - " + str(predictions[i][1]*100)[:5] + "%" for i in range(len(predictions))])
