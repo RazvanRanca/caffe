@@ -270,6 +270,8 @@ void Solver<Dtype>::Test(const int test_net_id) {
   vector<Dtype> test_score;
   vector<int> test_score_output_id;
   vector<Blob<Dtype>*> bottom_vec;
+  LOG(INFO) << bottom_vec; 
+
   const shared_ptr<Net<Dtype> >& test_net = test_nets_[test_net_id];
   Dtype loss = 0;
   for (int i = 0; i < param_.test_iter(test_net_id); ++i) {
