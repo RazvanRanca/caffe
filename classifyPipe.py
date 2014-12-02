@@ -147,7 +147,8 @@ def main(argv):
     # Save
     #print zip(names, predictions)
     with open(args.output_file, 'w') as f:
-      cPickle.dump(zip(names, predictions), f) 
+      for i in range(len(names)):
+        f.write(names[i].split('.')[0].split('/')[-1] + " " + str(list(predictions[i])[1]) + "\n")
 
 
 if __name__ == '__main__':

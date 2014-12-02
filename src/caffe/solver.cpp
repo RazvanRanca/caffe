@@ -306,22 +306,36 @@ void Solver<Dtype>::Test(const int test_net_id) {
     loss /= param_.test_iter(test_net_id);
     LOG(INFO) << "Test loss: " << loss;
   }
-  for (int i = 0; i < test_score.size(); ++i) {
+  Dtype avg_test_score = 0; //accuracy
+  Dtype total_label_count = 0;
+  Dtype avg_mean_score = 0; //per class accuracy
+  for (int i = 0; i < test_score.size(); i += 2) {
     const int output_blob_index =
         test_net->output_blob_indices()[test_score_output_id[i]];
     const string& output_name = test_net->blob_names()[output_blob_index];
     const Dtype loss_weight = test_net->blob_loss_weights()[output_blob_index];
     ostringstream loss_msg_stream;
-    // LOG(INFO) << "mean_score = test_score[" << i << "] / param_.test_iter(" << test_net_id << ") ";
-    // LOG(INFO) << "           = " << test_score[i] / param_.test_iter(test_net_id);
-    const Dtype mean_score = test_score[i] / param_.test_iter(test_net_id);
+    //LOG(INFO) << "mean_score = test_score[" << i << "] " << "{ = " << test_score[i] << "} / param_.test_iter(" << test_net_id << ") " << "{ = " << param_.test_iter(test_net_id) << " }";
+    //LOG(INFO) << "           = " << test_score[i] / param_.test_iter(test_net_id);
+    LOG(INFO) << "mean_score = test_score[" << i << "] " << "{ = " << test_score[i] << "} / test_score[" << i+1 << "] " << "{ = " << test_score[i+1] << " }";
+    LOG(INFO) << "           = " << test_score[i] / test_score[i+1];
+    avg_test_score += test_score[i];
+    total_label_count += test_score[i+1];
+    const Dtype mean_score = test_score[i] / test_score[i+1];
+    avg_mean_score += mean_score;
     if (loss_weight) {
       loss_msg_stream << " (* " << loss_weight
                       << " = " << loss_weight * mean_score << " loss)";
     }
-    LOG(INFO) << "    Test net output #" << i << ": " << output_name << " = "
+    LOG(INFO) << "    Test net output #" << i / 2 << ": " << output_name << " = "
         << mean_score << loss_msg_stream.str();
   }
+  ostringstream loss_msg_stream;
+  LOG(INFO) << "    Test net output #" << test_score.size() / 2 << ": accuracy"  << " = "
+        << avg_test_score / total_label_count << loss_msg_stream.str();
+  LOG(INFO) << "    Test net output #" << test_score.size() / 2 + 1 << ": accuracy"  << " = "
+        << avg_mean_score / (test_score.size() / 2) << loss_msg_stream.str();
+  
   Caffe::set_phase(Caffe::TRAIN);
 }
 

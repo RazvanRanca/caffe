@@ -1,0 +1,25 @@
+=== Water_High bluebox only, raz, undersample 0.9 on both train and val =>
+I1119 07:26:13.319409  5075 solver.cpp:246] Iteration 20000, loss = 0.0378197
+I1119 07:26:13.319439  5075 solver.cpp:264] Iteration 20000, Testing net (#0)
+I1119 07:26:25.031325  5075 solver.cpp:305] Test loss: 0.123313
+I1119 07:26:25.031354  5075 solver.cpp:318] mean_score = test_score[0] { = 501} / test_score[1] { = 517 }
+I1119 07:26:25.031373  5075 solver.cpp:319]            = 0.969052
+I1119 07:26:25.031378  5075 solver.cpp:328]     Test net output #0: accuracy = 0.969052
+I1119 07:26:25.031383  5075 solver.cpp:318] mean_score = test_score[2] { = 54} / test_score[3] { = 59 }
+I1119 07:26:25.031388  5075 solver.cpp:319]            = 0.915254
+I1119 07:26:25.031390  5075 solver.cpp:328]     Test net output #1: accuracy = 0.915254
+I1119 07:26:25.031395  5075 solver.cpp:332]     Test net output #2: accuracy = 0.963542
+I1119 07:26:25.031399  5075 solver.cpp:334]     Test net output #3: accuracy = 0.942153
+
+=== Soil_High blouebox and redbox, raz, undersample 0.9 on both train and val, oversample 0.55 train, 0 imbalance -> 110k red 9k blue =>
+I1119 07:52:09.223567 29711 solver.cpp:246] Iteration 20000, loss = 0.518526
+I1119 07:52:09.223598 29711 solver.cpp:264] Iteration 20000, Testing net (#0)
+I1119 07:52:29.046025 29711 solver.cpp:305] Test loss: 0.362115
+I1119 07:52:29.046283 29711 solver.cpp:318] mean_score = test_score[0] { = 754} / test_score[1] { = 868 }
+I1119 07:52:29.046293 29711 solver.cpp:319]            = 0.868664
+I1119 07:52:29.046298 29711 solver.cpp:328]     Test net output #0: accuracy = 0.868664
+I1119 07:52:29.046301 29711 solver.cpp:318] mean_score = test_score[2] { = 70} / test_score[3] { = 100 }
+I1119 07:52:29.046306 29711 solver.cpp:319]            = 0.7
+I1119 07:52:29.046310 29711 solver.cpp:328]     Test net output #1: accuracy = 0.7
+I1119 07:52:29.046319 29711 solver.cpp:332]     Test net output #2: accuracy = 0.85124
+I1119 07:52:29.046324 29711 solver.cpp:334]     Test net output #3: accuracy = 0.784332

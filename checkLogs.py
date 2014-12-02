@@ -1,22 +1,24 @@
 import cPickle
 import numpy as np
 
-with open("scrape.log", 'r') as f:
-  a = cPickle.load(f)
+with open("clamp_1flag.npy", 'r') as f:
+  rezs = cPickle.load(f)
 
+flag = "NoClampUsed" 
+tp, fp, tn, fneg = 0, 0, 0, 0
 
-with open("scrape100.log", 'r') as f:
-  b = cPickle.load(f)
-
-
-with open("scrape500.log", 'r') as f:
-  c = cPickle.load(f)
-
-
-with open("scrapeCent.log", 'r') as f:
-  d = cPickle.load(f)
-
-print a[:10] 
-print b[:10]
-print c[:10] 
-print d[:10]
+for rez in rezs:
+  fn, pos = rez.split()
+  pos = int(pos)
+  with open("/data/ad6813/pipe-data/Bluebox/" + fn + ".dat") as f:
+    if flag in f.read():
+      if pos > 0.5:
+        tp += 1
+      else:
+        fneg += 1
+    else:
+      if pos > 0.5:
+        fp += 1
+      else:
+        tn += 1
+print tp, tn, fp, fneg, tp/float(tp+fneg), tn/float(tn + fp), (tp + tn) / float(100)

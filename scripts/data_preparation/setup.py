@@ -9,19 +9,27 @@ import datetime
 from shutil import rmtree
 import random, subprocess
 import add_redboxes as ar
+import copy
 
 # expected input: ./setup.py --task= --box= --learn= [--target-bad-min=]
 
 # ./setup.py --task=unsuit --box=blue --learn=3-10-14
 
-def main(data_dir, data_info, task, pos_class, u_bad_min=None):
+def main(data_dir, data_info, task, pos_class, u_bad_min=None, u_bad_min_val=None):
   ''' This is the master function. data_dir: where raw data is. data_info: where to store .txt files. '''
   Keep = get_label_dict_knowing(data_dir, task, pos_class)
+
+  KeepCopy = copy.deepcopy(Keep)
+  filt = None
+  if u_bad_min_val is not None:
+    KeepCopy = under_sample(KeepCopy, u_bad_min_val)
+  KeepCopy = within_class_shuffle(KeepCopy)
+  dump_to_files(KeepCopy, data_info, task, data_dir, filt=["train.txt"])
   if u_bad_min is not None:
     Keep = under_sample(Keep, u_bad_min)
   Keep = within_class_shuffle(Keep)
   print 'finished shuffling'
-  dump_to_files(Keep, data_info, task, data_dir)
+  dump_to_files(Keep, data_info, task, data_dir, filt=["val.txt"])
   return len(Keep[task]), len(Keep['Default'])
 
 
@@ -188,25 +196,28 @@ def within_class_shuffle(Keep):
   return Keep
 
 
-def dump_to_files(Keep, data_info, task, data_dir):
+def dump_to_files(Keep, data_info, task, data_dir, filt = None):
   ''' This function "trusts" you. It will overwrite data lookup 
   files. '''
   dump = []
   part = [0, 0.85, 1] # partition into train val test
   dump_fnames = ['train.txt','val.txt'] #,'test.txt']
   for i in xrange(len(dump_fnames)):
+    if filt and dump_fnames[i] in filt:
+      print "Skipping " + dump_fnames[i]
+      continue
     dump.append([])
     for [key,num] in [('Default',0),(task,1)]:
       l = len(Keep[key])
-      dump[i] += [[f,num] for f in
+      dump[-1] += [[f,num] for f in
                   Keep[key][int(part[i]*l):int(part[i+1]*l)]]
     # this is the important shuffle actually
-    random.shuffle(dump[i])
+    random.shuffle(dump[-1])
     if os.path.isfile(oj(data_info,dump_fnames[i])):
       print "WARNING: overwriting", oj(data_info,dump_fnames[i])
     with open(oj(data_info,dump_fnames[i]),'w') as dfile:
       dfile.writelines(["%s %i\n" % (oj(data_dir,f),num)
-                        for (f,num) in dump[i]])
+                        for (f,num) in dump[-1]])
 
     
 def flag_lookup(labels):
@@ -235,7 +246,7 @@ def add_redboxes(target_bad_min, b_imbal, pos_class, task,
 
 def print_help():
   print '''Usage eg: 
-  ./setup.py --task=scrape --box=blue --learn=6-14 --u-sample=0.90 --o-sample=0.55 --b-imbal=0.5'''
+  ./setup.py --task=scrape --box=blue --learn=6-14 --u-sample-train=0.90 --u-sample-val=0.90 --o-sample=0.55 --b-imbal=0.5'''
   if os.path.exists('/homes/ad6813'):
     # print 'flags:', open('/homes/ad6813/data/flag_lookup.txt','r').readlines()
     lines = open('/homes/ad6813/data/flag_lookup.txt','r').readlines()
@@ -250,7 +261,7 @@ if __name__ == '__main__':
   if len(sys.argv) == 1:
     print_help()
   
-  opts, extraparams = getopt.gnu_getopt(sys.argv[1:], "", ["task=", "box=", "learn=", "u-sample=", "o-sample=", "b-imbal="])
+  opts, extraparams = getopt.gnu_getopt(sys.argv[1:], "", ["task=", "box=", "learn=", "u-sample-train=", "u-sample-val=", "o-sample=", "b-imbal="])
   optDict = dict([(k[2:],v) for (k,v) in opts])
   print optDict
   
@@ -268,8 +279,12 @@ if __name__ == '__main__':
   pos_class = flag_lookup(optDict["learn"])
 
   u_bad_min = None
-  if "u-sample" in optDict:
-    u_bad_min = float(optDict["u-sample"])
+  if "u-sample-train" in optDict:
+    u_bad_min = float(optDict["u-sample-train"])
+
+  u_bad_min_val = None 
+  if "u-sample-val" in optDict:
+    u_bad_min_val = float(optDict["u-sample-val"])
     
   # save entire command
   if not os.path.isdir('../../data/'+task): os.mkdir('../../data/'+task)
@@ -278,7 +293,7 @@ if __name__ == '__main__':
     read_file.write(" ".join(sys.argv)+'\n')
 
   # do your shit
-  num_pos, num_neg = main(data_dir, data_info, task, pos_class, u_bad_min)
+  num_pos, num_neg = main(data_dir, data_info, task, pos_class, u_bad_min, u_bad_min_val)
 
   fn_train = data_info+'/train.txt'
 

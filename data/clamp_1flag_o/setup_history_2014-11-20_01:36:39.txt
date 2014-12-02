@@ -1,0 +1,1 @@
+setup.py --box=blue --task=clamp_1flag_blue --learn=3 --u-sample-train=0.9 --u-sample-val=0.9 --o-sample=0.5 --b-imbal=0.5
