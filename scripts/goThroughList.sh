@@ -2,6 +2,7 @@
 
 cd $1 
 list=${2-"list"}
+echo $list
 while read line  
 do echo "$line"
    jpg=($line)

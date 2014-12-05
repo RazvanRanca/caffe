@@ -1,22 +1,33 @@
 
-TODO:
--> scrape, improve
--> inadcl, improve
-   -> 03: alexnet inadcl_o
-   -> 09: alexnet inadcl_blue
-   -> raznet inadcl_o larger bsize
--> test all models   
+TODO
+----
+retrain all using only single image joints
+(multi-image likely neg so this is just undersampling)
+
+scrape: should return flag if not all visible or no scrape on what's visible.
+-> need correctly labelled no scrape zones
+   -> 1) train a scrape zone net
+   -> 2) relabel misclassifications
+-> how are accuracy, mislabelling when no hatch marks?
+   -> 3) train a scrape net on no hatch marks only
+         -> does it do better on those than if it also learned with the hatch 
+	    marked cases? hopefully it can pick out that when fitting entry is
+	    shinier, it's been scraped (which I think is true).
+-> merge labels? separate nets?
+   -> 4) train a merged label net
+   -> 5) relabel misclassifications
 
 
-max batch: train_batch, val_batch (test_iter)
-06: 10,5
-05: 8,8
-04:            | 1,10 (80)
-03: 5,1
-02: 11,2 (322)
-01:
 
-Alex:
+
+
+
+
+
+
+
+PAST: before CP demo
+--------------------
 -> try new inadcl_o solver mode
 -> avoid Redbox Perfects
    -> run inadcl_o_noRedPerfs for 1000 on graphic05 to compare
