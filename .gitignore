@@ -96,3 +96,5 @@ small.weights
 big.weights
 data.mdb
 fergusData/*
+*.jpg
+*.old

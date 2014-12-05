@@ -19,8 +19,12 @@ def sel2():
      errLabel2.pack_forget()
 
 model = None
+mean = None
+deploy = None
 def sel3():
   global model
+  global mean
+  global deploy
   if not os.path.isfile("oxford/" + var3.get() + ".caffemodel"):
      model = None
      errLabel3.pack()
@@ -28,6 +32,8 @@ def sel3():
   else:
      errLabel3.pack_forget()
      model = "oxford/" + var3.get() + ".caffemodel"
+     mean = "oxford/" + var3.get() + ".mean"
+     deploy = "oxford/" + var3.get() + ".deploy"
 
 filename = None
 def button1Click():
@@ -57,9 +63,11 @@ def button2Click():
       imgLabel.pack_forget()
     
     if runLoc.get() == "local":
+      print "Running locally"
       frame2.update_idletasks()
-      cmd = "python classifyPipe.py --pretrained_model " + model + " " + filename + " temp"
+      cmd = "python classifyPipe.py --mean_file " + mean + " --pretrained_model " + model + " --model_def " + deploy + " " + filename + " temp"
     else:
+      print "Running remotely"
       frame2.update_idletasks()
       imgLabel.pack_forget()
       cmd = "./remoteClassify.sh " + filename
@@ -86,7 +94,7 @@ frame1 = Frame(root)
 frame1.pack(side=LEFT)
 frame2 = Frame(root)
 frame2.pack(side=LEFT)
-disp = Label(frame2)
+disp = Label(frame2, font=("Times",24))
 disp.pack()
 imgLabel = Label(frame2)
 imgLabel.pack()
@@ -94,17 +102,17 @@ imgLabel.pack()
 box1 = Frame(frame1, bd=3, relief=RIDGE, pady=5)
 box1.pack( anchor=W)
 runLoc = StringVar()
+runType = StringVar()
 
 R1 = Radiobutton(box1, text="Run remotely", variable=runLoc, value="server", command=sel1)
 R1.pack( anchor = W )
-R1.invoke()
 
 R2 = Radiobutton(box1, text="Run locally", variable=runLoc, value="local", command=sel1)
 R2.pack( anchor = W )
+R2.invoke()
 
 box2 = Frame(frame1, bd=3, relief=RIDGE, pady=5)
 box2.pack(anchor = W)
-runType = StringVar()
 
 R3 = Radiobutton(box2, text="Run online", variable=runType, value="online", command=sel2)
 R3.pack( anchor = W )

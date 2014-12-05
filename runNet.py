@@ -1,12 +1,12 @@
 import sys
 import subprocess 
 import os
+import shutil
 
 def getLogName(folder):
-  with open("task/"+folder+"/train_val.prototxt", 'r') as f:
-    for line in f:
-      name = line.strip().split()[-1][1:-1]    
-      break
+  pass
+
+def getDataInfo(folder):
   with open("data/"+folder+"/val.txt", 'r') as f:
     zeros = 0.0
     ones = 0.0
@@ -58,19 +58,37 @@ def getLogName(folder):
    
   trainUnder = str( 1 - len(uniqOnes)/(len(uniqOnes)+zeros))[:4]
   trainOver = str(1 - ones / (ones +zeros))[:4]
-  return '-'.join([folder, name, "ur:" + trainUnder, "or:"+ trainOver, "us:" + valUnder, "os:" + valOver, "vb:"+str(tBlue),  "tb:"+str(tRed),"tr:"+str(vBlue), "vr:"+str(vRed)])
+  return {"folder": folder, "trainUnder":trainUnder, "trainOver":trainOver, "valUnder":valUnder, "valOver":valOver, "tBlue":str(tBlue),  "tRed":str(tRed),"vBlue":str(vBlue), "vRed":str(vRed)}
 
+def getLogName(logFold, baseName="tempLog"):
+  ind = 0
+  curName = logFold + "/" + baseName + str(ind)
+  while os.path.exists(curName):
+    ind += 1
+    curName = logFold + "/" + baseName + str(ind)
+  return curName
+
+def saveRelInfo(folder):
+  logFold = "task/" + folder + "/logs/"
+  if not os.path.isdir(logFold):
+    os.makedirs(logFold)
+  logName = getLogName(logFold)
+  assert(not os.path.isdir(logName))
+  dataDict = getDataInfo(folder)
+  os.makedirs(logName)
+  shutil.copy("task/"+folder+"/solver.prototxt", logName)
+  shutil.copy("task/"+folder+"/train_val.prototxt", logName)
+  with open(logName + "/dataInfo", 'w') as f:
+    f.write('\n'.join(map(str, sorted(getDataInfo(folder).items())))) 
+  return logName + "/train.log"
 
 if __name__ == "__main__":
   for d in range(1, len(sys.argv)):
     if sys.argv[d][-1] =='/':
       sys.argv[d] = sys.argv[d][:-1]
     folder = sys.argv[d].split('/')[-1]
-    logFold = "task/" + folder + "/logs/"
-    if not os.path.isdir(logFold):
-      os.makedirs(logFold)
-    logName = getLogName(folder)
-    command = "nohup ./build/tools/caffe train -solver task/" + folder + "/solver.prototxt -weights oxford/small.weights 2>&1 | tee task/" + folder + "/logs/" + logName
+    logName = saveRelInfo(folder)
+    command = "nohup ./build/tools/caffe train -solver task/" + folder + "/solver.prototxt -weights oxford/small.weights 2>&1 | tee " + logName 
     print "Running command:", command
     process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True)
     while(True):

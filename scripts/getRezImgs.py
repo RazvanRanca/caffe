@@ -23,13 +23,13 @@ if __name__ == "__main__":
   task = sys.argv[1]
   model = sys.argv[2]
   mDict = {}
-  with open("/data/ad6813/devCaffe/caffe/task/" + task + "/none/" + model + ".log", 'r') as f:
+  with open("../task/" + task + "/none/" + model + ".log", 'r') as f:
     for line in f:
       line = line.strip().split()
       mDict[int(line[0])] = float(line[1])
 
   hDict = {}
-  with open("/data/ad6813/devCaffe/caffe/data/" + task + "/val.txt", 'r') as f:
+  with open("../data/" + task + "/val.txt", 'r') as f:
     for line in f:
       line = line.strip().split()
       hDict[int(line[0].split('/')[-1].split('.')[0])] = float(line[1])
