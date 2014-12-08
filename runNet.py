@@ -3,9 +3,6 @@ import subprocess
 import os
 import shutil
 
-def getLogName(folder):
-  pass
-
 def getDataInfo(folder):
   with open("data/"+folder+"/val.txt", 'r') as f:
     zeros = 0.0
