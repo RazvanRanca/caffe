@@ -52,7 +52,7 @@ def makeButton(folders):
       os.makedirs(folder)
 
     buttons.append(Button(box2, text=folder.strip('/').split('/')[-1],  command=lambda a=folder: buttonClick(a)))
-    buttons[-1].pack(anchor=W, side=LEFT)
+    buttons[-1].pack(anchor=N)
 
 zoomcycle = 0
 def zoomer(event):
