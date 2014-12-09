@@ -83,6 +83,14 @@ def crop(event):
     zimg = ImageTk.PhotoImage(tmp.resize(size))
     zimg_id = canvas.create_image(event.x,event.y,image=zimg)
 
+if len(sys.argv) == 1: 
+  print '''usage: e.g.
+  python guiMisclass.py scripts/scrape_blue_rezs/listSingNeg ~/data/pipe-data/scrape_blue_rezs 168
+  (listSingNeg is probs for each neg image)
+  (*_rezs is images)
+  (168 is row index in listSingNeg to start from)'''
+  sys.exit()
+
 with open(sys.argv[1], 'r') as f:
   rows = f.read().strip().split('\n')
 
@@ -91,6 +99,7 @@ try:
 except:
   rowInd = 0
   print "Couldn't read rowInd"
+
 
 root = Tk()
 
