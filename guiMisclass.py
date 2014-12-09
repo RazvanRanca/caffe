@@ -39,9 +39,9 @@ def showImg():
   frame2.update_idletasks()
 
 def buttonClick(folder):
-    showImg()
     shutil.copy(curFilename, folder)
     print curFilename, folder
+    showImg()
 
 def makeButton(folders):
   buttons = []
@@ -85,7 +85,13 @@ def crop(event):
 
 with open(sys.argv[1], 'r') as f:
   rows = f.read().strip().split('\n')
-rowInd = 0
+
+try:
+  rowInd = int(sys.argv[3])
+except:
+  rowInd = 0
+  print "Couldn't read rowInd"
+
 root = Tk()
 
 frame1 = Frame(root)
@@ -102,7 +108,7 @@ frame2.pack(side=LEFT)
 box2 = Frame(frame1, pady=10)
 box2.pack(anchor = W)
 
-makeButton(["f1", "f2", "f3"])
+makeButton(["weFuckedUp", "theyFuckedUp", "unclear", "unsuit"])
 showImg()
 
 root.mainloop()

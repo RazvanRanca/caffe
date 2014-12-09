@@ -38,7 +38,7 @@ def main(argv):
     parser.add_argument(
         "--model_def",
         default=os.path.join(pycaffe_dir,
-                "oxford/small.deploy"),
+                "oxford/raz.deploy"),
         help="Model definition file."
     )
     parser.add_argument(
