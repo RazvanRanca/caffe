@@ -1,12 +1,22 @@
 
 TODO
 ----
+
+manually go over soil: stopped at   164875 error 0.589762
+manually go over scrape: stopped at 195135 error 0.860556
+
+!! suggest saying no evidence when hatch markings not visible
+very harsh, but could be v efficient. (except peelable or dirty)
+suggest for human system to be able to say uncertain about scraping, then you'll
+see how tough it is
+
 retrain all using only single image joints
 (multi-image likely neg so this is just undersampling)
 
 scrape: should return flag if not all visible or no scrape on what's visible.
 -> need correctly labelled no scrape zones
-   -> 1) train a scrape zone net
+   -> 1) train a scrape zone netcom  
+
    -> 2) relabel misclassifications
 -> how are accuracy, mislabelling when no hatch marks?
    -> 3) train a scrape net on no hatch marks only
@@ -14,16 +24,15 @@ scrape: should return flag if not all visible or no scrape on what's visible.
 	    marked cases? hopefully it can pick out that when fitting entry is
 	    shinier, it's been scraped (which I think is true).
 -> merge labels? separate nets?
-   -> 4) train a merged label net
+   -> 4) train a merged label net (if no scrape zones then no scraping)
    -> 5) relabel misclassifications
 
+train a hatch markings net:
+-> if it gets high accuracy, replace scrape zone with it
 
 
-
-
-
-
-
+soil:
+-> include low risk in a smart way?
 
 
 PAST: before CP demo

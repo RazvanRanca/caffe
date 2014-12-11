@@ -9,7 +9,7 @@ lr_policy: "fixed"
 # stepsize should also be lower, as we're closer to being done
 # stepsize: 1000
 display: 1
-max_iter: 8
+max_iter: 2
 momentum: 0.9
 weight_decay: 0.0005
 snapshot: 2 
