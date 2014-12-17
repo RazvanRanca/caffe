@@ -2,15 +2,62 @@
 TODO
 ----
 
-manually go over soil: stopped at   164875 error 0.589762
-manually go over scrape: stopped at 195135 error 0.860556
+0. why (rapidswitch,graphic07) Bluebox/ (17728,35803) imgs
+   -> cos 14711 multjoints U 2627 marine U 915 unsuits rm in 1 & not the other
+      -> rsync graphic07 rapidswitch                                       PENDING
+      -> rsync graphic07 protip                                            PENDING
+   -> rm multJoints, marine from pipe-data in graphic and rapidswitch
+
+1. remove multJoints from:
+   -> train.txt files
+   * 6116/29887 joints are multjoints ie 20%
+   * 14711/35803 imgs are from a multjoint ie 40%
+   -> can't rm all, let's be selective
+      -> keep 1st images?
+      	 -> joint-imgs.json dict should be useful
+
+2. remove Fusion marine from:
+   -> train.txt files
+   * 2627 imgs
+   * graphic06 not responding, still need do it
+   
+
+3. train merged scrape/zone
+   -> find proportion of ¬zone&scrape in test mismatched
+   -> cp train.txt for scrape, flip ones flagged with zone to 1, train
+   -> also, train zone only
+
+4. train merged low/high soil risk
+   -> find proportion of low risk in test mismatched
+   -> cp train.txt for soil, flip ones flagged with low risk 1, train
+
+*. more confident preds
+   -> based on our 05-12-14 val set, HoT prices, assuming (!) 50p for 50%-75% conf
+      -> water avgs  118p/img
+      -> soil avgs   61p/img
+      -> scrape avgs 51p/img
+   -> relabel to confuse less
+   -> remove from tran set to confuse less
+   -> try multiple classes eg separate low/high risk
+      -> low risk as target 0.7 => less money
+   -> HoT: how to get overall conf for entire joint?
+
+*. non sparse target vectors
+   -> careful! could => less money
+
+
+
+PAST: before 17-12-14
+---------------------
+
+manually go over scrape: stopped at ?? error ??
 
 !! suggest saying no evidence when hatch markings not visible
 very harsh, but could be v efficient. (except peelable or dirty)
 suggest for human system to be able to say uncertain about scraping, then you'll
 see how tough it is
 
-retrain all using only single image joints
+retrain all using only single image joints, without Fusion marine
 (multi-image likely neg so this is just undersampling)
 
 scrape: should return flag if not all visible or no scrape on what's visible.
