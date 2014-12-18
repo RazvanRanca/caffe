@@ -2,6 +2,24 @@
 TODO
 ----
 
+*. more confident preds
+   -> based on our 05-12-14 val set, HoT prices, assuming (!) 50p for 50%-75% conf
+      -> water avgs  118p/img
+      -> soil avgs   61p/img
+      -> scrape avgs 51p/img
+   -> relabel to confuse less
+   -> remove from tran set to confuse less
+   -> try multiple classes eg separate low/high risk
+      -> low risk as target 0.7 => less money
+   -> HoT: how to get overall conf for entire joint?
+
+*. non sparse target vectors
+   -> careful! could => less money
+
+
+17-12-14
+--------
+
 0. why (rapidswitch,graphic07) Bluebox/ (17728,35803) imgs
    -> cos 14711 multjoints U 2627 marine U 915 unsuits rm in 1 & not the other
       -> rsync graphic07 rapidswitch                                       PENDING
@@ -49,30 +67,36 @@ TODO
 	      to determine which neg/pos from ~/data/pipe-data/soil_high_o_rezs/weFuckedUp
 
 1.3 update train.txt and val.txt for each model
-   
+    -> mkdir {task,data}/{scrape_z,soil_lh_o}
+    -> get train.txt files from raz train2.0 email so same as last time
+    -> get val.txt from mislab/05-12-14/*/listSing* so same as last time
+    -> cross ref with Bluebox to see which ones to remove:
+       cat train.txt | cut -d' ' -f 1 | xargs -i ls {} 1>keep_train 2>rm_train
+       -> scrape: 9849 imgs missing in Bluebox from train.txt, 119 from val.txt
+          -> update val.txt
+	     2950 imgs, 300pos, 2650neg
+	  * train.txt is complement of val.txt in Bluebox
+	    -> completement may involve adding previously absent cases
+	       * 2170 pos, 22907 neg, 8.7% imbalance no need osample
+	       * train on 25077 imgs
+    -> flip zone to pos
+       -> train:
+       	  * of 5819 zone pos, 5543 are scrape neg
+	  * now 7713 pos, 17364 neg, 31% imbal
+       -> val:
+       	  * of 688 zone pos, 641 are scrape neg
+	  * now 941 pos, 1967 neg, 32% imbal
+    -> flip other mislabs
+       
 
 3. train merged scrape/zone
    -> find proportion of ¬zone&scrape in test mismatched
-   -> cp train.txt for scrape, flip ones flagged with zone to 1, train
+   -> 3 classes to help learning,but combine class at runtime?
    -> also, train zone only
 
 4. train merged low/high soil risk
    -> find proportion of low risk in test mismatched
    -> cp train.txt for soil, flip ones flagged with low risk 1, train
-
-*. more confident preds
-   -> based on our 05-12-14 val set, HoT prices, assuming (!) 50p for 50%-75% conf
-      -> water avgs  118p/img
-      -> soil avgs   61p/img
-      -> scrape avgs 51p/img
-   -> relabel to confuse less
-   -> remove from tran set to confuse less
-   -> try multiple classes eg separate low/high risk
-      -> low risk as target 0.7 => less money
-   -> HoT: how to get overall conf for entire joint?
-
-*. non sparse target vectors
-   -> careful! could => less money
 
 
 
