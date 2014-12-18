@@ -80,6 +80,7 @@ TODO
        * of 5819 zone pos, 5543 are scrape neg
        * now 7713 pos, 17364 neg, 31% imbal
        val:
+       * val on 2908 imgs
        * of 688 zone pos, 641 are scrape neg
        * now 941 pos, 1967 neg, 32% imbal
     -> flip other mislabs
