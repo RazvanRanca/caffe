@@ -34,7 +34,7 @@ TODO
    * 2679/38482 imgs are fusion marine ie 7%
      -> those removed from pipe-data/Bluebox are removed_fusionmarine_imgs
      -> dataset now 28743 (1535 already removed as multjoints)
-   * 915/38482 imgs are unsuitable ie 
+   * 915/38482 imgs are unsuitable ie 2.4%
      -> those removed from pipe-data/Bluebox are removed_unsuit_imgs
      -> dataset now  ( already removed as multjoints or fusionmarine)
 
