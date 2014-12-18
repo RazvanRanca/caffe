@@ -36,9 +36,19 @@ TODO
      -> dataset now 28743 (1535 already removed as multjoints)
    * 915/38482 imgs are unsuitable ie 2.4%
      -> those removed from pipe-data/Bluebox are removed_unsuit_imgs
-     -> dataset now  ( already removed as multjoints or fusionmarine)
+     -> dataset now 27985 (758 already removed as multjoints or fusionmarine)
 
-1.2 update train.txt and val.txt
+1.2 exploit mis-labelling spreadsheet
+    * remember tolerates good for test, so don't keep old test set?
+    * remember mistakes good for train oversample, so use new test set?
+    * cleaner dir stucture
+      -> scripts/mislab/{date}
+      	 -> for each date, a model dir for each gui mismatch triage, and 
+	    mislab tolerate mistake files containing fnames
+	    * started doing soil, did mislabs and tolerates, aborted at mistakes cos cba
+	      to determine which neg/pos from ~/data/pipe-data/soil_high_o_rezs/weFuckedUp
+
+1.3 update train.txt and val.txt for each model
    
 
 3. train merged scrape/zone
