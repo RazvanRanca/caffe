@@ -1962,7 +1962,7 @@
 /data/ad6813/pipe-data/Bluebox/151203.jpg 0
 /data/ad6813/pipe-data/Bluebox/180209.jpg 0
 /data/ad6813/pipe-data/Bluebox/122152.jpg 1
-/data/ad6813/pipe-data/Bluebox/198165.jpg 1
+/data/ad6813/pipe-data/Bluebox/198165.jpg 0
 /data/ad6813/pipe-data/Bluebox/193469.jpg 0
 /data/ad6813/pipe-data/Bluebox/199343.jpg 0
 /data/ad6813/pipe-data/Bluebox/167368.jpg 0
@@ -2286,7 +2286,7 @@
 /data/ad6813/pipe-data/Bluebox/188458.jpg 0
 /data/ad6813/pipe-data/Bluebox/118602.jpg 1
 /data/ad6813/pipe-data/Bluebox/187502.jpg 1
-/data/ad6813/pipe-data/Bluebox/198259.jpg 1
+/data/ad6813/pipe-data/Bluebox/198259.jpg 0
 /data/ad6813/pipe-data/Bluebox/161247.jpg 1
 /data/ad6813/pipe-data/Bluebox/156280.jpg 1
 /data/ad6813/pipe-data/Bluebox/193462.jpg 0
