@@ -8,8 +8,10 @@ TODO
       -> rsync graphic07 protip                                            PENDING
    -> rm multJoints, marine from pipe-data in graphic and rapidswitch
 
-1. remove multJoints from:
-   -> train.txt files
+1.1 remove multJoints, fusion marine, unsuits from pipe-data/Bluebox in all machines:
+   * graphic06 not responding, still need do it
+     ->       
+   * 38482 total ims, 29887 total joints
    * 6116/29887 joints are multjoints ie 20%
    * 14711/38482 imgs are from a multjoint ie 38%
    -> can't rm all, let's be selective
@@ -26,14 +28,14 @@ TODO
 	       ignored 1st 50, seemed to mostly be fusion marine
 	       -> (8,6,6,8)/50 of (img1,img2,img3,img4) zoom in (looked at imgs 200093-98251)
 	          (0,3,3,2)/50 of (img1,img2,img3,img4) unsuit (looked at imgs 200093-98251)
-         * keep 1st img
+         * keep 1st img, ie remove (14711-6116)/38482 = 22%
 	   -> those removed from pipe-data/Bluebox are removed_multjoin_imgs
 	   -> dataset now 29887 imgs
+   * 2679/38482 imgs are fusion marine ie 7%
+     -> dataset now 28743 (1535 already removed as multjoints)
 
-2. remove Fusion marine from:
-   -> train.txt files
-   * 2627 imgs
-   * graphic06 not responding, still need do it
+
+1.2 update train.txt and val.txt
    
 
 3. train merged scrape/zone
