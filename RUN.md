@@ -59,12 +59,8 @@ TODO
 1.2 exploit mis-labelling spreadsheet
     * remember tolerates good for test, so don't keep old test set?
     * remember mistakes good for train oversample, so use new test set?
-    * cleaner dir stucture
-      -> scripts/mislab/{date}
-      	 -> for each date, a model dir for each gui mismatch triage, and 
-	    mislab tolerate mistake files containing fnames
-	    * started doing soil, did mislabs and tolerates, aborted at mistakes cos cba
-	      to determine which neg/pos from ~/data/pipe-data/soil_high_o_rezs/weFuckedUp
+    * cleaner dir stucture:
+      scripts/mislab/{date}/{model}/final/{mislab,tolerate,mistake}_{neg,pos}
 
 1.3 update train.txt and val.txt for each model
     -> mkdir {task,data}/{scrape_z,soil_lh_o}
@@ -80,13 +76,19 @@ TODO
 	       * 2170 pos, 22907 neg, 8.7% imbalance no need osample
 	       * train on 25077 imgs
     -> flip zone to pos
-       -> train:
-       	  * of 5819 zone pos, 5543 are scrape neg
-	  * now 7713 pos, 17364 neg, 31% imbal
-       -> val:
-       	  * of 688 zone pos, 641 are scrape neg
-	  * now 941 pos, 1967 neg, 32% imbal
+       train:
+       * of 5819 zone pos, 5543 are scrape neg
+       * now 7713 pos, 17364 neg, 31% imbal
+       val:
+       * of 688 zone pos, 641 are scrape neg
+       * now 941 pos, 1967 neg, 32% imbal
     -> flip other mislabs
+       * cat scrape_blue_rezs/final/mislab_truepos | xargs -i grep {} scrape_z/val.txt > scrape_z/should_be_pos
+       	 grep '0$' should_be_pos | wc -l
+         42 mislab_truepos still have neg label in val.txt
+         * rm unsuits marines mutjoints AND merging zone,scrape removes only 23/65 
+	   mislab truepos
+	   suggests manual relabelling on horizon this break
        
 
 3. train merged scrape/zone
