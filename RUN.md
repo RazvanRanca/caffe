@@ -11,10 +11,24 @@ TODO
 1. remove multJoints from:
    -> train.txt files
    * 6116/29887 joints are multjoints ie 20%
-   * 14711/35803 imgs are from a multjoint ie 40%
+   * 14711/38482 imgs are from a multjoint ie 38%
    -> can't rm all, let's be selective
       -> keep 1st images?
       	 -> joint-imgs.json dict should be useful
+	 -> BlueboxMult, flick through the dirs to see when unsuit or zoomed
+	    -> 2 imgs in joint:
+	       unsuit is barcode, people's faces, super blur
+	       -> (5,29)/50 of (img1,img2) were zoomed in (looked at imgs ~101979-106120)
+	          (1,11)/50 of (img1,img2) were zoomed in (looked at imgs ~203469-98387)
+	       -> (1,12)/50 of (img1,img2) were unsuit (looked at imgs ~101979-106120)
+	          (1,10)/50 of (img1,img2) were unsuit (looked at imgs ~203469-98387)
+            -> 4 imgs in joint:
+	       ignored 1st 50, seemed to mostly be fusion marine
+	       -> (8,6,6,8)/50 of (img1,img2,img3,img4) zoom in (looked at imgs 200093-98251)
+	          (0,3,3,2)/50 of (img1,img2,img3,img4) unsuit (looked at imgs 200093-98251)
+         * keep 1st img
+	   -> those removed from pipe-data/Bluebox are removed_multjoin_imgs
+	   -> dataset now 29887 imgs
 
 2. remove Fusion marine from:
    -> train.txt files
