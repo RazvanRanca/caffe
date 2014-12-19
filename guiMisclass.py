@@ -14,6 +14,9 @@ def showImg():
   global zimg_id
   global orig_img
   global img
+  if rowInd == len(rows):
+    disp.config(text="All done")
+    return
   curFilename = sys.argv[2] + "/" + rows[rowInd].strip().split()[0] + ".jpg"
   disp.config(text=' - '.join(rows[rowInd].strip().split()))
   rowInd += 1
@@ -41,11 +44,16 @@ def showImg():
 def buttonClick(folder):
     shutil.copy(curFilename, folder)
     print curFilename, folder
+    with open(logFile, 'a') as f:
+      f.write(curFilename + " " + ' '.join(rows[rowInd-1].strip().split()) + " " + foldKey[folder.strip('/').split('/')[-1]] + "\n")
     showImg()
 
+foldKey = {}
 def makeButton(folders):
+  global foldKey
   buttons = []
   for folder in folders:
+    foldKey[folder] = str(len(foldKey))
     if not "/" in folder:
       folder = sys.argv[2] + "/" + folder
     if not os.path.exists(folder):
@@ -53,6 +61,8 @@ def makeButton(folders):
 
     buttons.append(Button(box2, text=folder.strip('/').split('/')[-1],  command=lambda a=folder: buttonClick(a)))
     buttons[-1].pack(anchor=N)
+  with open(logFile, 'a') as f:
+    f.write("#" + str(sorted(foldKey.items(), key=lambda (x,y):y)) + "\n")
 
 zoomcycle = 0
 def zoomer(event):
@@ -85,21 +95,26 @@ def crop(event):
 
 if len(sys.argv) == 1: 
   print '''usage: e.g.
-  python guiMisclass.py scripts/scrape_blue_rezs/listSingNeg ~/data/pipe-data/scrape_blue_rezs 168
+  python guiMisclass.py scripts/scrape_blue_rezs/listSingNeg ~/data/pipe-data/scrape_blue_rezs logFile 168
   (listSingNeg is probs for each neg image)
   (*_rezs is images)
-  (168 is row index in listSingNeg to start from)'''
+  (logFile is the file to which the results summary is saved)
+  (168 is row index in listSingNeg to start from. If non-zero will append to logFile [default=0])'''
   sys.exit()
 
 with open(sys.argv[1], 'r') as f:
   rows = f.read().strip().split('\n')
 
+logFile = sys.argv[3]
+
 try:
-  rowInd = int(sys.argv[3])
+  rowInd = int(sys.argv[4])
 except:
   rowInd = 0
-  print "Couldn't read rowInd"
+  print "Couldn't read rowInd, assuming 0"
 
+if rowInd == 0 and os.path.exists(logFile):
+  os.remove(logFile)
 
 root = Tk()
 
