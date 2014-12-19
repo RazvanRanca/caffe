@@ -1,5 +1,14 @@
 
-TODO
+BEST MODELS
+-----------
+clamp:  
+unsuit: 
+soil:   
+water:  
+scrape: 
+
+
+TODO (long term)
 ----
 
 *. more confident preds
@@ -15,6 +24,57 @@ TODO
 
 *. non sparse target vectors
    -> careful! could => less money
+
+
+19-12-14
+--------
+
+TODO
+
+1. tracking models: 'best models' section in this file, top of page
+
+2. fast gui relabeling
+   -> stop image folder creation
+   -> wefucked up duplicates case x times if in train.txt
+   -> theyfuckedup flips label in train.txt or val.txt, appends to relab file
+
+3. teach alex gui soil relabeling
+
+4. graphic07 switch to bitbucket repo
+
+5. improve unsuit
+   new {train,val}.txt
+   -> rm all multjoints from negs, even 1st img
+   -> does unsuit intersect multjoint contain non-unsuit imgs
+   -> rm fusion marine, multjoints
+   -> gui through mismatches across entire set with best model, relabel & osample
+   -> osample acc to tradeoff, accounting for prev osample and new relabels
+   retrain
+
+6. improve clamp
+   new {train,val}.txt
+   -> rm fusion marine, multjoints, unsuits
+   -> gui through mismatches across entire set with best model, relabel & osample
+   -> osample acc to tradeoff, accounting for prev osample and new relabels
+   retrain   
+
+7. improve scrape
+   did merge scrape zone work better than scrape
+   update {train,val}.txt
+   -> gui through mismatches across entire set with best model, relabel & osample
+   -> osample acc to tradeoff, accounting for prev osample and new relabels
+   retrain
+   train zone only to find mislabs
+
+8. improve soil
+   find best soil model graphic06
+   update {train,val}.txt
+   -> rm fusion marine, multjoints, unsuits
+   -> gui through mismatches across entire set with best model, relabel & osample
+   -> osample acc to tradeoff, accounting for prev osample and new relabels
+   retrain 
+   train merged low/high soil risk
+
 
 
 17-12-14
@@ -88,17 +148,11 @@ TODO
          42 mislab_truepos still have neg label in val.txt
          * rm unsuits marines mutjoints AND merging zone,scrape removes only 23/65 
 	   mislab truepos
-	   suggests manual relabelling on horizon this break
-       
+	   suggests manual relabelling on horizon this break       
 
-3. train merged scrape/zone
-   -> find proportion of ¬zone&scrape in test mismatched
-   -> 3 classes to help learning,but combine class at runtime?
-   -> also, train zone only
-
-4. train merged low/high soil risk
-   -> find proportion of low risk in test mismatched
-   -> cp train.txt for soil, flip ones flagged with low risk 1, train
+3. improve scrape
+   -> train merged scrape/zone on new reduced filtered Bluebox
+   -> train scrape on new reduced filtered Bluebox
 
 
 
