@@ -140,15 +140,20 @@ TODO
        * of 5819 zone pos, 5543 are scrape neg
        * now 7713 pos, 17364 neg, 31% imbal
        val:
+       * val on 2908 imgs
        * of 688 zone pos, 641 are scrape neg
        * now 941 pos, 1967 neg, 32% imbal
-    -> flip other mislabs
-       * cat scrape_blue_rezs/final/mislab_truepos | xargs -i grep {} scrape_z/val.txt > scrape_z/should_be_pos
-       	 grep '0$' should_be_pos | wc -l
-         42 mislab_truepos still have neg label in val.txt
-         * rm unsuits marines mutjoints AND merging zone,scrape removes only 23/65 
-	   mislab truepos
-	   suggests manual relabelling on horizon this break       
+       -> flip mislab true pos
+          * cat scrape_blue_rezs/final/mislab_truepos | xargs -i grep {} scrape_z/val.txt > scrape_z/should_be_pos
+            grep '0$' should_be_pos | wc -l
+            42 mislab_truepos still have neg label in val.txt
+          * rm unsuits marines mutjoints AND merging zone,scrape removes only 23/65 
+	    mislab truepos
+	    suggests manual relabelling on horizon this break
+       -> flip mislab true neg
+       	  2 cases, did it manually via emacs
+     * osample big mistakes not possible cos ruins data distrib in val
+       -> but if ever you do, scripts/mislab/05-12-14/scrape_blue_rezs/final/mistake_*
 
 3. improve scrape
    -> train merged scrape/zone on new reduced filtered Bluebox
