@@ -1,16 +1,177 @@
 
-TODO
+BEST MODELS
+-----------
+clamp:  
+unsuit: 
+soil:   
+water:  
+scrape: 
+
+
+TODO (long term)
 ----
 
-manually go over soil: stopped at   164875 error 0.589762
-manually go over scrape: stopped at 195135 error 0.860556
+*. more confident preds
+   -> based on our 05-12-14 val set, HoT prices, assuming (!) 50p for 50%-75% conf
+      -> water avgs  118p/img
+      -> soil avgs   61p/img
+      -> scrape avgs 51p/img
+   -> relabel to confuse less
+   -> remove from tran set to confuse less
+   -> try multiple classes eg separate low/high risk
+      -> low risk as target 0.7 => less money
+   -> HoT: how to get overall conf for entire joint?
+
+*. non sparse target vectors
+   -> careful! could => less money
+
+
+19-12-14
+--------
+
+TODO
+
+1. tracking models: 'best models' section in this file, top of page
+
+2. fast gui relabeling
+   -> stop image folder creation
+   -> wefucked up duplicates case x times if in train.txt
+   -> theyfuckedup flips label in train.txt or val.txt, appends to relab file
+
+3. teach alex gui soil relabeling
+
+4. graphic07 switch to bitbucket repo
+
+5. improve unsuit
+   new {train,val}.txt
+   -> rm all multjoints from negs, even 1st img
+   -> does unsuit intersect multjoint contain non-unsuit imgs
+   -> rm fusion marine, multjoints
+   -> gui through mismatches across entire set with best model, relabel & osample
+   -> osample acc to tradeoff, accounting for prev osample and new relabels
+   retrain
+
+6. improve clamp
+   new {train,val}.txt
+   -> rm fusion marine, multjoints, unsuits
+   -> gui through mismatches across entire set with best model, relabel & osample
+   -> osample acc to tradeoff, accounting for prev osample and new relabels
+   retrain   
+
+7. improve scrape
+   did merge scrape zone work better than scrape
+   update {train,val}.txt
+   -> gui through mismatches across entire set with best model, relabel & osample
+   -> osample acc to tradeoff, accounting for prev osample and new relabels
+   retrain
+   train zone only to find mislabs
+
+8. improve soil
+   find best soil model graphic06
+   update {train,val}.txt
+   -> rm fusion marine, multjoints, unsuits
+   -> gui through mismatches across entire set with best model, relabel & osample
+   -> osample acc to tradeoff, accounting for prev osample and new relabels
+   retrain 
+   train merged low/high soil risk
+
+
+
+17-12-14
+--------
+
+0. why (rapidswitch,graphic07) Bluebox/ (17728,35803) imgs
+   -> cos 14711 multjoints U 2627 marine U 915 unsuits rm in 1 & not the other
+      -> rsync graphic07 rapidswitch                                       PENDING
+      -> rsync graphic07 protip                                            PENDING
+   -> rm multJoints, marine from pipe-data in graphic and rapidswitch
+
+1.1 remove multJoints, fusion marine, unsuits from pipe-data/Bluebox in all machines:
+   * graphic06 not responding, still need do it
+     ->       
+   * 38482 total ims, 29887 total joints
+   * 6116/29887 joints are multjoints ie 20%
+   * 14711/38482 imgs are from a multjoint ie 38%
+   -> can't rm all, let's be selective
+      -> keep 1st images?
+      	 -> joint-imgs.json dict should be useful
+	 -> BlueboxMult, flick through the dirs to see when unsuit or zoomed
+	    -> 2 imgs in joint:
+	       unsuit is barcode, people's faces, super blur
+	       -> (5,29)/50 of (img1,img2) were zoomed in (looked at imgs ~101979-106120)
+	          (1,11)/50 of (img1,img2) were zoomed in (looked at imgs ~203469-98387)
+	       -> (1,12)/50 of (img1,img2) were unsuit (looked at imgs ~101979-106120)
+	          (1,10)/50 of (img1,img2) were unsuit (looked at imgs ~203469-98387)
+            -> 4 imgs in joint:
+	       ignored 1st 50, seemed to mostly be fusion marine
+	       -> (8,6,6,8)/50 of (img1,img2,img3,img4) zoom in (looked at imgs 200093-98251)
+	          (0,3,3,2)/50 of (img1,img2,img3,img4) unsuit (looked at imgs 200093-98251)
+         * keep 1st img, ie remove (14711-6116)/38482 = 22%
+	   -> those removed from pipe-data/Bluebox are removed_multjoin_imgs
+	   -> dataset now 29887 imgs
+   * 2679/38482 imgs are fusion marine ie 7%
+     -> those removed from pipe-data/Bluebox are removed_fusionmarine_imgs
+     -> dataset now 28743 (1535 already removed as multjoints)
+   * 915/38482 imgs are unsuitable ie 2.4%
+     -> those removed from pipe-data/Bluebox are removed_unsuit_imgs
+     -> dataset now 27985 (758 already removed as multjoints or fusionmarine)
+
+1.2 exploit mis-labelling spreadsheet
+    * remember tolerates good for test, so don't keep old test set?
+    * remember mistakes good for train oversample, so use new test set?
+    * cleaner dir stucture:
+      scripts/mislab/{date}/{model}/final/{mislab,tolerate,mistake}_{neg,pos}
+
+1.3 update train.txt and val.txt for each model
+    -> mkdir {task,data}/{scrape_z,soil_lh_o}
+    -> get train.txt files from raz train2.0 email so same as last time
+    -> get val.txt from mislab/05-12-14/*/listSing* so same as last time
+    -> cross ref with Bluebox to see which ones to remove:
+       cat train.txt | cut -d' ' -f 1 | xargs -i ls {} 1>keep_train 2>rm_train
+       -> scrape: 9849 imgs missing in Bluebox from train.txt, 119 from val.txt
+          -> update val.txt
+	     2950 imgs, 300pos, 2650neg
+	  * train.txt is complement of val.txt in Bluebox
+	    -> completement may involve adding previously absent cases
+	       * 2170 pos, 22907 neg, 8.7% imbalance no need osample
+	       * train on 25077 imgs
+    -> flip zone to pos
+       train:
+       * of 5819 zone pos, 5543 are scrape neg
+       * now 7713 pos, 17364 neg, 31% imbal
+       val:
+       * val on 2908 imgs
+       * of 688 zone pos, 641 are scrape neg
+       * now 941 pos, 1967 neg, 32% imbal
+       -> flip mislab true pos
+          * cat scrape_blue_rezs/final/mislab_truepos | xargs -i grep {} scrape_z/val.txt > scrape_z/should_be_pos
+            grep '0$' should_be_pos | wc -l
+            42 mislab_truepos still have neg label in val.txt
+          * rm unsuits marines mutjoints AND merging zone,scrape removes only 23/65 
+	    mislab truepos
+	    suggests manual relabelling on horizon this break
+       -> flip mislab true neg
+       	  2 cases, did it manually via emacs
+     * osample big mistakes not possible cos ruins data distrib in val
+       -> but if ever you do, scripts/mislab/05-12-14/scrape_blue_rezs/final/mistake_*
+
+3. improve scrape
+   -> train merged scrape/zone on new reduced filtered Bluebox
+   -> train scrape on new reduced filtered Bluebox
+
+
+
+PAST: before 17-12-14
+---------------------
+
+manually go over scrape: stopped at ?? error ??
 
 !! suggest saying no evidence when hatch markings not visible
 very harsh, but could be v efficient. (except peelable or dirty)
 suggest for human system to be able to say uncertain about scraping, then you'll
 see how tough it is
 
-retrain all using only single image joints
+retrain all using only single image joints, without Fusion marine
 (multi-image likely neg so this is just undersampling)
 
 scrape: should return flag if not all visible or no scrape on what's visible.
